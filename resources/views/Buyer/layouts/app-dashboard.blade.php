@@ -30,7 +30,7 @@
                 <label for="nav-toggle">
                 <span class="fas fa-bars mr-3 ml-2"></span>
                 </label>
-                Buyer Group offff Industries
+                Buyer Group of Industries
             </h3>
             <div class="search-wrapper">
                 <!-- <span class="fas fa-search"></span> -->
