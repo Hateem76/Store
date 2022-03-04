@@ -1,0 +1,22 @@
+@media screen and (max-width:768px) {
+    .add-product-container{
+        width: 92% !important;
+        height: auto !important;
+}
+.add-product-container button{
+    width: 200px;
+    margin-bottom: 30px;
+    margin-top: 10px !important;
+}
+}
+
+.edit-prof-img{
+    cursor: pointer;
+}
+
+.edit-prof-img img{
+    border-radius: 50%;
+    width: 175px;
+    height: 125px;
+    border: 3px solid rgba(0,0,0,0.5);
+}

@@ -1,0 +1,23 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+
+#nav_heading{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.card{
+    box-shadow: 0 2px 4px rgba(204, 204, 204, 0.8);
+    padding: 20px 40px;
+}
+
+.h1{
+    font-weight: bold;
+}

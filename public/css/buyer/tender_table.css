@@ -1,0 +1,219 @@
+.table-container{
+    padding-top: 70px;
+}
+
+.table-bordered{
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+
+}
+
+.response-table{
+    display: none;
+}
+.addTransition{
+    animation: slide-down .5s ease-out;
+    -webkit-animation: slide-down .5s ease-out;
+    -moz-animation: slide-down .5s ease-out;
+}
+
+@keyframes slide-down {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes slide-down {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes slide-down {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.checkBtn{
+   width: 47px !important;
+   display: flex !important;
+   justify-content: center !important;
+   align-items: center !important;
+   height: 35px;
+    
+}
+
+.createBtn{
+    width: 60%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.createBtn button{
+    margin-left: -20px;
+    margin-bottom: 10px;
+    height: 50px;
+    text-transform: uppercase;
+    width: 250px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+@media screen and (max-width:768px) {
+    .createBtn button{
+        width: 170px;
+        margin-left: 17px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        height: 40px;
+    }
+}
+
+.crossBtn{
+   width: 47px !important;
+    height: 35px;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    font-weight: 700 !important;
+    margin-left: 10px;
+}
+
+.image-show{
+    height: 100vh;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+
+.image-show img{
+    width: 90%;
+    max-width: 500px;
+    max-height: 90%;
+}
+
+.image-show span{
+    position: absolute;
+    top:5%;
+    right: 5%;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.approval{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table img{
+    width: 145px;
+    height: 78px;
+    cursor: pointer;
+}
+
+hr{
+    background-color: #00d6ab;
+    color: #00d6ab;
+    width: 100%;
+}
+
+html,body{
+    overflow-x: hidden;
+}
+
+
+
+@media screen and (max-width:768px) {
+
+    .reports-container{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .table-container{
+        padding-top: 0px;
+    }
+
+    table{
+        width: 100%;
+    }
+
+    tr{
+        font-size: 11px;
+    }
+
+     .image-show span{
+        top: 21%;
+        right: 9%;
+    }
+
+    .table img{
+        width: 55px;
+        height: 35px;
+    }
+
+    .approval{
+        flex-direction: column;
+    }
+
+    .checkBtn{
+        width: 30px !important;
+        margin-left: -20px;
+         height: 25px;
+    }
+
+    .crossBtn{
+        width: 30px !important;
+        margin-top: 8px;
+        height: 25px;
+        font-weight: 300;
+        margin-left: -20px !important;
+    }
+
+    .fa-check{
+        font-size: 11px;
+    }
+
+}
+
+ @media screen and (max-width:768px) {
+     .reports-container{
+         overflow-x: auto;
+         overflow-y: scroll;
+     }
+
+       .add-product-container{
+        width: 92% !important;
+        height: auto !important;
+}
+.add-product-container button{
+    width: 200px;
+    margin-bottom: 30px;
+    margin-top: 10px !important;
+}
+
+.card .card-body{
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+}
+}

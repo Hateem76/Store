@@ -1,0 +1,304 @@
+<?php
+
+namespace App\Http\Controllers\Buyer;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ConfirmationLetterRequest;
+use App\Http\Requests\StoreTenderRequest;
+use Illuminate\Http\Request;
+use App\Models\Tender;
+use App\Models\TenderResponse;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use App\Models\User;
+use App\Models\Project;
+use App\Models\Contact;
+use App\Models\PrivateTenderUserRelator;
+use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+
+class BuyerTenderController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $userId = Auth::user()->id;
+        if(Gate::allows('child-buyer')){
+            $userId = Auth::user()->parent_id;
+        }
+        $serialNo = 1;
+        $projects = Project::pluck('tender_id')->all();
+        $tenders = Tender::where('user_id',$userId)->whereNotIn('id',$projects)->with('tender_responses')->get();
+        // dd($tenders);
+        return view('Buyer.tender.index',[
+            'tenders'   => $tenders,
+            'serialNo'  => $serialNo
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('Buyer.tender.create',[
+            'speacial'  => 'no'
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        if($request->input('speacial') == 'yes'){
+            $request->validate([
+                'name' => 'required|max:25',
+                'duration' => 'required|integer|max:10000',
+                'quantity' => 'required|integer|max:10000',
+                'location' => 'max:25',
+                'unit'     => 'max:15',
+            ]);
+            $public_private = null;
+        }
+        else{
+            $request->validate([
+                'name' => 'required|max:25',
+                'duration' => 'required|integer|max:10000',
+                'quantity' => 'required|integer|max:10000',
+                'description' => 'max:50',
+                'unit'       =>  'max:15',
+                'public_private' => 'required',
+            ]);
+            $public_private = $request->input('public_private');
+        }
+        $userId = Auth::user()->id;
+        if(Gate::allows('child-buyer')){
+            $userId = Auth::user()->parent_id;
+        }
+        // dump($friends);
+        try{
+            $tender = Tender::create([
+                'user_id' => $userId,
+                'product_name' => $request->input('name'),
+                'duration' => $request->input('duration'),
+                'description' => $request->input('description'),
+                'unit'       => $request->input('unit'),
+                'public_private' => $public_private,
+                'quantity' => $request->input('quantity'),
+                'confirmation_letter' => 0
+    
+            ]);
+                // if Speacial Tender for specific seller
+            if($request->input('speacial') == 'yes'){// only show to That Specific Seller
+                $relator = PrivateTenderUserRelator::create([
+                    'user_id'   => $request->input('seller'),
+                    'tender_id'  => $tender->id
+                ]);    
+            }
+            elseif($request->input('public_private') == 0){ // means private tender
+                $friends = Contact::where('me',$userId)->get();  // my all friends
+                foreach($friends as $friend){
+                    $relator = PrivateTenderUserRelator::create([
+                        'user_id'   => $friend->user_id,
+                        'tender_id'  => $tender->id
+                    ]);
+                }
+            }
+            
+        }
+        catch(\Illuminate\Database\QueryException $e){
+            $request->session()->flash('danger','Tender not Posted.');
+            return redirect(route('buyer.tenders.index'));
+        }
+        $request->session()->flash('success','Tender Posted Successfully');
+        return redirect(route('buyer.tenders.index'));
+
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+
+    public function confirmationLetter(ConfirmationLetterRequest $request){
+
+        $dataValidated = $request->validated();
+        $userId = Auth::user()->id;
+        if(Gate::allows('child-buyer')){
+            $userId = Auth::user()->parent_id;
+        }
+        $tenderId = $request->input('tender_id');
+        $toUserId = $request->input('user_id');
+        // Check if He is the Owner of That Tender and This Tender has no confirmation letter
+        if(Tender::where('id',$tenderId)->where('user_id',$userId)->where('confirmation_letter',0)->exists()){
+            // dd('Owner Found');
+        }
+        else{
+            $request->session()->flash('danger','Tender already has Confirmation Letter.');
+            return redirect(route('buyer.tenders.index'));
+        }
+        // Check if Response Exists
+        if(TenderResponse::where('user_id',$toUserId)->where('tender_id',$tenderId)->exists()){
+            try{
+                $file_name = 'not_found.pdf';
+                if($request->hasFile('confirmation_letter')){ 
+                    $file_name = time(). '-' . $request->input('tender_id') . $userId. '.' . $request->confirmation_letter->extension();
+                    $request->confirmation_letter->move(public_path('confirmation-letters'),$file_name);
+                }
+                    // Update Response Record To Update Seller about Confirmation
+                $confirmationLetter = TenderResponse::where('user_id',$toUserId)->where('tender_id',$tenderId)->update([
+                    'confirmation_letter' => 1,
+                    'letter_pdf'  => $file_name
+                ]);
+                    // To put Tender in Pending State
+                $tender = Tender::where('id',$tenderId)->update([
+                    'confirmation_letter' => 1
+                ]);
+            }
+            catch(\Illuminate\Database\QueryException $e){
+                $request->session()->flash('danger','Letter Did not Submit.');
+                return redirect(route('buyer.tenders.index'));
+            }
+            $request->session()->flash("success","Letter Submitted Successfully. Wait for Seller's Confirmation.");
+            return redirect(route('buyer.tenders.index')); 
+        }
+        else{       // Response Doesn't Exist
+            $request->session()->flash('danger','Response Does not exists.');
+            return redirect(route('buyer.tenders.index'));
+        }
+    }
+    public function cancelLetter(Request $request, $toUserId,$tenderId){
+
+       
+        $userId = Auth::user()->id;
+        if(Gate::allows('child-buyer')){
+            $userId = Auth::user()->parent_id;
+        }
+        // First of all check if Seller has not confirmed this Project yet.
+        if(Project::where('tender_id',$tenderId)->exists()){
+            $request->session()->flash('danger','The Seller has confirmed this Project. It is started.');
+            return redirect(route('buyer.tenders.index'));
+        }
+
+        // Check if He is the Owner of That Tender and This Tender does not have confirmation letter
+        if(Tender::where('id',$tenderId)->where('user_id',$userId)->where('confirmation_letter',1)->exists()){
+            // dd('Owner Found');
+        }
+        else{
+            $request->session()->flash('danger','Tender does not have Confirmation Letter.');
+            return redirect(route('buyer.tenders.index'));
+        }
+            // Check if Response Exists
+        if(TenderResponse::where('user_id',$toUserId)->where('tender_id',$tenderId)->exists()){
+            try{
+                    // Update Response Record To Update Seller about Confirmation
+                $confirmationLetter = TenderResponse::where('user_id',$toUserId)->where('tender_id',$tenderId)->update([
+                    'confirmation_letter' => 0
+                ]);
+                    // To put Tender in Pending State
+                $tender = Tender::where('id',$tenderId)->update([
+                    'confirmation_letter' => 0
+                ]);
+            }
+            catch(\Illuminate\Database\QueryException $e){
+                $request->session()->flash('danger','Confirmation did not Cancel.');
+                return redirect(route('buyer.tenders.index'));
+            }
+            $request->session()->flash("success","Confirmation Canceled Successfully.");
+            return redirect(route('buyer.tenders.index')); 
+        }
+        else{       // Response Doesn't Exist
+            $request->session()->flash('danger','Response Does not exists.');
+            return redirect(route('buyer.tenders.index'));
+        }
+    }
+
+    public function requestForRent($id,$proId)  // seller Id and Product Id
+    {
+        $product = Product::find($proId);
+        return view('Buyer.tender.create',[
+            'speacial'  => 'yes',
+            'product'   => $product,
+            'sellerId'  => $id
+        ]);
+    }
+
+
+//------------------------------Projects Methods-----------------------------------
+
+    public function projects(){
+        $current_date = Date('Y-m-d');
+        $projects = Project::all();    // If any Project have reached its Finished Date,
+        foreach($projects as $project){ // then change its status to finished => 1.
+            if($project->date_to == $current_date && $project->status == 0){
+                $project->status = 1;
+                $project->save();
+            }
+        }
+        $userId = Auth::user()->id;
+        if(Gate::allows('child-buyer')){
+            $userId = Auth::user()->parent_id;
+        }
+        $serialNo = 1;
+        $projects = Project::where('buyer',$userId)->with('user')->with('tender')->get();
+        return view('Buyer.tender.projects',[
+            'projects' => $projects,
+            'serialNo' => $serialNo
+        ]);
+        
+    }
+
+
+  
+}
