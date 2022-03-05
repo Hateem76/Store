@@ -89,7 +89,7 @@ Route::prefix('buyer')->middleware(['auth','auth.buyer'])->name('buyer.')->group
 
 
     //Admin Routes
-Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
+Route::prefix('admin')->middleware(['auth','auth.isAdmin'])->name('admin.')->group(function () {
     Route::resource('/users', UserController::class);
 });
 
