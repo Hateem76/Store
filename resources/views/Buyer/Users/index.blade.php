@@ -28,7 +28,6 @@
 </head>
 
 <body>
-@include('partials.alerts') 
 @include('Buyer.layouts.sidebar2')
 
 <div class="main-content">
@@ -45,6 +44,7 @@
           <div class="col-lg-10 mx-auto mt-2">
             <div class="card rounded shadow border-0">
               <div class="card-body px-5 py-4 bg-white rounded">
+                @include('partials.alerts') 
                   <div class="row setScroll mb-2 d-flex" style="justify-content: space-between;">
                       <h2 class=" pl-3">Users</h2>
                       <a href="{{ route('buyer.users.create') }}" type="button" class="btn text-white" style="background-color: #184A45FF;">Create &RightArrow;</a>
@@ -54,7 +54,7 @@
                   <table id="example" style="width:100%" class="table table-striped table-bordered">
                     <thead>
                       <tr>
-                        <th>#</th>
+                        <th>SNo</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th class="text-center">Actions</th>

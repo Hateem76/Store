@@ -28,7 +28,7 @@
 </head>
 
 <body>
-@include('partials.alerts') 
+
 @include('Buyer.layouts.sidebar2')
 <!-- The Modal -->
 <div class="modal fade mt-4" id="myModal">
@@ -81,6 +81,7 @@
                   <div class="col-lg-10 mx-auto mt-2">
                     <div class="card rounded shadow border-0">
                       <div class="card-body px-5 py-4 bg-white rounded">
+                        @include('partials.alerts') 
                           <div class="row setScroll mb-2 d-flex" style="justify-content: space-between;">
                               <h2 class=" pl-3">Tenders</h2>
                               <a href="{{ route('buyer.tenders.create') }}" class="btn text-white mb-2 btn-md mr-4" type="button" style="background-color: #184A45FF;">Create &RightArrow;</a>

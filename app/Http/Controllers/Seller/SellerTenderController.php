@@ -170,8 +170,15 @@ class SellerTenderController extends Controller
                     $project->save();
                 }
             }
+            $userId = Auth::user()->id;
+            if(Gate::allows('child-seller')){
+                $userId = Auth::user()->parent_id;
+            }
+            $serialNo = 1;
+            $projects = Project::where('user_id',$userId)->with('user')->with('tender')->get();
             return view('Seller.tender.projects',[
-                'projects' => $projects
+                'projects' => $projects,
+                'serialNo' => $serialNo
             ]);
         }
 

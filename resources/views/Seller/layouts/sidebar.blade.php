@@ -35,9 +35,13 @@
           </a>
         </li>
         <li>
-          <a href=""><span class="fa fa-sign-out mr-3"></span>
+          <a href="" onclick="event.preventDefault();
+          document.getElementById('logout-form').submit();  "><span class="fa fa-sign-out mr-3"></span>
             <span>Logout</span>
           </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
         </li>
       </ul>
     </div>

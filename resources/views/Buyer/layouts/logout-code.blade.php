@@ -35,7 +35,7 @@
           <input name="search" id="search" class="mobile-input-search @error('search') is-invalid @enderror" type="search" placeholder="Search..." />
           <select class="form-control selectbox" name="option" id="option">
               <option value="product">Product</option>
-              <option value="vendor">Vendor</option>
+              <option value="vendor">Vendor/Seller</option>
           </select>
           <button class="mobile-search-btn btn" >
               <li class="fa fa-search"></li>
