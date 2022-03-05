@@ -32,7 +32,7 @@ class ExtraController extends Controller
         $check = 'Seller.layouts.app';
         $name = $request->input("search");
         if($request->input('option') == 'product'){
-            $products = Product::where('name', 'like', '%' . $name . '%')->with('category')->with('user')->paginate(2);
+            $products = Product::where('name', 'like', '%' . $name . '%')->with('category')->with('user')->get();
             return view('mix-views.search-products',[
                 'products'  => $products,
                 'name'      => $name,

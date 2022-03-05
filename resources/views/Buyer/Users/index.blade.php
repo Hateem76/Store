@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/sidebar2.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/card.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/table.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/buyer/tender_table.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script type="text/javascript">
@@ -38,45 +38,55 @@
     <main>
         @include('Buyer.layouts.logout-code')
 
-<div class="table-container">
-    <div class="text-center">
-        <h1 class="mt-5">Users</h1>
-        <hr class="mx-auto" style="width: 13%;">
-    </div>
-    <div class="row createBtn mx-auto">
-        <a href="{{ route('buyer.users.create') }}" type="button" class="btn btn-success text-white" style="background-color: #184A45FF;">Create &RightArrow;</a>
-    </div>
 
-    <div class="reports-container mt-4">
-        <div>
-            <table class="table table-bordered table-striped">
-                <thead class="text-white" style="background-color: #184A45FF;">
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th class="text-center">Actions</th>
-                </thead>
-                @foreach ($users as $user)
-                    <tr style="background-color: white;">
-                        <th scope="row">{{ $serialNo++ }}</th>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td class="text-center">
-                            <a href="{{ route('buyer.users.edit',$user->id) }}" class="btn btn-sm btn-primary" role="button">Edit</a>
-                            <button class="btn btn-sm btn-danger" onclick="event.preventDefault();
-                                            document.getElementById('delete-user-form-{{ $user->id }}').submit()">Delete</button>
-                            <form action="{{ route('buyer.users.destroy',$user->id) }}" id="delete-user-form-{{ $user->id }}" style="display: none;" method="POST">
-                                @csrf
-                                @method("DELETE")
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </table>
-            {{ $users->links() }}
-        </div>
-    </div>
-</div>
+    <!-----Table Start-->
+    <div class="py-5">
+        <div class="row setScroll py-5">
+          <div class="col-lg-10 mx-auto mt-2">
+            <div class="card rounded shadow border-0">
+              <div class="card-body px-5 py-4 bg-white rounded">
+                  <div class="row setScroll mb-2 d-flex" style="justify-content: space-between;">
+                      <h2 class=" pl-3">Users</h2>
+                      <a href="{{ route('buyer.users.create') }}" type="button" class="btn text-white" style="background-color: #184A45FF;">Create &RightArrow;</a>
+                      {{-- <button class="btn text-white mb-2 btn-md mr-4" style="background-color: #184A45FF;">Create &RightArrow;</button> --}}
+                  </div>
+                <div class="table-responsive">
+                  <table id="example" style="width:100%" class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th class="text-center">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($users as $user)
+                            <tr style="background-color: white;">
+                                <th scope="row">{{ $serialNo++ }}</th>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td class="text-center">
+                                    <a href="{{ route('buyer.users.edit',$user->id) }}" class="btn btn-sm btn-primary" role="button"><i class="fas fa-edit"></i></a>
+                                    <button class="btn btn-sm btn-danger" onclick="event.preventDefault();
+                                                    document.getElementById('delete-user-form-{{ $user->id }}').submit()"><i class="fa-solid fa-trash-can"></i></button>
+                                    <form action="{{ route('buyer.users.destroy',$user->id) }}" id="delete-user-form-{{ $user->id }}" style="display: none;" method="POST">
+                                        @csrf
+                                        @method("DELETE")
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                                 
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+    <!-------Table End-->
 
     </main>
 </div>

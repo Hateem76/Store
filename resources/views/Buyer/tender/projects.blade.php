@@ -98,7 +98,7 @@
                                             Finished
                                         @endif
                                     </td>
-                                    <td>
+                                    <td class="">
                                         <div class="approval">
                                             {{-- <button title="Edit" class="checkBtn btn btn-success">
                                                 <i class="fas fa-edit"></i>
