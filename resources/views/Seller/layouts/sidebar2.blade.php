@@ -21,6 +21,11 @@
                       </a>
                 </li>
                 <li>
+                  <a href="{{ route('seller.confirmationIndex') }}"><span class="fa fa-comments-dollar mr-3"></span>
+                    <span>Projects Confirmation</span>
+                  </a>
+                </li>
+                <li>
                   <a href="{{ route('seller.projects') }}"><span class="fa fa-comments-dollar mr-3"></span>
                       <span>Projects</span>
                     </a>

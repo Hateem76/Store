@@ -44,10 +44,11 @@
         <span class="fa fa-comments-dollar"></span>
       </div>
     </div>
-    <div class="card-single shadow-lg">
+    <a href="{{ route('seller.confirmationIndex') }}" id="confirmation" style="display: none;"></a>
+    <div class="card-single shadow-lg" onclick="document.getElementById('confirmation').click();">
       <div>
         <h1>14</h1>
-        <h4 class="font-weight-bold" style="">Deals</h4>
+        <h4 class="font-weight-bold" style="">Projects Confirmation</h4>
       </div>
       <div>
         <span class="fa fa-hands-helping"></span>

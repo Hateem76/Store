@@ -12,10 +12,24 @@ use App\Models\Contact;
 class ProfileController extends Controller
 {
     public function displayProfile(){
-        $check = 'Seller.layouts.app';
+        $sidebar = 'Seller.layouts.sidebar2';
+        $header  = 'Seller.layouts.header';
+        $logoutCode = 'Seller.layouts.logout-code';
+
+
         return view('mix-views.display-profile',[
-            'check'  => $check
+            'sidebar'  => $sidebar,
+            'header'   => $header,
+            'logoutCode' => $logoutCode
         ]);
+    }
+
+    public function updateAbout(){
+        $aboutUs = $_GET['aboutUs'];
+        $user = User::where('id',Auth::user()->id)->first();
+        $user->about = $aboutUs;
+        $user->save();
+        return;
     }
 
     public function editProfile(){

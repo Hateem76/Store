@@ -1,40 +1,55 @@
-@extends('Seller.layouts.app')
-@section('content')
-@include('partials.alerts')
-<script type="text/javascript">
-    function myfun(duration,tenderId){
-        // console.log(tenderId);
-        n =  new Date();  // first_date1
-        y = n.getFullYear();
-        m = n.getMonth() + 1;
-        d = n.getDate();
-        var start_date1 = y + '-' + m + '-' + d;
-        // end_date1
-        n.setDate(n.getDate() + Number(duration));
-        y = n.getFullYear();
-        m = n.getMonth() + 1;
-        d = n.getDate();
-        var end_date1 = y + '-' + m + '-' + d;
-        // console.log(start_date1);
-        // console.log(end_date1);
-        document.getElementById('start_date1').value = start_date1;
-        document.getElementById('end_date1').value = end_date1;
-        document.getElementById('tender_id').value = Number(tenderId);
-        $('#myModal').modal('show');
-    }
-    function myfun2(){    // if checkbox is clicked
-        var div1 = document.getElementById('div1');
-        var div2 = document.getElementById('div2');
-        if (document.getElementById('checkbox').checked) {
-            div1.removeAttribute("hidden");
-            div2.removeAttribute("hidden"); 
-        } else {
-            div1.setAttribute("hidden",true);
-            div2.setAttribute("hidden",true); 
-        }
-    }
-</script> 
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ asset('css/sidebar2.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/card.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/buyer/tender_table.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script type="text/javascript">
+        function myfun(duration,tenderId){
+            // console.log(tenderId);
+            n =  new Date();  // first_date1
+            y = n.getFullYear();
+            m = n.getMonth() + 1;
+            d = n.getDate();
+            var start_date1 = y + '-' + m + '-' + d;
+            // end_date1
+            n.setDate(n.getDate() + Number(duration));
+            y = n.getFullYear();
+            m = n.getMonth() + 1;
+            d = n.getDate();
+            var end_date1 = y + '-' + m + '-' + d;
+            // console.log(start_date1);
+            // console.log(end_date1);
+            document.getElementById('start_date1').value = start_date1;
+            document.getElementById('end_date1').value = end_date1;
+            document.getElementById('tender_id').value = Number(tenderId);
+            $('#myModal').modal('show');
+        }
+        function myfun2(){    // if checkbox is clicked
+            var div1 = document.getElementById('div1');
+            var div2 = document.getElementById('div2');
+            if (document.getElementById('checkbox').checked) {
+                div1.removeAttribute("hidden");
+                div2.removeAttribute("hidden"); 
+            } else {
+                div1.setAttribute("hidden",true);
+                div2.setAttribute("hidden",true); 
+            }
+        }
+    </script> 
+</head>
+
+<body>
+
+@include('Seller.layouts.sidebar2')
 
 <!-- The Modal -->
 <div class="modal fade mt-4" id="myModal">
@@ -88,32 +103,109 @@
     </div>
 </div>
 
+        <!------Main Content-->
+
+        <div class="main-content">
+            @include('Seller.layouts.header')
 
 
-@foreach ($tenders as $tender)
-<div class="d-flex mt-4 ml-5">
-    <h3 class="m-3">{{ $serialNo++ }}</h3>
-    <h3 class="m-3">{{ $tender->product->name }}</h3>
-    <h3 class="m-3">{{ $tender->tender->quantity }}</h3>
-    <h3 class="m-3">{{ $tender->tender->quantity }}</h3>
-    <form action="{{ route('extras.downloadQuotation') }}" method="POST">
-        @csrf
-        <input type="text" name="quotation" value="{{ $tender->quotation }}" hidden>
-        <button class="btn btn-sm btn-warning" type="submit">Quotation?</button>
-    </form>
-    @if ($tender->confirmation_letter == 1)
-        <form action="{{ route('extras.downloadLetter') }}" method="POST">
-            @csrf
-            <input type="text" name="letter" value="{{ $tender->letter_pdf }}" hidden>
-            <button class="btn btn-sm btn-dark ml-3" type="submit">Letter?</button>
-            <a href="" onclick="event.preventDefault(); myfun('{{ $tender->tender->duration }}','{{ $tender->tender->id }}')">Confirm</a>
-        </form>
-    @else
-        <h3 class="m-3">No confirmation Yet</h3>
-    @endif
-    <br>
-</div>
-@endforeach
+            <main>
+                @include('Seller.layouts.logout-code')
+
+                <!-----Table Start-->
+            <div class="py-5">
+                <div class="row setScroll py-5">
+                  <div class="col-lg-10 mx-auto mt-2">
+                    <div class="card rounded shadow border-0">
+                      <div class="card-body px-5 py-4 bg-white rounded">
+                        @include('partials.alerts') 
+                          <div class="row setScroll mb-2 d-flex" style="justify-content: space-between;">
+                              <h2 class=" pl-3">Tenders Confirmation</h2>
+                              {{-- <button class="btn text-white mb-2 btn-md mr-4" style="background-color: #184A45FF;">Create &RightArrow;</button> --}}
+                          </div>
+                        <div class="table-responsive">
+                          <table id="example" style="width:100%" class="table table-striped table-bordered">
+                            <thead>
+                              <tr>
+                                <th>SNO</th>
+                                <th>Tender Name</th>
+                                <th>My Product</th>
+                                <th>Quantity</th>
+                                <th>Unit</th>
+                                <th>Duration</th>
+                                <th>Description</th>
+                                <th>Quotation</th>
+                                <th>Confirmation Letter</th>
+                                <th>Confirm Project</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($responses as $response)
+                                <tr>
+                                    <td>{{ $serialNo++ }}</td>
+                                    <td>{{ $response->tender->product_name }}</td>
+                                    <td>{{ $response->product->name }}</td>
+                                    <td>{{ $response->tender->quantity }}</td>
+                                    <td>{{ $response->tender->unit }}</td>
+                                    <td>{{ $response->tender->duration }}</td>
+                                    <td>{{ $response->tender->description }}</td>
+                                    <td>
+                                        <form action="{{ route('extras.downloadQuotation') }}" method="POST">
+                                            @csrf
+                                            <input type="text" name="quotation" value="{{ $response->quotation }}" hidden>
+                                            <button class="btn btn-sm btn-warning" type="submit">Quotation?</button>
+                                        </form>
+                                    </td>
+                                    @if ($response->confirmation_letter == 1)
+                                    <td>
+                                        <form action="{{ route('extras.downloadLetter') }}" method="POST">
+                                            @csrf
+                                            <input type="text" name="letter" value="{{ $response->letter_pdf }}" hidden>
+                                            <button class="btn btn-sm btn-warning ml-3" type="submit">Letter?</button>
+                                        </form>
+                                    </td>
+                                    <td class="text-center"><a href="" type="button" class="btn btn-success " onclick="event.preventDefault(); myfun('{{ $response->tender->duration }}','{{ $response->tender->id }}')"><i class="fa-solid fa-check"></i></a></td>
+                                    @else
+                                        <td>No confirmation Yet</td>
+                                        <td>
+                                        </td>
+                                    @endif
+                                    
+                                  </tr>
+                                @endforeach
+                                    
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+
+            <!-------Table End-->
+
+            <script>
+                const response = document.getElementById('viewResponse');
+                response.addEventListener('click',()=>{
+                    document.getElementById('responseTable').classList.toggle('response-table');
+                    document.getElementById('responseTable').classList.add('addTransition');
+                })
+            </script>
+
+      
+
+        </main>
+
+    </div>
+
+    <!---End of Main Content-->
 
 
-@endsection
+   
+    <script src="{{ asset('js/jquery-min.js') }}"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+</body>
+
+</html>

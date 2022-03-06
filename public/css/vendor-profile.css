@@ -4,43 +4,55 @@
     box-sizing: border-box;
 }
 
-/* .prof-img{
-    border: 2px solid rgba(0,0,0,0.4);
-} */
-
 .setScroll{
     padding-top: 60px;
 }
+.profile-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px;
+    padding-bottom: 50px;
+}
 .profile-container{
-    border-right: 1px solid lightgray;
-    border-left: 1px solid lightgray;
-    padding-left: 160px;
-    padding-right: 160px;
+    display: flex;
+    align-items: center;
+    gap: 9rem;
 }
 
 .prof-img img{
-    border-radius: 50%;
+    border-radius: 13px;
     width: 195px;
     height: 140px;
-    margin-left: 13px;
-    border: 3px solid rgba(0,0,0,0.5);
+    /* margin-left: 13px; */
+    /* border: 3px solid rgba(0,0,0,0.5); */
 }
 
 .prof-name p{
     font-size: 20px;
     font-weight: 700;
-    margin-left: 15px;
-    margin-top: 4px;
+    /* margin-left: 15px; */
+    margin-top: 15px;
+    margin-bottom: 15px;
     letter-spacing: 1px;
 }
 
-.prof-buttons .btn-secondary{
-    width: 115px;
-    margin-left: 5px;
+.prof-buttons .btn-primary{
+    width: 140px;
+    margin-left: 27px;
+}
+
+.profile-wrapper .details{
+    margin-top: -30px;
+}
+
+.profile-container .details li{
+    font-size: larger;
+    font-weight: 600;
 }
 
 .prof-buttons .edit-profile{
-    width: 230px;
+    width: 230px !important;
     margin-left: 0px;
 }
 
@@ -50,23 +62,63 @@
         padding-left: 8px !important;
     }
 
+    .vendor-bio-container .vendor-bio p{
+        text-align: justify;
+        font-size: 18px;   
+    }
+
+    .vendor-bio-container .vendor-bio{
+        border-left: 2px solid seagreen;
+    }
+
+    @media screen and (max-width:998px) {
+        .profile-wrapper{
+            display: flex;
+            justify-content: center !important;
+            align-items: center !important;
+        }
+    
+        .profile-container{
+        border-right: none !important;
+        border-left: none !important;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        display: flex;
+        margin-left: -5px;
+        flex-wrap: wrap;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 4rem;
+        }
+    }
+
 @media screen and (max-width:768px) {
    
 
     .prof-img img{
-        margin-left: 25px;
         width: 180px;
+    }
+
+    .vendor-bio-container .vendor-bio p{
+        padding: 0 !important;
+    }
+
+    .vendor-bio-container .vendor-bio{
+        margin-top: 0rem !important;
+    }
+
+    .prof-buttons .btn-primary{
+        margin-left: 10px;
     }
 
     .setScroll{
         padding-top: 70px;
     }
 
-    .profile-container{
-       margin-left: 15px;
-    border-right: none !important;
-    border-left: none !important;
-    padding-left: 0px !important;
-    padding-right: 0px !important;
+    .profile-container .details li{
+        font-size: medium;
+        font-weight: 600;
     }
+    
+   
 }

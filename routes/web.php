@@ -51,11 +51,12 @@ Route::prefix('extras')->middleware('auth')->name('extras.')->group(function(){
 
     // Personal Profile for both Buyers and Vendors.    => Both
 Route::prefix('profile')->middleware('auth')->name('profile.')->group(function(){
-    Route::get('show', [ProfileController::class, 'displayProfile'])->name('show');
-    Route::get('edit', [ProfileController::class, 'editProfile'])->name('edit');
-    Route::get('myContacts', [ProfileController::class, 'myContacts'])->name('myContacts');
-    Route::get('addToContacts/{id}', [ProfileController::class, 'addToContacts'])->name('addToContacts');
-    Route::get('removeFromContacts/{id}', [ProfileController::class, 'removeFromContacts'])->name('removeFromContacts');
+    Route::get('/show', [ProfileController::class, 'displayProfile'])->name('show');
+    Route::get('/edit', [ProfileController::class, 'editProfile'])->name('edit');
+    Route::get('/updateAbout', [ProfileController::class, 'updateAbout'])->name('updateAbout');
+    Route::get('/myContacts', [ProfileController::class, 'myContacts'])->name('myContacts');
+    Route::get('/addToContacts/{id}', [ProfileController::class, 'addToContacts'])->name('addToContacts');
+    Route::get('/removeFromContacts/{id}', [ProfileController::class, 'removeFromContacts'])->name('removeFromContacts');
 });
 
 

@@ -103,7 +103,7 @@ class SellerTenderController extends Controller
         $tenders = TenderResponse::where('user_id',$userId)->whereNotIn('tender_id',$projects)->with('product')->with('tender')->get();
         // dd($tenders);
         return view('Seller.tender.confirmation-index',[
-            'tenders'  => $tenders,
+            'responses'  => $tenders,
             'serialNo' => $serialNo
         ]);
     }

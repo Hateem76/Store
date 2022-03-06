@@ -10,13 +10,13 @@
             <div class="form-group"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
                 <input class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" type="email" placeholder="Email"/>
                 @error('email')
-                    <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                    <small class="invalid-feedback" role="alert">{{ $message }}</small>
                 @enderror
             </div>
             <div class="form-group"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
                 <input class="form-control @error('password') is-invalid @enderror" id="password" name="password" type="password" placeholder="Password"  />
                 @error('password')
-                    <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                    <small class="invalid-feedback" role="alert">{{ $message }}</small>
                 @enderror
             </div>
 
