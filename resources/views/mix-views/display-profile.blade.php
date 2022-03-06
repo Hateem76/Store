@@ -113,7 +113,8 @@
             </div>
 
             <!---End of Profile-->
-{{-- 
+
+            {{-- 
             <div class="product-container">
                 <h1 class="text-center mt-3 mb-4">Mansoor's Products</h1>
                 <hr class="mx-auto mb-5" style="width: 30%;background: #00d6ab;">

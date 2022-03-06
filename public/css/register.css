@@ -54,6 +54,7 @@ body {
  
  .form-container .form-group {
 	 position: relative;
+	 overflow: hidden !important;
 }
  .form-container .form-group > span {
 	 position: absolute;
