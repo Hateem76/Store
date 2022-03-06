@@ -8,10 +8,10 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sidebar2.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/card.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/card.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('css/product.css') }}">
     <link rel="stylesheet" href="{{ asset('css/vendor-profile.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/product-view.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/product-view.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <script src="{{ asset('js/jquery-min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
