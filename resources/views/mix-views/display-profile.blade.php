@@ -96,19 +96,19 @@
 
             <!----Profile Start-->
             <div class="row profile-wrapper setScroll"
-                style="border-bottom: 1px solid lightgray;background: #fff;">
+                style="border-bottom: 1px solid lightgray;background: #fff;"> 
                 <div class="profile-container">
                     <div class="left-section">
-                    <div class="prof-img" onclick="$('#myModal').modal('show');" style="cursor:pointer;">
-                        <img src="{{ asset('images/dp/'.Auth::user()->avatar) }}" alt="">
+                        <div class="prof-img" onclick="$('#myModal').modal('show');" style="cursor:pointer;">
+                            <img src="{{ asset('images/dp/'.Auth::user()->avatar) }}" alt="">
+                        </div>
+                        <div class="prof-name">
+                            <p>{{ Auth::user()->name }}</p>
+                        </div>
+                        <div class="prof-buttons">
+                            <a href="{{ route('profile.edit') }}" type="button" style="background: #184A45FF;" class="btn btn-primary text-white">Edit Profile</a>
+                        </div>
                     </div>
-                    <div class="prof-name">
-                        <p>{{ Auth::user()->name }}</p>
-                    </div>
-                    <div class="prof-buttons">
-                        <a href="{{ route('profile.edit') }}" type="button" style="background: #184A45FF;" class="btn btn-primary text-white">Edit Profile</a>
-                    </div>
-                </div>
                 <div class="">
                     <div class="details">
                         <li>

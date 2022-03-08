@@ -25,10 +25,12 @@ class ProductController extends Controller
         if(Gate::allows('child-seller')){
             $userId = Auth::user()->parent_id;
         }
+        $serialNo = 1;
         $products = Product::where('user_id',$userId)->with('category')->get();
        
         return view('Seller.products.index',[
-            'products' => $products
+            'products' => $products,
+            'serialNo' => $serialNo
         ]);
     }
 

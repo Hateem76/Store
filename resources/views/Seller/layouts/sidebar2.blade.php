@@ -11,7 +11,7 @@
                     </a>
                 </li>
                 <li>
-                  <a href="{{ route('seller.products.index') }}"><span class="fa fa-comments-dollar mr-3"></span>
+                  <a href="{{ route('seller.products.index') }}"><span class="fa fa-truck-loading mr-3"></span>
                       <span>Products</span>
                     </a>
                 </li>
