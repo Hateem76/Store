@@ -1,4 +1,3 @@
-
 :root {
     --main-color: #E1B40C;
     --color-dark: #184A45FF;
@@ -26,12 +25,12 @@ ul li{
 
 
 .sidebar {
- width: 290px;
+ width: 280px;
  position: fixed;
  left: 0;
  top: 0;
  height: 100%;
- background: var(--main-color);
+ background: #343a40 !important;
  z-index: 200;
  transition: width 300ms;
 }
@@ -65,15 +64,15 @@ ul li{
 }
 
 .sidebar-menu li a{
-    font-size: 19px;
+    font-size: 21px;
     display: flex;
 }
 .sidebar-menu ul li a span:first-child{
-    font-size: 22px;
+    font-size: 23px;
 }
 
 .sidebar-menu ul li:hover{
-    background:#343a40 !important;
+    background:gray !important;
     color: #fff !important;
 }
 .sidebar-menu ul li:hover>a{
@@ -125,10 +124,10 @@ header {
     display: none;
 }
 
-#nav-toggle:checked + .sidebar{
+/* #nav-toggle:checked + .sidebar{
     width: 70px;
     transition: all ease .3s;
-}
+} */
 
 #nav-toggle:checked + .sidebar .sidebar-brand,
 #nav-toggle:checked + .sidebar li {
@@ -170,7 +169,7 @@ header h3 span:first-child{
 }
 
 #nav-toggle:checked + .sidebar{
-    width: 290px;
+    width: 290px !important;
     transition: all ease .3s;
 }
 
@@ -306,14 +305,14 @@ main{
     }
 
     header{
-        padding-top: .6rem;
-        padding-bottom: .6rem;
+        padding-top: .4rem;
+        padding-bottom: .4rem;
     }
 
     .sidebar{
         left: -100% !important;
         transition: all ease .5s !important;
-        margin-top: 90px;
+        margin-top: 85px;
     }
 
     /* .sidebar-menu a.active{
@@ -326,10 +325,10 @@ main{
 
     .sidebar-menu ul li a{
         display: flex;
-        font-size: 22px;
+        font-size: 20px;
     }
     .sidebar-menu ul li a span:first-child{
-        font-size: 22px;
+        font-size: 23px;
     }
 
 
@@ -337,11 +336,11 @@ main{
         display: inline-block;
         text-align: center;
         border-radius: 50%;
-        color: #fff;
+        color: #000;
         display: flex;
         align-items: center;
         justify-content: center !important;
-        background: var(--main-color);
+        /* background: #343a40; */
         padding-right: 0rem;
         padding-left: .4rem;
         margin-right: 1rem;
@@ -375,7 +374,7 @@ main{
 
 #nav-toggle:checked + .sidebar .sidebar-brand,
 #nav-toggle:checked + .sidebar li {
-    padding-left: 2rem;
+    padding-left: 1.5rem;
     text-align: left;
 }
 

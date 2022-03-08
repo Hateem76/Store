@@ -5,31 +5,31 @@
     <a href="{{ route('seller.products.index') }}" id="products" style="display: none;"></a>
     <div class="card-single shadow-lg" onclick="document.getElementById('users').click();">
       <div>
-        <h1>54</h1>
-        <h4 class="font-weight-bold" style="">Users</h4>
+        <h1>4</h1>
+        <span>User Accounts</span>
       </div>
-      <div>
-        <span class="fa fa-comments-dollar"></span>
+      <div class="icon-container bg-danger">
+        <span class="fa fa-credit-card"></span>
       </div>
     </div>
     <a href="{{ route('buyer.users.index') }}" id="users" style="display: none;"></a>
     <div class="card-single shadow-lg" onclick="document.getElementById('users').click();">
       <div>
-        <h1>14</h1>
-        <h4 class="font-weight-bold" style="">Users</h4>
+        <h1>4</h1>
+        <span>User Accounts</span>
       </div>
-      <div>
-        <span class="fa fa-users"></span>
+      <div class="icon-container bg-danger">
+        <span class="fa fa-credit-card"></span>
       </div>
     </div>
     <a href="{{ route('profile.myContacts') }}" id="contacts" style="display: none;"></a>
     <div class="card-single shadow-lg" onclick="document.getElementById('contacts').click();">
       <div>
-        <h1>10</h1>
-        <h4 class="font-weight-bold" style="">My Contacts</h4>
+        <h1>4</h1>
+        <span>My Contacts</span>
       </div>
-      <div>
-        <span class="fas fa-tasks"></span>
+      <div class="icon-container bg-danger">
+        <span class="fa fa-credit-card"></span>
       </div>
     </div>
   </div>
@@ -37,30 +37,30 @@
     <a href="{{ route('buyer.tenders.index') }}" id="tenders" style="display: none;"></a>
     <div class="card-single shadow-lg" onclick="document.getElementById('tenders').click();">
       <div>
-        <h1>54</h1>
-        <h4 class="font-weight-bold" style="">Tenders</h4>
+        <h1>4</h1>
+        <span>Tenders</span>
       </div>
-      <div>
-        <span class="fa fa-comments-dollar"></span>
+      <div class="icon-container bg-danger">
+        <span class="fa fa-credit-card"></span>
       </div>
     </div>
     <div class="card-single shadow-lg">
       <div>
-        <h1>14</h1>
-        <h4 class="font-weight-bold" style="">Deals</h4>
+        <h1>4</h1>
+        <span>Deals</span>
       </div>
-      <div>
-        <span class="fa fa-hands-helping"></span>
+      <div class="icon-container bg-danger">
+        <span class="fa fa-credit-card"></span>
       </div>
     </div>
     <a href="{{ route('buyer.projects') }}" id="projects" style="display: none;"></a>
     <div class="card-single shadow-lg" onclick="document.getElementById('projects').click();">
       <div>
-        <h1>10</h1>
-        <h4 class="font-weight-bold" style="">My Projects</h4>
+        <h1>4</h1>
+        <span>My Projects</span>
       </div>
-      <div>
-        <span class="fas fa-tasks"></span>
+      <div class="icon-container bg-danger">
+        <span class="fa fa-credit-card"></span>
       </div>
     </div>
   </div>

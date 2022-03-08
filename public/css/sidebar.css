@@ -1,6 +1,5 @@
-
 :root {
-    --main-color: #E1B40C;
+    --main-color: #343a40;
     --color-dark: #184A45FF;
     --text-grey: #8390A2;
 }
@@ -26,12 +25,12 @@ ul li{
 
 
 .sidebar {
- width: 300px;
+ width: 280px;
  position: fixed;
  left: 0;
  top: 0;
  height: 100%;
- background: var(--main-color);
+ background: #343a40 !important;
  z-index: 100;
  transition: width 300ms;
 }
@@ -64,14 +63,15 @@ ul li{
 }
 
 .sidebar-menu li a{
-    font-size: 19px;
+    font-size: 21px;
 }
 .sidebar-menu ul li a span:first-child{
-    font-size: 22px;
+    font-size: 23px;
 }
 
 .sidebar-menu ul li:hover{
-    background: #343a40!important;
+    /* background: #343a40!important; */
+    background: gray;
     color: #fff !important;
 }
 .sidebar-menu ul li:hover>a{
@@ -107,8 +107,8 @@ header {
     padding-right: 1.5rem;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
     position: fixed;
-    left: 300px;
-    width: calc(100% - 300px);
+    left: 280px;
+    width: calc(100% - 280px);
     top: 0;
     z-index: 100;
     background: #fff;
@@ -157,7 +157,7 @@ header h3 span:first-child{
 }
 
 .main-content{
-    margin-left: 300px;
+    margin-left: 280px;
     transition: margin-left 300ms;
 }
 
@@ -288,14 +288,14 @@ main{
     }
 
     header{
-        padding-top: .6rem;
-        padding-bottom: .6rem;
+        padding-top: .4rem;
+        padding-bottom: .4rem;
     }
 
     .sidebar{
         left: -100% !important;
         transition: all ease .5s !important;
-        margin-top: 90px;
+        margin-top: 83px;
     }
 
     /* .sidebar-menu a.active{
@@ -308,10 +308,10 @@ main{
 
     .sidebar-menu ul li a{
         display: flex;
-        font-size: 22px;
+        font-size: 20px;
     }
     .sidebar-menu ul li a span:first-child{
-        font-size: 22px;
+        font-size: 23px;
     }
 
 
@@ -319,15 +319,16 @@ main{
         display: inline-block;
         text-align: center;
         border-radius: 50%;
-        color: #fff;
+        color: #000;
         display: flex;
         align-items: center;
         justify-content: center !important;
-        background: var(--main-color);
+        /* background: #343a40; */
         padding-right: 0rem;
         padding-left: .4rem;
         margin-right: 1rem;
         padding-top: .1rem;
+        font-size: 24px;
         height: 40px;
         width: 40px;
         margin-top: 5px;
@@ -357,13 +358,12 @@ main{
 
 #nav-toggle:checked + .sidebar .sidebar-brand,
 #nav-toggle:checked + .sidebar li {
-    padding-left: 2rem;
+    padding-left: 1.5rem;
     text-align: left;
 }
 
 #nav-toggle:checked + .sidebar li a {
     padding-left: 0rem;
-    font-size: 18px;
 }
 
 #nav-toggle:checked + .sidebar .sidebar-brand h2 span:last-child,
