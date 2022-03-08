@@ -118,7 +118,7 @@
                           <div class="row setScroll mb-2 d-flex" style="justify-content: space-between;">
                               <h2 class=" pl-3">Products</h2>
                               <div>
-                                    <a type="button" class="btn btn-success btn-sm" href="{{ route('seller.products.create') }}" style="text-decoration:none;">Create &RightArrow;</a>
+                                    <a type="button" class="btn btn-success btn-sm" href="{{ route('seller.products.create') }}" style="text-decoration:none;">Create</a>
                                     <a type="button" class="btn btn-dark btn-sm" href="{{ route('seller.stockInForm') }}" style="text-decoration:none;">Stock In</a>
                                     <a type="button" class="btn btn-warning btn-sm text-white" href="{{ route('seller.stockOutForm') }}" style="text-decoration:none;">Stock Out</a>
                               </div>
