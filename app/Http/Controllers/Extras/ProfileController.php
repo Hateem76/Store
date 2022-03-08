@@ -35,6 +35,26 @@ class ProfileController extends Controller
         return;
     }
 
+    public function updateDp(Request $request){
+        $dataValidated = $request->validate([
+            'image_path' => 'required|max:512|mimes:png,jpg,jpeg',
+        ]);
+        $image_name = 'not_found.jpg';
+        if($request->hasFile('image_path')){ 
+            $image_name = time(). '-' . Auth::user()->name . '.' . $request->image_path->extension();
+            $request->image_path->move(public_path('images/dp'),$image_name);
+        }
+        try{
+            $user = User::where('id',Auth::user()->id)->update([
+                'avatar' => $image_name,
+            ]);
+        }
+        catch(\Illuminate\Database\QueryException $e){
+            return redirect()->back();
+        }
+        return redirect()->back();
+    }
+
     public function editProfile(){
         return view('mix-views.edit-profile');
     }

@@ -51,6 +51,41 @@
 
     @include($sidebar)
 
+
+    <!-- The Modal -->
+<div class="modal fade mt-4" id="myModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title">Update Profile Image</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <form action="{{ route('profile.updateDp') }}" method="POST" enctype="multipart/form-data" >
+                @csrf
+                <div class="modal-body">  
+                    <div class="form-group row">
+                    <div class="col-12 mx-auto mb-3">
+                        <label for="quotation">Choose Image</label>
+                        <input type="file" id="image_path" name="image_path" accept=".jpg,.jpeg,.png" class="form-control @error('image_path') is-invalid @enderror">
+                        @error('image_path')
+                            {{ $message }}
+                        @enderror
+                    </div>
+                    <button type="submit" class="btn text-white form-control"style = "background-color: #184A45FF;">Update</button>  
+                </div>
+                </div>
+            </form>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
     <!------Main Content-->
 
     <div class="main-content">
@@ -64,8 +99,8 @@
                 style="border-bottom: 1px solid lightgray;background: #fff;">
                 <div class="profile-container">
                     <div class="left-section">
-                    <div class="prof-img">
-                        <img src="{{ asset('images/bg/c1.jpg') }}" alt="">
+                    <div class="prof-img" onclick="$('#myModal').modal('show');" style="cursor:pointer;">
+                        <img src="{{ asset('images/dp/'.Auth::user()->avatar) }}" alt="">
                     </div>
                     <div class="prof-name">
                         <p>{{ Auth::user()->name }}</p>

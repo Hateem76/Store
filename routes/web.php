@@ -54,6 +54,7 @@ Route::prefix('profile')->middleware('auth')->name('profile.')->group(function()
     Route::get('/show', [ProfileController::class, 'displayProfile'])->name('show');
     Route::get('/edit', [ProfileController::class, 'editProfile'])->name('edit');
     Route::post('/updateProfile', [ProfileController::class, 'updateProfile'])->name('updateProfile');
+    Route::post('/updateDp', [ProfileController::class, 'updateDp'])->name('updateDp');
     Route::get('/updateAbout', [ProfileController::class, 'updateAbout'])->name('updateAbout');
     Route::get('/myContacts', [ProfileController::class, 'myContacts'])->name('myContacts');
     Route::get('/addToContacts/{id}', [ProfileController::class, 'addToContacts'])->name('addToContacts');
