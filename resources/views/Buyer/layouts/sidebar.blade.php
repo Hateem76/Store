@@ -10,22 +10,22 @@
           </a>
         </li>
         <li>
-          <a href="{{ route('buyer.tenders.index') }}"><span class="fa fa-comments-dollar mr-3"></span>
+          <a href="{{ route('buyer.tenders.index') }}"><span class="fa fa-tasks mr-3"></span>
             <span>Tenders</span>
           </a>
         </li>
         <li>
-          <a href="{{ route('buyer.projects') }}"><span class="fa fa-comments-dollar mr-3"></span>
+          <a href="{{ route('buyer.projects') }}"><span class="fa fa-project-diagram mr-3"></span>
               <span>Projects</span>
             </a>
         </li>
         <li>
-          <a href="{{ route('profile.myContacts') }}"><span class="fa fa-user mr-3"></span>
+          <a href="{{ route('profile.myContacts') }}"><span class="fa fa-address-book mr-3"></span>
             <span>My Contacts</span>
           </a>
         </li>
         <li>
-          <a href="{{ route('buyer.users.index') }}"><span class="fa fa-user mr-3"></span>
+          <a href="{{ route('buyer.users.index') }}"><span class="fa fa-users mr-3"></span>
             <span>Users</span>
           </a>
         </li>

@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sidebar2.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('css/card.css') }}"> --}}
-    <link rel="stylesheet" href="{{ asset('css/product.css') }}">
     <link rel="stylesheet" href="{{ asset('css/vendor-profile.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('css/product-view.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
@@ -72,28 +71,26 @@
                         <p>{{ Auth::user()->name }}</p>
                     </div>
                     <div class="prof-buttons">
-                        <button class="btn btn-primary" style="background: #184A45FF;">Edit Profile</button>
+                        <a href="{{ route('profile.edit') }}" type="button" style="background: #184A45FF;" class="btn btn-primary text-white">Edit Profile</a>
                     </div>
                 </div>
                 <div class="">
                     <div class="details">
                         <li>
-                        <span class="mt-2">Email : </span> {{ Auth::user()->email }}
-                    </li>
+                            <span class="mt-2">Email : </span> {{ Auth::user()->email }}
+                            </li>
+                            <br>
+                        <li>
+                            <span style="margin-top: 10px !important;" class="mt-5">Contact : {{ Auth::user()->number }}</span>
+                        </li>
                         <br>
                         <li>
-                        <span style="margin-top: 10px !important;" class="mt-5">Contact
-                            :
-                        </span>
-                        +92314758980
-                    </li>
+                            <span  class="mt-3">City : {{ Auth::user()->id_card }}</span>
+                        </li>
                         <br>
                         <li>
-                        <span  class="mt-3">City : </span>{{ Auth::user()->id_card }}
-                    </li>
-                    <li>
-                        <span  class="mt-3">Country : </span>{{ Auth::user()->address }}
-                    </li>
+                            <span  class="mt-3">Country : {{ Auth::user()->address }}</span>
+                        </li>
                     </div>
                 </div>
                 </div>

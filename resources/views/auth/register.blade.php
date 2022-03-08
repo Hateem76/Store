@@ -20,6 +20,13 @@
                     <small class="invalid-feedback" role="alert">{{ $message }}</small>
                 @enderror
             </div>
+
+            <div class="form-group"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                <input class="form-control @error('email') is-invalid @enderror" type="email" name="email"  id="email" autocomplete="off" placeholder="Email" value="{{ old('email') }}" />
+                @error('email')
+                    <small class="invalid-feedback" role="alert">{{ $message }}</small>
+                @enderror
+            </div>
             
             
             <div class="form-group"> <span><i aria-hidden="true" class="fa fa-phone"></i></span>

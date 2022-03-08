@@ -53,6 +53,7 @@ Route::prefix('extras')->middleware('auth')->name('extras.')->group(function(){
 Route::prefix('profile')->middleware('auth')->name('profile.')->group(function(){
     Route::get('/show', [ProfileController::class, 'displayProfile'])->name('show');
     Route::get('/edit', [ProfileController::class, 'editProfile'])->name('edit');
+    Route::post('/updateProfile', [ProfileController::class, 'updateProfile'])->name('updateProfile');
     Route::get('/updateAbout', [ProfileController::class, 'updateAbout'])->name('updateAbout');
     Route::get('/myContacts', [ProfileController::class, 'myContacts'])->name('myContacts');
     Route::get('/addToContacts/{id}', [ProfileController::class, 'addToContacts'])->name('addToContacts');

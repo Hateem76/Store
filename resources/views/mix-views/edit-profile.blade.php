@@ -1,62 +1,68 @@
-@can('buyer')
-    @php
-        $check = 'Buyer.layouts.app';
-    @endphp    
-@endcan
-
-@extends($check)
+@extends('layouts.app')
 @section('content')
-<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-<!---Product heading---->
-<div class="container-fluid add-product-container shadow-lg mt-4 mb-4"
-style="background-color: white; width:72%; height:auto; border-radius:10px;">
-<div class="row mt-2">
-    <div class="text-bold mx-auto mt-4 mt-xs-1">
-        <h1>
-            <i class="fas fa-user mr-3" style="color:#00d6ab;"></i> Edit Profile
-        </h1>
-        <hr style="background-color: #00d6ab;">
-    </div>
-
-</div>
-<form action="" method="post">
-    <div class="d-flex justify-content-center row mx-auto">
-        <div class="edit-prof-img mx-auto my-2">
-            <img src="{{ asset('images/bg/c1.jpg') }}" alt="">
+    <div class="form-container my-5">
+        <div class="title_container">
+            <h2 class="text-center">Edit Profile</h2>
         </div>
-    </div>
-    <div class="form-group justify-content-center row mx-auto">
-        <div class="col-sm-5 mt-3">
-            <label>Name :</label>
-            <input type="text" value="Muhammad Hateem" name="name" required class="form-control">
-        </div>
-        <div class="col-sm-5 mt-3">
-            <label>Email : </label>
-            <input value="hateem@gmail.com" type="email" class="form-control">
-        </div>
+        <form action="{{ route('profile.updateProfile') }}" method="POST">
+            @csrf
+            
+            <div class="form-group"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" id="name" autocomplete="off" placeholder="Business Name"value="{{ old('name',Auth::user()->name) }}" />
+                @error('name')
+                    <small class="invalid-feedback" role="alert">{{ $message }}</small>
+                @enderror
+            </div>
+            
+            @error('email')
+                    <small class="invalid-feedback" role="alert">{{ $message }}</small>
+            @enderror
+            <div class="form-group"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                <input class="form-control @error('email') is-invalid @enderror" type="email" name="email"  id="email" autocomplete="off" placeholder="Email" value="{{ old('email',Auth::user()->email) }}" />
+            </div>
+            
+            
+            <div class="form-group"> <span><i aria-hidden="true" class="fa fa-phone"></i></span>
+                <input class="form-control @error('number') is-invalid @enderror" type="Number" name="number" id="number" autocomplete="off" placeholder="Contact"value="{{ old('number',Auth::user()->number) }}"/>
+                @error('number')
+                <small class="invalid-feedback" role="alert">{{ $message }}</small>
+        @enderror  
+            </div>
 
-    </div>
-    <div class="form-group justify-content-center row">
-        <div class="col-sm-10 mt-2 col-11">
-            <label for="">Contact :</label>
-            <input type="number" placeholder="+19393938854" class="form-control">
-        </div>
+            @error('id_card')
+                    <small class="invalid-feedback" role="alert">{{ $message }}</small>
+            @enderror
+            <div class="form-group"> <span><i aria-hidden="true" class="fas fa-flag"></i></span>
+                <input class="form-control @error('id_card') is-invalid @enderror" type="text" name="id_card" id="id_card" autocomplete="off" placeholder="Country"value="{{ old('id_card',Auth::user()->id_card) }}" />
+            </div>
+               
+            @error('address')
+                    <small class="invalid-feedback" role="alert">{{ $message }}</small>
+            @enderror
+            <div class="form-group"> <span><i aria-hidden="true" class="fas fa-city"></i></span>
+                <input class="form-control @error('address') is-invalid @enderror" type="text" name="address" id="address" autocomplete="off" placeholder="City"value="{{ old('address',Auth::user()->address) }}"/>
+            </div>
+
+            
+            <div class="form-group"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                <input class="form-control @error('password') is-invalid @enderror" type="password" name="password" id="password" placeholder="Password"  /> 
+                @error('password')
+                <small class="invalid-feedback" role="alert">{{ $message }}</small>
+            @enderror 
+            </div>
+            
+            
+            <div class="form-group"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                <input class="form-control @error('password_confirmation') is-invalid @enderror" type="password" name="password_confirmation" id="password_confirmation" placeholder="Re-type Password"  />
+                @error('password_confirmation')
+                <small class="invalid-feedback" role="alert">{{ $message }}</small>
+        @enderror
+            </div>            
+
+            <input class="button mt-2" type="submit" value="Update" />
+            
+        </form>
     </div>
 
-    <div class="form-group justify-content-center row">
-        <div class="col-sm-10 mt-2">
-            <label for="" class="ml-sm-3">Address :</label>
-            <textarea rows="5" placeholder="Northern bypass bossan road multan."
-                class="form-control"></textarea>
-        </div>
-    </div>
-    <div class="row mx-auto justify-content-center mt-4">
-        <button type="button" class="btn btn-primary btn-lg mt-4 mb-5" style="width: 300px;">Update</button>
-    </div>
-
-</form>
-
-</div>
-
-@endsection
+   @endsection

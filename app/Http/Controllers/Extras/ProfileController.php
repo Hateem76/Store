@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use App\Models\User;
 use App\Models\Contact;
+use Exception;
+Use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
 {
@@ -33,12 +36,51 @@ class ProfileController extends Controller
     }
 
     public function editProfile(){
-        $check = 'Seller.layouts.app';
-        $user = User::find(Auth::user()->id);
-        return view('mix-views.edit-profile',[
-            'user'  => $user,
-            'check'  => $check
+        return view('mix-views.edit-profile');
+    }
+
+    public function updateProfile(Request $request){
+        $dateValidated = $request->validate([
+                'name' => [
+                    'required', 
+                    'string', 
+                    'max:255',
+                    'unique:users,name,'.Auth::user()->id,
+                ],
+                'email' => [
+                    'required',
+                    'string',
+                    'email',
+                    'max:255',
+                    'unique:users,email,'.Auth::user()->id,
+                ],
+                'password' =>  'required|min:8|same:password_confirmation',
+                'id_card'  => [
+                    'max:20',
+                ],
+                'number'  => [
+                    'max:20',
+                ],
+                'address'  => [
+                    'max:30',
+                ],
         ]);
+        try{
+            $user = User::where('id',Auth::user()->id)->update([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'password' => Hash::make($request->input('password')),
+                'id_card'  => $request->input('id_card'),
+                'number'  => $request->input('number'),
+                'address'  => $request->input('address'),
+            ]);
+        }
+        catch(\Illuminate\Database\QueryException $e){
+            $request->session()->flash('danger','Could not Update Profile. Try later');
+            return redirect()->back();
+        }
+            $request->session()->flash('success','Profile Updated Successfully');
+            return redirect()->back();
     }
 
     public function myContacts(){
