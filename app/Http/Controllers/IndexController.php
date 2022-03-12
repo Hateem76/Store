@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Monarobase\CountryList\CountryList;
-use Monarobase\CountryList\CountryListFacade;
 use App\Models\Country;
 
 class IndexController extends Controller
