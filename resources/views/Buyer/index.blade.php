@@ -8,7 +8,7 @@
         <h1>4</h1>
         <span>User Accounts</span>
       </div>
-      <div class="icon-container bg-danger">
+      <div class="icon-container bg-success">
         <span class="fa fa-credit-card"></span>
       </div>
     </div>
@@ -28,7 +28,7 @@
         <h1>10</h1>
         <span>My Contacts</span>
       </div>
-      <div class="icon-container bg-danger">
+      <div class="icon-container bg-dark">
         <span class="fa fa-address-book"></span>
       </div>
     </div>
@@ -40,7 +40,7 @@
         <h1>20</h1>
         <span>Tenders</span>
       </div>
-      <div class="icon-container bg-danger">
+      <div class="icon-container bg-warning">
         <span class="fa fa-tasks"></span>
       </div>
     </div>
@@ -49,7 +49,7 @@
         <h1>10</h1>
         <span>Deals</span>
       </div>
-      <div class="icon-container bg-danger">
+      <div class="icon-container bg-secondary">
         <span class="fa fa-credit-card"></span>
       </div>
     </div>
@@ -59,7 +59,7 @@
         <h1>30</h1>
         <span>My Projects</span>
       </div>
-      <div class="icon-container bg-danger">
+      <div class="icon-container bg-info">
         <span class="fa fa-project-diagram"></span>
       </div>
     </div>

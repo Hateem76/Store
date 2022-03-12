@@ -27,6 +27,8 @@ class BuyerTenderController extends Controller
      */
     public function index()
     {
+        // $date = Date();
+        
         $userId = Auth::user()->id;
         if(Gate::allows('child-buyer')){
             $userId = Auth::user()->parent_id;
@@ -64,21 +66,25 @@ class BuyerTenderController extends Controller
         if($request->input('speacial') == 'yes'){
             $request->validate([
                 'name' => 'required|max:25',
-                'duration' => 'required|integer|max:10000',
+                'opening_date' => 'required',
+                'closing_date' => 'required',
                 'quantity' => 'required|integer|max:10000',
-                'location' => 'max:25',
+                'description' => 'max:290',
                 'unit'     => 'max:15',
+                'tender_file' => 'max:150',
             ]);
             $public_private = null;
         }
         else{
             $request->validate([
                 'name' => 'required|max:25',
-                'duration' => 'required|integer|max:10000',
+                'opening_date' => 'required',
+                'closing_date' => 'required',
                 'quantity' => 'required|integer|max:10000',
-                'description' => 'max:50',
-                'unit'       =>  'max:15',
+                'description' => 'max:290',
+                'unit'     => 'max:15',
                 'public_private' => 'required',
+                'tender_file' => 'max:150',
             ]);
             $public_private = $request->input('public_private');
         }
@@ -86,16 +92,23 @@ class BuyerTenderController extends Controller
         if(Gate::allows('child-buyer')){
             $userId = Auth::user()->parent_id;
         }
+        $file_name = 'not_found.pdf';
+            if($request->hasFile('tender_file')){ 
+                $file_name = time(). '-' . $request->input('tender_id') . $userId. '.' . $request->tender_file->extension();
+                $request->tender_file->move(public_path('tender-files'),$file_name);
+            }
         // dump($friends);
         try{
             $tender = Tender::create([
                 'user_id' => $userId,
                 'product_name' => $request->input('name'),
-                'duration' => $request->input('duration'),
+                'opening_date' => $request->input('opening_date'),
+                'closing_date' => $request->input('closing_date'),
                 'description' => $request->input('description'),
                 'unit'       => $request->input('unit'),
                 'public_private' => $public_private,
                 'quantity' => $request->input('quantity'),
+                'tender_file' => $file_name,
                 'confirmation_letter' => 0
     
             ]);

@@ -60,6 +60,7 @@ class SellerTenderController extends Controller
             $request->session()->flash('danger','Response already exists.');
             return redirect(route('seller.tenders'));
         }
+        
         // Check if You Have enough Stock of Product to be rented.
         $stock = Tender::where('id',$request->input('tender_id'))->first();
         $quantity = $stock->quantity; // Quantity Demanded of Product

@@ -1,5 +1,15 @@
 @extends('layouts.app')
 @section('content')
+<script>
+    function myFunction() {
+    var pass = document.getElementById("password");
+    if (pass.type === "password") {
+        pass.type = "text";
+    } else {
+        pass.type = "password";
+    }
+    }
+</script>
 
     <div class="form-container my-5">
         <div class="title_container">
@@ -18,6 +28,10 @@
                 @error('password')
                     <small class="invalid-feedback" role="alert">{{ $message }}</small>
                 @enderror
+            </div>
+            <div style="display: inline-block; padding-right: 10px;
+            white-space: nowrap;">
+                <label><input type="checkbox" style="" id="eye" onclick="myFunction();"> <span>show password</span></label>
             </div>
 
             {{-- <div class="form-group">

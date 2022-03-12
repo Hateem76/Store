@@ -17,12 +17,15 @@ class Tender extends Model
     protected $fillable = [
         'user_id',
         'product_name',
-        'duration',
+        'opening_date',
+        'closing_date',
         'description',
+        'tender_file',
         'unit',
         'public_private',
         'quantity',
         'confirmation_letter',
+
     ];
 
     public $timestamps = false;

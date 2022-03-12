@@ -114,6 +114,22 @@ class ExtraController extends Controller
         return redirect(route('buyer.tenders.index'));
     }
 
+    public function downloadTenderFile(Request $request){
+        $file_name = $request->input('tender_file');
+        $myFile = public_path("tender-files/".$file_name);
+        $headers = ['Content-Type: application/file'];
+        $path = public_path('tender-files/'.$file_name);
+        $isExists =   File::exists($path);
+        if($isExists == false){
+            $request->session()->flash('danger','File Not Found');
+            return redirect()->back();
+        }
+        else{
+            return response()->download($myFile, $file_name, $headers);
+        }
+        return redirect()->back();
+    }
+
 
     
 }

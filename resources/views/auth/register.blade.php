@@ -1,5 +1,19 @@
 @extends('layouts.app')
 @section('content')
+<script>
+    function myFunction() {
+    var pass = document.getElementById("password");
+    var pass2 = document.getElementById("password_confirmation");
+    if (pass.type === "password") {
+        pass.type = "text";
+        pass2.type = "text";
+
+    } else {
+        pass.type = "password";
+        pass2.type = "password";
+    }
+    }
+</script>
 
     <div class="form-container my-5">
         <div class="title_container">
@@ -21,22 +35,21 @@
                 @enderror
             </div>
 
-            <div class="form-group"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-                <input class="form-control @error('email') is-invalid @enderror" type="email" name="email"  id="email" autocomplete="off" placeholder="Email" value="{{ old('email') }}" />
-                @error('email')
-                    <small class="invalid-feedback" role="alert">{{ $message }}</small>
-                @enderror
-            </div>
             
             
             <div class="form-group"> <span><i aria-hidden="true" class="fa fa-phone"></i></span>
-                <input class="form-control @error('number') is-invalid @enderror" type="number" name="number" id="number" autocomplete="off" placeholder="Contact"value="{{ old('number') }}"/>
+                <input class="form-control @error('number') is-invalid @enderror" type="text" name="number" id="number" autocomplete="off" placeholder="Contact"value="{{ old('number') }}"/>
                 @error('number')
                     <small class="invalid-feedback" role="alert">{{ $message }}</small>
                 @enderror   
             </div>
-            <div class="form-group"> <span><i aria-hidden="true" class="fas fa-flag"></i></span>
-                <input class="form-control @error('id_card') is-invalid @enderror" type="number" name="id_card" id="id_card" autocomplete="off" placeholder="Country"value="{{ old('id_card') }}" />
+            <div class="form-group">
+                <select class="form-control @error('id_card') is-invalid @enderror" name="id_card" id="id_card">
+                    <option value="">Select Country</option>
+                    @foreach ($countries as $country)
+                        <option value="{{ $country->name }}">{{ $country->name }}</option>
+                    @endforeach
+                </select>
                 @error('id_card')
                     <small class="invalid-feedback" role="alert">{{ $message }}</small>
                 @enderror
@@ -62,6 +75,10 @@
                 @error('password_confirmation')
                     <small class="invalid-feedback" role="alert">{{ $message }}</small>
                 @enderror
+            </div>
+            <div style="display: inline-block; padding-right: 10px;
+            white-space: nowrap;">
+                <label><input type="checkbox" style="" id="eye" onclick="myFunction();"> <span>show password</span></label>
             </div>
             
             <div class="form-group">

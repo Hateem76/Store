@@ -47,6 +47,7 @@ Route::prefix('extras')->middleware('auth')->name('extras.')->group(function(){
     Route::get('/vendorProfile/{id}', [ExtraController::class, 'vendorProfile'])->name('vendorProfile');
     Route::post('/downloadLetter', [ExtraController::class, 'downloadLetter'])->name('downloadLetter');
     Route::post('/downloadQuotation', [ExtraController::class, 'downloadQuotation'])->name('downloadQuotation');
+    Route::post('/downloadTenderFile', [ExtraController::class, 'downloadTenderFile'])->name('downloadTenderFile');
 });
 
     // Personal Profile for both Buyers and Vendors.    => Both

@@ -24,6 +24,7 @@
             console.log('clicked');
             
         }
+
     </script>
 </head>
 
@@ -94,15 +95,18 @@
                                 <th>Tender Name</th>
                                 <th>Responses</th>
                                 <th>Quantity</th>
-                                <th>Days</th>
+                                <th>Opening Date</th>
+                                <th>Closing Date</th>
                                 <th>Unit</th>
                                 <th>Description</th>
+                                <th>File</th>
+                                <th>Public/Private</th>
                                 <th>Action</th>
                               </tr>
                             </thead>
                             <tbody>
                                 @foreach ($tenders as $tender)
-                                <tr>
+                                <tr style="">
                                     <td>{{ $serialNo++ }}</td>
                                     <td>{{ $tender->product_name }}</td>
                                     <td>
@@ -113,9 +117,20 @@
                                         </a>
                                     </td>
                                     <td>{{ $tender->quantity }}</td>
-                                    <td>{{ $tender->duration }}</td>
+                                    <td>{{ $tender->opening_date }}</td>
+                                    <td>{{ $tender->closing_date }}</td>
                                     <td>{{ $tender->unit }}</td>
                                     <td>{{ $tender->description }}</td>
+                                    <td><form action="{{ route('extras.downloadTenderFile') }}" method="POST">
+                                        @csrf
+                                        <input type="text" name="tender_file" value="{{ $tender->tender_file }}" hidden>
+                                        <button class="btn btn-sm btn-secondary" type="submit">File?</button>
+                                    </form></td>
+                                    <td>@if ($tender->public_private == 0)
+                                        Public
+                                        @else
+                                        Private
+                                    @endif</td>
                                     <td>
                                         <div class="approval">
                                             <button title="Edit" class="checkBtn btn btn-success">

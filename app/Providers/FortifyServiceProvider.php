@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
+use App\Models\Country;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -44,7 +45,10 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
         Fortify::registerView(function(){
-            return view('auth.register');
+            $countries = Country::all();
+            return view('auth.register',[
+                'countries' => $countries
+            ]);
         });
         Fortify::loginView(function(){
             return view('auth.login');
