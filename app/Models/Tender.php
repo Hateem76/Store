@@ -20,6 +20,8 @@ class Tender extends Model
         'opening_date',
         'closing_date',
         'description',
+        'location',
+        'currency',
         'tender_file',
         'unit',
         'public_private',

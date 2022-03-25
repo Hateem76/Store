@@ -25,7 +25,10 @@ class TenderResponseRequest extends FormRequest
     {
         return [
             'name'  => 'required',
-            'quotation' => 'required|mimes:pdf,docx|max:1024',
+            'quotation' => 'mimes:pdf,docx|max:1024|required_without:link',
+            'link' => 'required_without:quotation|max:60',
+            'price'   => 'required',
+            'description' => 'max:290',
         ];
     }
 }

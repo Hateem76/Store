@@ -16,7 +16,7 @@
         </li>
         <li>
           <a href="{{ route('seller.tenders') }}"><span class="fa fa-tasks mr-3"></span>
-            <span>Tenders</span>
+            <span>New Tenders</span>
           </a>
         </li>
         <li>

@@ -37,7 +37,7 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-            <h4 class="modal-title">Confirmation Letter</h4>
+            <h4 class="modal-title">Submit Response</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             
@@ -79,7 +79,7 @@
                 <!-----Table Start-->
             <div class="py-5">
                 <div class="row setScroll py-5">
-                  <div class="col-lg-11 mx-auto mt-2">
+                  <div class="col-lg-10 mx-auto mt-2">
                     <div class="card rounded shadow border-0">
                       <div class="card-body px-5 py-4 bg-white rounded">
                         @include('partials.alerts') 
@@ -139,9 +139,6 @@
                                             <button title="Delete" class="crossBtn btn btn-danger">
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </button>
-                                            <a href="{{ route('buyer.tenders.show',$tender->id) }}" type="button" class=" crossBtn btn btn-secondary">
-                                                <i class="fa-solid fa-eye"></i>
-                                            </a>
                                         </div>
                                     </td>
                                   </tr>

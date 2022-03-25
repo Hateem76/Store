@@ -72,12 +72,13 @@ class BuyerTenderController extends Controller
                 'description' => 'max:290',
                 'unit'     => 'max:15',
                 'tender_file' => 'max:150',
+                'location'  => 'max:18',
+                'currency'  => 'max:9',
             ]);
             $public_private = null;
         }
         else{
             $request->validate([
-                'name' => 'required|max:25',
                 'opening_date' => 'required',
                 'closing_date' => 'required',
                 'quantity' => 'required|integer|max:10000',
@@ -85,6 +86,8 @@ class BuyerTenderController extends Controller
                 'unit'     => 'max:15',
                 'public_private' => 'required',
                 'tender_file' => 'max:150',
+                'location'  => 'max:18',
+                'currency'  => 'max:9',
             ]);
             $public_private = $request->input('public_private');
         }
@@ -101,10 +104,11 @@ class BuyerTenderController extends Controller
         try{
             $tender = Tender::create([
                 'user_id' => $userId,
-                'product_name' => $request->input('name'),
                 'opening_date' => $request->input('opening_date'),
                 'closing_date' => $request->input('closing_date'),
                 'description' => $request->input('description'),
+                'location'  => $request->input('location'),
+                'currency'  => $request->input('currency'),
                 'unit'       => $request->input('unit'),
                 'public_private' => $public_private,
                 'quantity' => $request->input('quantity'),
@@ -147,7 +151,56 @@ class BuyerTenderController extends Controller
      */
     public function show($id)
     {
-        //
+        $userId = Auth::user()->id;
+        if(Gate::allows('child-buyer')){
+            $userId = Auth::user()->parent_id;
+        }
+        if(Tender::where("user_id",$userId)->where('id',$id)->exists()){
+            $tender = Tender::where('id',$id)->with("tender_responses")->first();
+            return view('Buyer.tender.show',[
+                'tender' => $tender
+            ]);
+        }
+        else{
+            return redirect()->back();
+        }
+    }
+
+    public function submitRemarks(Request $request){
+        
+        $userId = Auth::user()->id;
+        if(Gate::allows('child-buyer')){
+            $userId = Auth::user()->parent_id;
+        }
+        if(Tender::where("user_id",$userId)->where('id',$request->input('id'))->exists()){
+            TenderResponse::where('id',$request->input('response_id'))->where('tender_id',$request->input('id'))->update([
+                'buyer_remarks' => $request->input('buyer_remarks')
+            ]);
+            $tender = Tender::where('id',$request->input('id'))->with('tender_responses')->first();
+            $request->session()->flash('success','Remarks Submitted.');
+            return redirect(route("buyer.tenders.show",$request->input('id')));
+        }
+        else{
+            return redirect()->back();
+        }
+    }
+
+    public function deleteResponse(Request $request){
+        $userId = Auth::user()->id;
+        if(Gate::allows('child-buyer')){
+            $userId = Auth::user()->parent_id;
+        }
+        if(Tender::where("user_id",$userId)->where('id',$request->input('id'))->exists()){
+            TenderResponse::where('id',$request->input('response_id'))->where('tender_id',$request->input('id'))->update([
+                'deleted' => 1
+            ]);
+            $tender = Tender::where('id',$request->input('id'))->with('tender_responses')->first();
+            $request->session()->flash('success','Response Deleted.');
+            return redirect(route("buyer.tenders.show",$request->input('id')));
+        }
+        else{
+            return redirect()->back();
+        }
     }
 
     /**
@@ -199,20 +252,24 @@ class BuyerTenderController extends Controller
         }
         else{
             $request->session()->flash('danger','Tender already has Confirmation Letter.');
-            return redirect(route('buyer.tenders.index'));
+            $tender = Tender::where('id',$tenderId)->with('tender_responses')->first();
+            return redirect(route('buyer.tenders.show',[
+                'tender'  => $tender
+            ]));
         }
         // Check if Response Exists
         if(TenderResponse::where('user_id',$toUserId)->where('tender_id',$tenderId)->exists()){
             try{
-                $file_name = 'not_found.pdf';
-                if($request->hasFile('confirmation_letter')){ 
+                $file_name = null;
+                if($request->input('confirmation_link') == null){ 
                     $file_name = time(). '-' . $request->input('tender_id') . $userId. '.' . $request->confirmation_letter->extension();
                     $request->confirmation_letter->move(public_path('confirmation-letters'),$file_name);
                 }
                     // Update Response Record To Update Seller about Confirmation
                 $confirmationLetter = TenderResponse::where('user_id',$toUserId)->where('tender_id',$tenderId)->update([
                     'confirmation_letter' => 1,
-                    'letter_pdf'  => $file_name
+                    'letter_pdf'  => $file_name,
+                    'confirmation_link'        => $request->input('confirmation_link')
                 ]);
                     // To put Tender in Pending State
                 $tender = Tender::where('id',$tenderId)->update([
@@ -221,14 +278,23 @@ class BuyerTenderController extends Controller
             }
             catch(\Illuminate\Database\QueryException $e){
                 $request->session()->flash('danger','Letter Did not Submit.');
-                return redirect(route('buyer.tenders.index'));
+                $tender = Tender::where('id',$tenderId)->with('tender_responses')->first();
+                return redirect(route('buyer.tenders.show',[
+                    'tender'  => $tender
+                ]));
             }
             $request->session()->flash("success","Letter Submitted Successfully. Wait for Seller's Confirmation.");
-            return redirect(route('buyer.tenders.index')); 
+            $tender = Tender::where('id',$tenderId)->with('tender_responses')->first();
+            return redirect(route('buyer.tenders.show',[
+                'tender'  => $tender
+            ])); 
         }
         else{       // Response Doesn't Exist
             $request->session()->flash('danger','Response Does not exists.');
-            return redirect(route('buyer.tenders.index'));
+            $tender = Tender::where('id',$tenderId)->with('tender_responses')->first();
+            return redirect(route('buyer.tenders.show',[
+                'tender'  => $tender
+            ]));
         }
     }
     public function cancelLetter(Request $request, $toUserId,$tenderId){
@@ -241,7 +307,10 @@ class BuyerTenderController extends Controller
         // First of all check if Seller has not confirmed this Project yet.
         if(Project::where('tender_id',$tenderId)->exists()){
             $request->session()->flash('danger','The Seller has confirmed this Project. It is started.');
-            return redirect(route('buyer.tenders.index'));
+            $tender = Tender::where('id',$tenderId)->with('tender_responses')->first();
+            return redirect(route('buyer.tenders.show',[
+                'tender'  => $tender
+            ]));
         }
 
         // Check if He is the Owner of That Tender and This Tender does not have confirmation letter
@@ -250,7 +319,10 @@ class BuyerTenderController extends Controller
         }
         else{
             $request->session()->flash('danger','Tender does not have Confirmation Letter.');
-            return redirect(route('buyer.tenders.index'));
+            $tender = Tender::where('id',$tenderId)->with('tender_responses')->first();
+            return redirect(route('buyer.tenders.show',[
+                'tender'  => $tender
+            ]));
         }
             // Check if Response Exists
         if(TenderResponse::where('user_id',$toUserId)->where('tender_id',$tenderId)->exists()){
@@ -266,14 +338,23 @@ class BuyerTenderController extends Controller
             }
             catch(\Illuminate\Database\QueryException $e){
                 $request->session()->flash('danger','Confirmation did not Cancel.');
-                return redirect(route('buyer.tenders.index'));
+                $tender = Tender::where('id',$tenderId)->with('tender_responses')->first();
+                return redirect(route('buyer.tenders.show',[
+                    'tender'  => $tender
+                ]));
             }
             $request->session()->flash("success","Confirmation Canceled Successfully.");
-            return redirect(route('buyer.tenders.index')); 
+            $tender = Tender::where('id',$tenderId)->with('tender_responses')->first();
+            return redirect(route('buyer.tenders.show',[
+                'tender'  => $tender
+            ])); 
         }
         else{       // Response Doesn't Exist
             $request->session()->flash('danger','Response Does not exists.');
-            return redirect(route('buyer.tenders.index'));
+            $tender = Tender::where('id',$tenderId)->with('tender_responses')->first();
+            return redirect(route('buyer.tenders.show',[
+                'tender'  => $tender
+            ]));
         }
     }
 
@@ -286,6 +367,8 @@ class BuyerTenderController extends Controller
             'sellerId'  => $id
         ]);
     }
+
+
 
 
 //------------------------------Projects Methods-----------------------------------

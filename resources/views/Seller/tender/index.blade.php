@@ -51,12 +51,47 @@
                                 <option value="{{ $product->id }}">{{ $product->name }}</option>
                             @endforeach
                         </select>
+                        @error('name')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <input type="text" name="tender_id" id="tender_id" hidden>
                     <div class="col-sm-5 mx-auto">
                         <label for="quotation">Choose Quotation File</label>
                         <input type="file" id="quotation" name="quotation" accept=".pdf" class="form-control @error('quotation') is-invalid @enderror">
+                        @error('quotation')
+                                <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12 mx-auto">
+                            <label for="link">Files Link(use either quotation or this.If both are filled, then only link will be used.)</label>
+                            <input type="text" id="link" name="link" class="form-control @error('link') is-invalid @enderror" value="{{ old('link') }}">
+                            @error('link')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12 mx-auto">
+                            <label for="price">Unit Price</label>
+                            <input type="text" id="price" name="price" class="form-control @error('price') is-invalid @enderror"value="{{ old('price') }}">
+                            @error('price')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12 mx-auto">
+                            <label for="description">Description</label>
+                            <textarea class="form-control mt-3" style="border-radius: 25px;" rows="3"  name="description" id="description">{{ old('description') }}</textarea>
+                            @error('description')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
 
                     <button type="submit" class="btn text-white btn-block"style = "background-color: #184A45FF;">Submit</button>  
@@ -95,10 +130,12 @@
                             <thead>
                               <tr>
                                 <th>SNO</th>
-                                <th>Tender Name</th>
+                                <th>Buyer</th>
+                                <th class="text-center">Tender Number</th>
+                                <th class="text-center">Opening Date</th>
+                                <th class="text-center">Closing Date</th>
                                 <th>Quantity</th>
                                 <th>Unit</th>
-                                <th>Duration</th>
                                 <th>Description</th>
                                 <th class="text-center">Response</th>
                               </tr>
@@ -107,13 +144,15 @@
                                 @foreach ($tenders as $tender)
                                 <tr>
                                     <td>{{ $serialNo++ }}</td>
-                                    <td>{{ $tender->product_name }}</td>
+                                    <td>{{ $tender->user->name }}</td>
+                                    <td>TN{{ $tender->id }}</td>
+                                    <td>{{ $tender->opening_date }}</td>
+                                    <td>{{ $tender->closing_date }}</td>
                                     <td>{{ $tender->quantity }}</td>
                                     <td>{{ $tender->unit }}</td>
-                                    <td>{{ $tender->duration }}</td>
                                     <td>{{ $tender->description }}</td>
                                     <td class="text-center">
-                                        <button class="btn btn-info text-white" onclick="myfun({{ $tender->id }});">Add Product</button>
+                                        <button class="btn btn-info text-white btn-sm" onclick="myfun({{ $tender->id }});">Submit Response</button>
                                     </td>
                                   </tr>
                                 @endforeach

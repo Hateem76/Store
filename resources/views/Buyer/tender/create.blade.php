@@ -27,19 +27,27 @@
                     @error('unit')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
-                    <input type="date" class="form-control mt-3" name="opening_date" id="opening_date">
+                    <input type="text" class="form-control mt-3" name="opening_date" onfocus="(this.type='date')" id="opening_date" placeholder="Opening Date">
                     @error('opening_date')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
-                    <input type="date" class="form-control mt-3" name="closing_date" id="closing_date">
+                    <input type="text" class="form-control mt-3" onfocus="(this.type='date')" name="closing_date" id="closing_date" placeholder="Closing Date">
                     @error('closing_date')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                    <input type="text" class="form-control mt-3"  name="location" id="location" placeholder="Location">
+                    @error('location')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                    <input type="text" class="form-control mt-3"  name="currency" id="currency" placeholder="Currency">
+                    @error('currency')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                     <input type="file" accept=".pdf" class="form-control mt-3" name="tender_file" id="tender_file">
                     @error('tender_file')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
-                    <textarea class="form-control mt-3" style="border-radius: 25px;" rows="3"  name="description" id="description"></textarea>
+                    <textarea class="form-control mt-3" style="border-radius: 25px;" rows="3"  name="description" id="description" placeholder="description...."></textarea>
                     @error('description')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror

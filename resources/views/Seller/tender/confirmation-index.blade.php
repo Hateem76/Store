@@ -44,12 +44,51 @@
                 div2.setAttribute("hidden",true); 
             }
         }
+        function changePrice(responseId, price){
+            document.getElementById("id").value = responseId;
+            document.getElementById("price").value = price;
+            $('#changePrice').modal('show');
+        }
     </script> 
 </head>
 
 <body>
 
 @include('Seller.layouts.sidebar2')
+
+<!-- Change Price Modal -->
+<div class="modal fade mt-4" id="changePrice">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title">Change Price</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <form action="{{ route('seller.changePrice') }}" method="POST" >
+                @csrf
+                <div class="modal-body"> 
+                    <div class="form-group row">
+                        <div class="col-11 mx-auto mb-3">
+                            <label for="price">Price Per Unit</label>
+                            <input type="text" name="price" id="price" class="form-control @error('price') is-invalid @enderror">
+                        </div>
+                    </div> 
+                    <input type="text" id="id" name="id" value="" hidden>
+                    <button type="submit" class="btn text-white btn-block"style = "background-color: #184A45FF;">Submit</button>  
+                </div>
+            </form>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <!-- The Modal -->
 <div class="modal fade mt-4" id="myModal">
@@ -115,7 +154,7 @@
                 <!-----Table Start-->
             <div class="py-5">
                 <div class="row setScroll py-5">
-                  <div class="col-lg-10 mx-auto mt-2">
+                  <div class="col-lg-11 mx-auto mt-2">
                     <div class="card rounded shadow border-0">
                       <div class="card-body px-5 py-4 bg-white rounded">
                         @include('partials.alerts') 
@@ -123,60 +162,103 @@
                               <h2 class=" pl-3">Tenders Confirmation</h2>
                               {{-- <button class="btn text-white mb-2 btn-md mr-4" style="background-color: #184A45FF;">Create &RightArrow;</button> --}}
                           </div>
+                        @foreach ($responses as $response)
                         <div class="table-responsive">
-                          <table id="example" style="width:100%" class="table table-striped table-bordered">
+                          <table id="example" style="width:100%; margin-bottom:100px;" class="table table-striped table-bordered">
                             <thead>
-                              <tr>
-                                <th>SNO</th>
-                                <th>Tender Name</th>
-                                <th>My Product</th>
-                                <th>Quantity</th>
-                                <th>Unit</th>
-                                <th>Duration</th>
+                              <tr style="font-size: 14px;">
+                                <th>Tender No.</th>
+                                <th>Buyer</th>
                                 <th>Description</th>
-                                <th>Quotation</th>
-                                <th>Confirmation Letter</th>
-                                <th>Confirm Project</th>
+                                <th>Publishing Date</th>
+                                <th>Closing Date</th>
+                                <th>Location</th>
+                                <th>Unit</th>
+                                <th>Qty</th>
+                                <th>Currency</th>
                               </tr>
                             </thead>
                             <tbody>
-                                @foreach ($responses as $response)
-                                <tr>
-                                    <td>{{ $serialNo++ }}</td>
-                                    <td>{{ $response->tender->product_name }}</td>
-                                    <td>{{ $response->product->name }}</td>
-                                    <td>{{ $response->tender->quantity }}</td>
-                                    <td>{{ $response->tender->unit }}</td>
-                                    <td>{{ $response->tender->duration }}</td>
+                                <tr style="font-size: 14px;">
+                                    <td>BN{{ $response->tender->id }}</td>
+                                    <td><a href="{{ route('extras.vendorProfile',$response->tender->user->id) }}" class="text-danger">{{ $response->tender->user->name }}</a></td>
                                     <td>{{ $response->tender->description }}</td>
-                                    <td>
-                                        <form action="{{ route('extras.downloadQuotation') }}" method="POST">
-                                            @csrf
-                                            <input type="text" name="quotation" value="{{ $response->quotation }}" hidden>
-                                            <button class="btn btn-sm btn-warning" type="submit">Quotation?</button>
-                                        </form>
+                                    <td>{{ $response->tender->opening_date }}</td>
+                                    <td>{{ $response->tender->closing_date }}</td>
+                                    <td>{{ $response->tender->location }}</td>
+                                    <td>{{ $response->tender->unit }}</td>
+                                    <td>{{ $response->tender->quantity }}</td>
+                                    <td>{{ $response->tender->currency }}</td>                                    
+                                </tr>  
+                                <tr style="font-size: 14px;">
+                                    <th>Product</th>
+                                    <th>MyAttachments</th>
+                                    <th>My Description</th>
+                                    <th class="d-flex">Unit Price<i class="btn-sm fa fa-question-circle" title="This can be changed once on the request of Buyer in buyer remarks."></i></th>
+                                    <th colspan="2">Buyer Attachments</th>
+                                    <th colspan="3" class="text-center">Action</th>
+                                </tr> 
+                                <tr style="font-size: 14px;">
+                                    <td><a href="{{ route("extras.vewProduct",$response->product->id) }}" class = "text-danger" style = "text:decoration:none;">{{ $response->product->name }}</a></td>
+                                    <td class="text-center">
+                                        @if ($response->attachments_link == null)
+                                            <form action="{{ route('extras.downloadQuotation') }}" method="POST">
+                                                @csrf
+                                                <input type="text" name="quotation" value="{{ $response->quotation }}" hidden>
+                                                <button class="btn btn-sm btn-secondary text-white" type="submit">Quotation <i class="fa fa-download"></i></button>
+                                            </form>
+                                        @else
+                                            <a target="_blank" href="{{ $response->attachments_link }}">Files Link</a>
+                                        @endif
                                     </td>
+                                    <td>{{ $response->description }}</td>
+                                    <td class="text-center" style="">
+                                        {{ $response->price }} <button class="btn btn-sm btn-secondary" onclick="changePrice('{{ $response->id }}','{{ $response->price }}');"><i class="fa fa-edit" title="click to change"></i></button>
+                                    </td>
+
                                     @if ($response->confirmation_letter == 1)
-                                    <td>
-                                        <form action="{{ route('extras.downloadLetter') }}" method="POST">
-                                            @csrf
-                                            <input type="text" name="letter" value="{{ $response->letter_pdf }}" hidden>
-                                            <button class="btn btn-sm btn-warning ml-3" type="submit">Letter?</button>
-                                        </form>
-                                    </td>
-                                    <td class="text-center"><a href="" type="button" class="btn btn-success " onclick="event.preventDefault(); myfun('{{ $response->tender->duration }}','{{ $response->tender->id }}')"><i class="fa-solid fa-check"></i></a></td>
+                                        @if ($response->confirmation_link == null)
+                                            <td colspan="2">
+                                                <form action="{{ route('extras.downloadLetter') }}" method="POST">
+                                                    @csrf
+                                                    <input type="text" name="letter" value="{{ $response->letter_pdf }}" hidden>
+                                                    <button class="btn btn-sm btn-warning ml-3" type="submit">Letter?</button>
+                                                </form>
+                                            </td>
+                                        @else
+                                            <td colspan="2">
+                                                <a target="_blank" href="{{ $response->confirmation_link }}">Files Link</a>
+                                            </td>
+                                        @endif
+                                        <td colspan="3" class="text-center">
+                                            <a href="" type="button" class="btn btn-sm btn-success" title="Confirm Project" onclick="event.preventDefault(); myfun('{{ $response->tender->duration }}','{{ $response->tender->id }}')"><i class="fa-solid fa-check"></i></a>
+                                        </td>
                                     @else
-                                        <td>No confirmation Yet</td>
-                                        <td>
+                                        <td colspan="2" class="text-center font-weight-bold">
+                                            No confirmation
+                                        </td>
+                                        <td colspan="3">
+
                                         </td>
                                     @endif
-                                    
-                                  </tr>
-                                @endforeach
-                                    
+                                </tr>
+                                <tr style="font-size: 14px;">
+                                    <td>
+                                    <div class="remarks d-flex" >
+                                        <h6 style="font-weight: 600;" class="pt-1">Buyer Remarks:</h6>
+                                        
+                                    </td>
+                                    <td colspan="8">
+                                        <div class="remarks-txt ml-3 pt-1 text-secondary">
+                                            {{ $response->buyer_remarks }}
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
                             </tbody>
                           </table>
                         </div>
+                        @endforeach
                       </div>
                     </div>
                   </div>

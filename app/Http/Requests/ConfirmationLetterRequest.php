@@ -24,7 +24,8 @@ class ConfirmationLetterRequest extends FormRequest
     public function rules()
     {
         return [
-            'confirmation_letter' => 'required|max:100',
+            'confirmation_letter' => 'required_without:confirmation_link|max:100',
+            'confirmation_link'   => 'required_without:confirmation_letter|max:60',
         ];
     }
 }

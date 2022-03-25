@@ -70,8 +70,8 @@ class SellerTenderController extends Controller
             return redirect(route('seller.tenders'));
         }
         try{ // everything OK, now finish it.
-            $file_name = 'not_found.pdf';
-            if($request->hasFile('quotation')){ 
+            $file_name = null;
+            if($request->hasFile('quotation') && $request->input('link') == null){ 
                 $file_name = time(). '-' . $request->input('tender_id') . $userId. '.' . $request->quotation->extension();
                 $request->quotation->move(public_path('quotations'),$file_name);
             }
@@ -80,6 +80,9 @@ class SellerTenderController extends Controller
                 'user_id'    => $userId,
                 'product_id' => $request->input('name'),
                 'quotation'  => $file_name,
+                'attachments_link' => $request->input('link'),
+                'price'      => $request->input('price'),
+                'description' => $request->input('description'),
             ]);
         }
 
@@ -107,6 +110,27 @@ class SellerTenderController extends Controller
             'responses'  => $tenders,
             'serialNo' => $serialNo
         ]);
+    }
+
+    public function changePrice(Request $request){
+        $dataValidated = $request->validate([
+            'price' => 'required',
+        ]);
+        $userId = Auth::user()->id;
+        if(Gate::allows('child-seller')){
+            $userId = Auth::user()->parent_id;
+        }
+        if(TenderResponse::where('user_id',$userId)->where('id',$request->input('id'))->exists()){
+            TenderResponse::where('user_id',$userId)->where('id',$request->input('id'))->update([
+                'price'  => $request->input('price')
+            ]);
+            $request->session()->flash('success','Price Changed.');
+            return redirect(route('seller.confirmationIndex'));
+        }
+        else{
+            $request->session()->flash('danger','Response Does not exist.');
+            return redirect(route('seller.confirmationIndex'));
+        }
     }
 
     public function confirmProject(Request $request){

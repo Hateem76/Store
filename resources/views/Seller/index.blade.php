@@ -38,7 +38,7 @@
     <div class="card-single shadow-lg" onclick="document.getElementById('tenders').click();">
       <div>
         <h1>10</h1>
-        <span>Tenders</span>
+        <span>New Tenders</span>
       </div>
       <div class="icon-container bg-danger">
         <span class="fa fa-tasks"></span>

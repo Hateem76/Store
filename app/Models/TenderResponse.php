@@ -19,8 +19,14 @@ class TenderResponse extends Model
         'product_id',
         'tender_id',
         'quotation',
+        'attachments_link',
+        'price',
+        'description',
+        'buyer_remakrs',
         'confirmation_letter',
+        'confirmation_link',
         'letter_pdf',
+        'deleted',
     ];
 
     public $timestamps = false;

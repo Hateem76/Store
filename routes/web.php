@@ -77,6 +77,7 @@ Route::prefix('seller')->middleware(['auth','auth.seller'])->name('seller.')->gr
     Route::get('/confirmationIndex', [SellerTenderController::class, 'confirmationIndex'])->name('confirmationIndex');
     Route::post('/confirmProject', [SellerTenderController::class, 'confirmProject'])->name('confirmProject');
     Route::get('/projects', [SellerTenderController::class, 'projects'])->name('projects');
+    Route::post('/changePrice', [SellerTenderController::class, 'changePrice'])->name('changePrice');
 });
 
 
@@ -89,7 +90,10 @@ Route::prefix('buyer')->middleware(['auth','auth.buyer'])->name('buyer.')->group
     Route::get('/cancelLetter/{userId}/{tenderId}', [BuyerTenderController::class, 'cancelLetter'])->name('cancelLetter');
     Route::get('/projects', [BuyerTenderController::class, 'projects'])->name('projects');
     Route::get('/requestForRent/{id}/{proId}', [BuyerTenderController::class, 'requestForRent'])->name('requestForRent');
+    Route::post('/submitRemarks', [BuyerTenderController::class, 'submitRemarks'])->name('submitRemarks');
+    Route::post('/deleteResponse', [BuyerTenderController::class, 'deleteResponse'])->name('deleteResponse');
 });
+
 
 
     //Admin Routes
