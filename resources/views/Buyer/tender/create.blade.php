@@ -7,23 +7,22 @@
         <div class="card rounded shadow border-0">
           <div class="card-body px-5 py-4 bg-white rounded">
               <div class=" mb-2 " style="">
-                  <h2 class="text-center pl-3">Create Tender</h2>
+                @if ($speacial == 'yes')
+                    <h2>Tender for {{ $product->name }}</h2>
+                @else
+                    <h2 class="text-center pl-3">Create Tender</h2>
+                @endif
                   {{-- <button class="btn text-white mb-2 btn-md mr-4" style="background-color: #184A45FF;">Create &RightArrow;</button> --}}
               </div>
             <div class=" mt-3">
                 <form action="{{ route('buyer.tenders.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <input type="text" class="form-control" name="name" id="name" placeholder="tender name.." @if ($speacial == 'yes')
-                        value = "{{ $product->name }}"
-                    @endif>
-                    @error('name')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                    <input type="text" class="form-control mt-3" name="quantity" id="quantity" placeholder="quantity..">
+                   
+                    <input type="text" class="form-control mt-3" name="quantity" id="quantity" placeholder="quantity.." value="{{ old('quantity') }}">
                     @error('quantity')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
-                    <input type="text" class="form-control mt-3" name="unit" id="unit" placeholder="unit..">
+                    <input type="text" class="form-control mt-3" name="unit" id="unit" placeholder="unit.." value="{{ old('quantity') }}">
                     @error('unit')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -35,19 +34,19 @@
                     @error('closing_date')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
-                    <input type="text" class="form-control mt-3"  name="location" id="location" placeholder="Location">
+                    <input type="text" class="form-control mt-3"  name="location" id="location" placeholder="Location" value="{{ old('location') }}">
                     @error('location')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
-                    <input type="text" class="form-control mt-3"  name="currency" id="currency" placeholder="Currency">
+                    <input type="text" class="form-control mt-3"  name="currency" id="currency" placeholder="Currency" value="{{ old('currency') }}">
                     @error('currency')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
-                    <input type="file" accept=".pdf" class="form-control mt-3" name="tender_file" id="tender_file">
+                    <input type="file" accept=".pdf,.txt,.docx" class="form-control mt-3" name="tender_file" id="tender_file">
                     @error('tender_file')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
-                    <textarea class="form-control mt-3" style="border-radius: 25px;" rows="3"  name="description" id="description" placeholder="description...."></textarea>
+                    <textarea class="form-control mt-3" style="border-radius: 25px;" rows="3"  name="description" id="description" placeholder="description....">{{ old('description') }}</textarea>
                     @error('description')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror

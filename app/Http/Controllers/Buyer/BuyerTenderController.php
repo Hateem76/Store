@@ -71,7 +71,7 @@ class BuyerTenderController extends Controller
                 'quantity' => 'required|integer|max:10000',
                 'description' => 'max:290',
                 'unit'     => 'max:15',
-                'tender_file' => 'max:150',
+                'tender_file' => 'max:150|mimes:pdf,txt,docx',
                 'location'  => 'max:18',
                 'currency'  => 'max:9',
             ]);
@@ -85,7 +85,7 @@ class BuyerTenderController extends Controller
                 'description' => 'max:290',
                 'unit'     => 'max:15',
                 'public_private' => 'required',
-                'tender_file' => 'max:150',
+                'tender_file' => 'max:150|mimes:pdf,txt,docx',
                 'location'  => 'max:18',
                 'currency'  => 'max:9',
             ]);

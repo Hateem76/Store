@@ -3,7 +3,7 @@
         <label for="nav-toggle">
         <span class="fas fa-bars mr-3 ml-2"></span>
         </label>
-        Seller Group of Industries
+        {{ Auth::user()->name }}
     </h3>
     <div class="search-wrapper">
         <!-- <span class="fas fa-search"></span> -->
