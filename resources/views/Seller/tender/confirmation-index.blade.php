@@ -131,7 +131,7 @@
                         </div>
                     </div>
                     <input type="text" id="tender_id" name="tender_id" value="0" hidden>
-                    <button type="submit" class="btn text-white btn-block"style = "background-color: #184A45FF;">Submit</button>  
+                    <button type="submit" class="btn text-white btn-block"style = "background-color: #184A45FF;">Approve</button>  
                 </div>
             </form>
             <!-- Modal footer -->
@@ -222,7 +222,7 @@
                                                 <form action="{{ route('extras.downloadLetter') }}" method="POST">
                                                     @csrf
                                                     <input type="text" name="letter" value="{{ $response->letter_pdf }}" hidden>
-                                                    <button class="btn btn-sm btn-warning ml-3" type="submit">Letter?</button>
+                                                    <button class="btn btn-sm btn-warning ml-3" type="submit">Letter <i class="fa fa-download"></i></button>
                                                 </form>
                                             </td>
                                         @else

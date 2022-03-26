@@ -22,7 +22,7 @@
                 </li>
                 <li>
                   <a href="{{ route('seller.confirmationIndex') }}"><span class="fa fa-question mr-3"></span>
-                    <span>Confirmation</span>
+                    <span>Orders Confirmation</span>
                   </a>
                 </li>
                 <li>

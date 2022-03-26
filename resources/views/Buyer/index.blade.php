@@ -5,7 +5,7 @@
     <a href="{{ route('seller.products.index') }}" id="products" style="display: none;"></a>
     <div class="card-single shadow-lg" onclick="document.getElementById('users').click();">
       <div>
-        <h1>4</h1>
+        <h1>{{ $users }}</h1>
         <span>User Accounts</span>
       </div>
       <div class="icon-container bg-success">
@@ -15,7 +15,7 @@
     <a href="{{ route('buyer.users.index') }}" id="users" style="display: none;"></a>
     <div class="card-single shadow-lg" onclick="document.getElementById('users').click();">
       <div>
-        <h1>4</h1>
+        <h1>{{ $users }}</h1>
         <span>User Accounts</span>
       </div>
       <div class="icon-container bg-danger">
@@ -25,7 +25,7 @@
     <a href="{{ route('profile.myContacts') }}" id="contacts" style="display: none;"></a>
     <div class="card-single shadow-lg" onclick="document.getElementById('contacts').click();">
       <div>
-        <h1>10</h1>
+        <h1>{{ $contacts }}</h1>
         <span>My Contacts</span>
       </div>
       <div class="icon-container bg-dark">
@@ -37,7 +37,7 @@
     <a href="{{ route('buyer.tenders.index') }}" id="tenders" style="display: none;"></a>
     <div class="card-single shadow-lg" onclick="document.getElementById('tenders').click();">
       <div>
-        <h1>20</h1>
+        <h1>{{ $tenders }}</h1>
         <span>Tenders</span>
       </div>
       <div class="icon-container bg-warning">
@@ -46,7 +46,7 @@
     </div>
     <div class="card-single shadow-lg">
       <div>
-        <h1>10</h1>
+        <h1>{{ $deals }}</h1>
         <span>Deals</span>
       </div>
       <div class="icon-container bg-secondary">
@@ -56,7 +56,7 @@
     <a href="{{ route('buyer.projects') }}" id="projects" style="display: none;"></a>
     <div class="card-single shadow-lg" onclick="document.getElementById('projects').click();">
       <div>
-        <h1>30</h1>
+        <h1>{{ $deals }}</h1>
         <span>My Projects</span>
       </div>
       <div class="icon-container bg-info">

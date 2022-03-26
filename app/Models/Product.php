@@ -23,6 +23,7 @@ class Product extends Model
         'weight',
         'unit',
         'description',
+        'currency',
         'rent_day',
         'rent_week',
         'rent_month',

@@ -159,18 +159,18 @@
                 <!-----Table Start-->
             <div class="py-5">
                 <div class="row setScroll py-5">
-                  <div class="col-lg-10 mx-auto mt-2">
+                  <div class="col-lg-10 mx-auto">
                     <div class="card rounded shadow border-0">
                       <div class="card-body px-5 py-4 bg-white rounded">
                         @include('partials.alerts')
 
 
-                        <div class="container-fluid add-product-container shadow-lg mt-4"
+                        <div class="container-fluid add-product-container shadow-lg"
                         style="background-color: white; width:100%; height:auto; border-radius:10px;">
 
                           
                             <div class="row mt-2">
-                                <div class="text-bold mx-auto mt-5 mt-xs-1">
+                                <div class="text-bold mx-auto mt-2 mt-xs-1">
                                     <h1>Add Product</h1>
                                     <hr>
                                 </div>
@@ -212,7 +212,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-sm-3 mt-3 mt-xs-0">
-                                        <label for="">Weight Unit</label>
+                                        <label for="">Unit</label>
                                         <select value=""  class="form-control @error('unit') is-invalid @enderror" id="unit" name="unit"value="{{ old('unit') }}">
                                             <option value="kg">Kg</option>
                                             <option value="gram">gram</option>
@@ -239,21 +239,28 @@
                                 </div>
                                 <div class="form-group justify-content-center row">
                                     <div class="col-sm-3 mt-sm-3 mt-xs-2">
-                                        <label>Rent Per Day(Dirham)</label>
+                                        <label>Currency</label>
+                                        <input type="text" id="currency" name="currency" class="form-control @error('currency') is-invalid @enderror"value="{{ old('currency') }}">
+                                        @error('currency')
+                                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-3 mt-sm-3 mt-xs-2">
+                                        <label>Rent Per Day</label>
                                         <input type="number" id="rent_day" name="rent_day" step="0.1" class="form-control @error('rent_day') is-invalid @enderror"value="{{ old('rent_day') }}">
                                         @error('rent_day')
                                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="col-sm-3 mt-3 mt-xs-0">
-                                        <label>Rent Per Week(Dirham)</label>
+                                        <label>Rent Per Week</label>
                                         <input type="number" id="rent_week" name="rent_week" step="0.1" class="form-control @error('rent_week') is-invalid @enderror"value="{{ old('rent_week') }}">
                                         @error('rent_week')
                                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="col-sm-3 mt-3">
-                                        <label>Rent Per Month(Dirham)</label>
+                                        <label>Rent Per Month</label>
                                         <input type="number" id="rent_month" name="rent_month" step="0.1" class="form-control @error('rent_month') is-invalid @enderror"value="{{ old('rent_month') }}">
                                         @error('rent_month')
                                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
@@ -261,9 +268,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group justify-content-center row">
-                                    <div class="col-sm-10 mt-2">
+                                    <div class="col-sm-11 col-lg-11 col-md-11 mt-2">
                                         <label for="">Description</label>
-                                        <textarea rows="3" placeholder="Description.." id="description" name="description"  class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
+                                        <textarea rows="4" style="border-radius: 10px;" placeholder="Description.." id="description" name="description"  class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
                                         @error('description')
                                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                         @enderror
@@ -307,6 +314,3 @@
 </body>
 
 </html>
-
-
-

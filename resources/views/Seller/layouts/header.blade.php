@@ -22,7 +22,14 @@
     <div class="user-wrapper profile">
         <img class="profile" src="{{ asset('images/bg/c1.jpg') }}" alt="">
         <div class="profile-name">
-        <h5>Hateem</h5>
+        <h5>
+            @can('buyer')
+                Buyer Account
+            @endcan
+            @can('seller')
+                Seller Account
+            @endcan
+        </h5>
         </div>
     </div>
     </header>

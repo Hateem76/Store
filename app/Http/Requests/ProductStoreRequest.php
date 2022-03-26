@@ -30,6 +30,7 @@ class ProductStoreRequest extends FormRequest
             'brand_name' => 'max:20',
             'weight' => 'min:0',
             'description' => 'max:50',
+            'currency'  => 'max:13',
             'rent_day' => 'min:0',
             'rent_week' => 'min:0',
             'rent_month' => 'min:0',

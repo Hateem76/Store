@@ -120,11 +120,11 @@
                         </li>
                         <br>
                         <li>
-                            <span  class="mt-3">City : {{ Auth::user()->id_card }}</span>
+                            <span  class="mt-3">City : {{ Auth::user()->address }}</span>
                         </li>
                         <br>
                         <li>
-                            <span  class="mt-3">Country : {{ Auth::user()->address }}</span>
+                            <span  class="mt-3">Country : {{ Auth::user()->id_card }}</span>
                         </li>
                     </div>
                 </div>

@@ -122,13 +122,13 @@
                                     @endif</td>
                                     <td>
                                         <div class="approval">
-                                            <button title="Edit" class="checkBtn btn btn-sm btn-info">
+                                            <button title="Edit" style="height: 31px; width:35px !important;" class="checkBtn btn btn-sm btn-info">
                                                 <i class="fas fa-edit"></i>
                                             </button>
-                                            <button title="Delete" class="crossBtn btn btn-sm btn-danger">
+                                            <button title="Delete"style="height: 31px; width:35px !important;" class="crossBtn btn btn-sm btn-danger">
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </button>
-                                            <a target="_blank" href="{{ route('buyer.tenders.show',$tender->id) }}" title="view responses" type="button" class=" crossBtn btn-sm btn btn-secondary">
+                                            <a target="_blank" href="{{ route('buyer.tenders.show',$tender->id) }}"style="height: 31px; width:35px !important;" title="view responses" type="button" class=" crossBtn btn-sm btn btn-secondary">
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>
                                         </div>

@@ -74,6 +74,7 @@ class ProductController extends Controller
                 'unit' => $request->input('unit'),
                 'image_path' => $image_name,
                 'description' => $request->input('description'),
+                'currency'   => $request->input('currency'),
                 'rent_day' => $request->input('rent_day'),
                 'rent_week' => $request->input('rent_week'),
                 'rent_month' => $request->input('rent_month'),
@@ -123,7 +124,10 @@ class ProductController extends Controller
      */
     public function update(ProductStoreRequest $request, $id)
     {
-        
+        $userId = Auth::user()->id;
+        if(Gate::allows('child-seller')){
+            $userId = Auth::user()->parent_id;
+        }
         $product = Product::find($id);          // to get old image_path
         $dataValidated = $request->validated();
         $image_name = $product->image_path;     // if there is already img of product. So dont change that
@@ -134,7 +138,7 @@ class ProductController extends Controller
              
         }
         try{
-            $product = Product::where('id',$id)
+            $product = Product::where('id',$id)->where('user_id',$userId)
             ->update([
                 'name' => $request->input('name'),
                 'category_id' => $request->input('category'),
@@ -143,6 +147,7 @@ class ProductController extends Controller
                 'unit' => $request->input('unit'),
                 'image_path' => $image_name,
                 'description' => $request->input('description'),
+                'currency'  => $request->input('currency'),
                 'rent_day' => $request->input('rent_day'),
                 'rent_week' => $request->input('rent_week'),
                 'rent_month' => $request->input('rent_month'),

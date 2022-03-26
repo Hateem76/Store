@@ -77,7 +77,7 @@
                             @enderror
                         </div>
                     </div>
-                    <button type="submit" class="btn text-white btn-block"style = "background-color: #184A45FF;">Submit</button>  
+                    <button type="submit" class="btn text-white btn-block"style = "background-color: #184A45FF;">Approve</button>  
                 </div>
             </form>
             <!-- Modal footer -->
