@@ -93,11 +93,11 @@
                               <tr style="font-size: 14px;">
                                 <th>SNO</th>
                                 <th>Tender Number</th>
-                                <th>Responses</th>
+                                <th>Description</th>
                                 <th>Opening Date</th>
                                 <th>Closing Date</th>
-                                <th>Description</th>
                                 <th>Public/Private</th>
+                                <th>Responses</th>
                                 <th>Action</th>
                               </tr>
                             </thead>
@@ -106,20 +106,22 @@
                                 <tr style="font-size: 14px;">
                                     <td>{{ $serialNo++ }}</td>
                                     <td>TN{{ $tender->id }}</td>
+                                    <td><div >{{ $tender->description }}</div></td>
+                                    <td>{{ $tender->opening_date }}</td>
+                                    <td>{{ $tender->closing_date }}</td>
                                     <td>
+                                        @if ($tender->public_private == 0)
+                                            Private
+                                            @else
+                                            Public
+                                        @endif
+                                    </td>
+                                    <td class="text-center">
                                         @php
                                             $count = $tender->tender_responses()->count();
                                         @endphp
                                         {{ $count }}
                                     </td>
-                                    <td>{{ $tender->opening_date }}</td>
-                                    <td>{{ $tender->closing_date }}</td>
-                                    <td><div style="height:40px; overflow-y:scroll; width:150px;">{{ $tender->description }}</div></td>
-                                    <td>@if ($tender->public_private == 0)
-                                        Private
-                                        @else
-                                        Public
-                                    @endif</td>
                                     <td>
                                         <div class="approval">
                                             <button title="Edit" style="height: 31px; width:35px !important;" class="checkBtn btn btn-sm btn-info">
