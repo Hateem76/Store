@@ -128,7 +128,7 @@
                                             <button title="Delete" class="crossBtn btn btn-sm btn-danger">
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </button>
-                                            <a href="{{ route('buyer.tenders.show',$tender->id) }}" type="button" class=" crossBtn btn-sm btn btn-secondary">
+                                            <a target="_blank" href="{{ route('buyer.tenders.show',$tender->id) }}" title="view responses" type="button" class=" crossBtn btn-sm btn btn-secondary">
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>
                                         </div>

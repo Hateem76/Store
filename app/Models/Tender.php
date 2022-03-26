@@ -15,6 +15,7 @@ class Tender extends Model
     protected $table = 'tenders';
 
     protected $fillable = [
+        'name',
         'user_id',
         'product_name',
         'opening_date',

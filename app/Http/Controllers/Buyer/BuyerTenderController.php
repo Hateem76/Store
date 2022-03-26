@@ -65,7 +65,7 @@ class BuyerTenderController extends Controller
     {
         if($request->input('speacial') == 'yes'){
             $request->validate([
-                'name' => 'required|max:25',
+                'name' => 'required|max:30',
                 'opening_date' => 'required',
                 'closing_date' => 'required',
                 'quantity' => 'required|integer|max:10000',
@@ -79,6 +79,7 @@ class BuyerTenderController extends Controller
         }
         else{
             $request->validate([
+                'name' => 'required|max:30',
                 'opening_date' => 'required',
                 'closing_date' => 'required',
                 'quantity' => 'required|integer|max:10000',
@@ -104,6 +105,7 @@ class BuyerTenderController extends Controller
         try{
             $tender = Tender::create([
                 'user_id' => $userId,
+                'name' => $request->input('name'),
                 'opening_date' => $request->input('opening_date'),
                 'closing_date' => $request->input('closing_date'),
                 'description' => $request->input('description'),
