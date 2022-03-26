@@ -116,9 +116,9 @@
                                     <td>{{ $tender->closing_date }}</td>
                                     <td><div style="height:40px; overflow-y:scroll; width:150px;">{{ $tender->description }}</div></td>
                                     <td>@if ($tender->public_private == 0)
-                                        Public
-                                        @else
                                         Private
+                                        @else
+                                        Public
                                     @endif</td>
                                     <td>
                                         <div class="approval">
