@@ -46,6 +46,15 @@ class ExtraController extends Controller
                 'check'    => $check
             ]);
         }
+        else if($request->input('option') == 'bizzId'){
+            $string = 'BUY112';
+            $int = (int) filter_var($string, FILTER_SANITIZE_NUMBER_INT);
+            $vendors = User::where('id', $int)->get();
+            return view('mix-views.vendor-searchList',[
+                'vendors'  => $vendors,
+                'check'    => $check
+            ]);
+        }
     }
 
     public function searchVendors(SearchProductRequest $request){    // Return Names of All Vendors

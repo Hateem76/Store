@@ -28,7 +28,7 @@ class ProductStoreRequest extends FormRequest
             'category' => 'required',
             'image_path' => 'mimes:jpg,png,jpeg|max:512',
             'brand_name' => 'max:20',
-            'weight' => 'min:0',
+            'quantity' => 'min:0',
             'description' => 'max:50',
             'currency'  => 'max:13',
             'rent_day' => 'min:0',

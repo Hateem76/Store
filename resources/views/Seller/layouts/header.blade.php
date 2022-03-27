@@ -13,6 +13,7 @@
             <select class="form-control selectbox" name="option" id="option">
                 <option value="product">Product</option>
                 <option value="vendor">Vendor/Seller</option>
+                <option value="bizzId">BizzId</option>
             </select>
             <button class="btn ml-2 search-btn-header" type="submit">
             <i class="fa fa-search"></i>

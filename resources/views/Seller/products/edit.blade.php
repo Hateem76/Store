@@ -119,9 +119,9 @@
                     @enderror
                 </div>
                 <div class="col-sm-3 mt-3 mt-xs-0">
-                    <label for="">Product Weight</label>
-                    <input type="number" step="0.1" name="weight" id="weight" class="form-control @error('weight') is-invalid @enderror"value="{{ old('weight',$product->weight) }}">
-                    @error('weight')
+                    <label for="">Quantity</label>
+                    <input type="number" step="0.1" name="quantity" id="quantity" class="form-control @error('quantity') is-invalid @enderror"value="{{ old('quantity',$product->quantity) }}">
+                    @error('quantity')
                         <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
                 </div>

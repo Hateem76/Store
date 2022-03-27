@@ -1,118 +1,3 @@
-{{-- @extends('Seller.layouts.app')
-@section('content')
-<div class="container-fluid add-product-container shadow-lg mt-4"
-        style="background-color: white; width:72%; height:auto; border-radius:10px;">
-        <div class="row mt-2">
-            <div class="text-bold mx-auto mt-5 mt-xs-1">
-                <h1>Add Product</h1>
-                <hr>
-            </div>
-
-        </div>
-        <form action="{{ route('seller.products.store') }}" enctype="multipart/form-data" method="post">
-            @csrf
-            <div class="form-group justify-content-center row mx-auto">
-                <div class="col-sm-5 mt-3">
-                    <label>Product Name</label>
-                    <input type="text" placeholder="Product name" id="name" name="name"  class="form-control @error('name') is-invalid @enderror"value="{{ old('name') }}">
-                    @error('name')
-                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="col-sm-5 mt-3">
-                    <label>Brand Name</label>
-                    <input placeholder="Brand name" id="brand_name" name="brand_name" type="text" class="form-control @error('brand_name') is-invalid @enderror"value="{{ old('brand_name') }}">
-                    @error('brand_name')
-                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                    @enderror
-                </div>
-
-            </div>
-            <div class="form-group justify-content-center row">
-                <div class="col-sm-3 mt-sm-3 mt-xs-2">
-                    <label>Item Type</label>
-                    <select value=""  class="form-control @error('category') is-invalid @enderror" id="category" name="category"value="{{ old('category') }}">
-                        <option value="">Select Category</option>
-                        @foreach ($categories as $category)
-                            @if (old('category')==$category->id)
-                                <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
-                            @else
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endif
-                        @endforeach
-                    </select>
-                    @error('category')
-                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="col-sm-3 mt-3 mt-xs-0">
-                    <label for="">Weight Unit</label>
-                    <select value=""  class="form-control @error('unit') is-invalid @enderror" id="unit" name="unit"value="{{ old('unit') }}">
-                        <option value="kg">Kg</option>
-                        <option value="gram">gram</option>
-                        <option value="ton">ton</option>
-                    </select>
-                    @error('unit')
-                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="col-sm-3 mt-3 mt-xs-0">
-                    <label for="">Product Weight</label>
-                    <input type="number" step="0.1" name="weight" id="weight" class="form-control @error('weight') is-invalid @enderror"value="{{ old('weight') }}">
-                    @error('weight')
-                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="col-sm-3 mt-3">
-                    <label>Product Image</label>
-                    <input type="file" accept=".jpg,.jpeg,.png" id="image_path" name="image_path" class="@error('image_path') is-invalid @enderror">
-                    @error('image_path')
-                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                    @enderror
-                </div>
-            </div>
-            <div class="form-group justify-content-center row">
-                <div class="col-sm-3 mt-sm-3 mt-xs-2">
-                    <label>Rent Per Day(Dirham)</label>
-                    <input type="number" id="rent_day" name="rent_day" step="0.1" class="form-control @error('rent_day') is-invalid @enderror"value="{{ old('rent_day') }}">
-                    @error('rent_day')
-                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="col-sm-3 mt-3 mt-xs-0">
-                    <label>Rent Per Week(Dirham)</label>
-                    <input type="number" id="rent_week" name="rent_week" step="0.1" class="form-control @error('rent_week') is-invalid @enderror"value="{{ old('rent_week') }}">
-                    @error('rent_week')
-                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="col-sm-3 mt-3">
-                    <label>Rent Per Month(Dirham)</label>
-                    <input type="number" id="rent_month" name="rent_month" step="0.1" class="form-control @error('rent_month') is-invalid @enderror"value="{{ old('rent_month') }}">
-                    @error('rent_month')
-                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                    @enderror
-                </div>
-            </div>
-            <div class="form-group justify-content-center row">
-                <div class="col-sm-10 mt-2">
-                    <label for="">Description</label>
-                    <textarea rows="3" placeholder="Description.." id="description" name="description"  class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
-                    @error('description')
-                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                    @enderror
-                </div>
-            </div>
-            <div class="row mx-auto justify-content-center mt-4">
-                <button type="submit" class="btn btn-dark btn-lg mt-4" style="width: 300px;">ADD</button>
-            </div>
-
-        </form>
-
-    </div>
-
-@endsection --}}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -223,9 +108,9 @@
                                         @enderror
                                     </div>
                                     <div class="col-sm-3 mt-3 mt-xs-0">
-                                        <label for="">Product Weight</label>
-                                        <input type="number" step="0.1" name="weight" id="weight" class="form-control @error('weight') is-invalid @enderror"value="{{ old('weight') }}">
-                                        @error('weight')
+                                        <label for="">Quantity</label>
+                                        <input type="number" step="0.1" name="quantity" id="quantity" class="form-control @error('quantity') is-invalid @enderror"value="{{ old('quantity') }}">
+                                        @error('quantity')
                                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -270,7 +155,7 @@
                                 <div class="form-group justify-content-center row">
                                     <div class="col-sm-11 col-lg-11 col-md-11 mt-2">
                                         <label for="">Description</label>
-                                        <textarea rows="4" style="border-radius: 10px;" placeholder="Description.." id="description" name="description"  class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
+                                        <textarea rows="4" style="border-radius: 10px;" placeholder="Buyer Remarks.." id="description" name="description"  class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
                                         @error('description')
                                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                         @enderror
