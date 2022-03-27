@@ -109,7 +109,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $units = [
+            "No.",'gram','kg','mm','cm','m3','m2','feet','inch','height','width','ton'
+        ];
         return view('Seller.products.edit',[
+            'units'   => $units,
             'product'  => Product::find($id),
             'categories' => Category::all()
         ]);

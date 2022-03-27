@@ -100,19 +100,13 @@
                 <div class="col-sm-3 mt-3 mt-xs-0">
                     <label for="">Unit</label>
                     <select value=""  class="form-control @error('unit') is-invalid @enderror" id="unit" name="unit">
-                        @if (old('unit',$product->unit)== 'kg')
-                            <option value="kg" selected>Kg</option>
-                            <option value="gram" >gram</option>
-                            <option value="ton" >ton</option>
-                        @elseif (old('unit',$product->unit)== 'gram')
-                            <option value="gram" selected>gram</option>
-                            <option value="kg" >Kg</option>
-                            <option value="ton" >ton</option>
-                        @elseif(old('unit',$product->unit)== 'ton')
-                            <option value="ton" selected>ton</option>
-                            <option value="gram" >gram</option>
-                            <option value="kg" >Kg</option>
-                        @endif
+                        @foreach ($units as $unit)
+                            @if (old('unit',$product->unit)== $unit)
+                                <option value="{{ $unit }}" selected>{{ $unit }}</option>
+                            @else
+                                <option value="{{ $unit }}">{{ $unit }}</option>
+                            @endif
+                        @endforeach
                     </select>
                     @error('unit')
                         <span class="invalid-feedback" role="alert">{{ $message }}</span>
@@ -173,7 +167,7 @@
                 </div>
             </div>
             <div class="row mx-auto justify-content-center mt-4">
-                <button type="submit" class="btn btn-dark btn-lg mt-4" style="width: 300px;">ADD</button>
+                <button type="submit" class="btn btn-dark btn-lg mt-4" style="width: 300px;">Update</button>
             </div>
 
         </form>

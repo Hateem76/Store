@@ -131,7 +131,7 @@
                                 <th>Name</th>
                                 <th>Type</th>
                                 <th>Brand</th>
-                                <th>Weight</th>
+                                <th>Unit</th>
                                 <th>Stock</th>
                                 <th>Image</th>
                                 <th>Description</th>
@@ -145,7 +145,7 @@
                                     <td> {{ $product->name }} </td>
                                     <td> {{ $product->category->name }} </td>
                                     <td> {{ $product->brand_name }} </td>
-                                    <td> {{ $product->weight }}&nbsp;&nbsp;{{ $product->unit }} </td>
+                                    <td> {{ $product->unit }} </td>
                                     <td> {{ $product->stock }}</td>
                                     <td class="text-center"><img src="{{ asset('images/products/'.$product->image_path) }}" id="{{ $product->id }}" alt="" onclick="openImg('{{ $product->id }}')" style="width: 150px; height:75px; cursor: pointer;"></td>
                                     <td> {{ $product->description }} </td>

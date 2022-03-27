@@ -99,9 +99,18 @@
                                     <div class="col-sm-3 mt-3 mt-xs-0">
                                         <label for="">Unit</label>
                                         <select value=""  class="form-control @error('unit') is-invalid @enderror" id="unit" name="unit"value="{{ old('unit') }}">
+                                            <option value="No.">No.</option>
                                             <option value="kg">Kg</option>
                                             <option value="gram">gram</option>
                                             <option value="ton">ton</option>
+                                            <option value="mm">mm</option>
+                                            <option value="cm">cm</option>
+                                            <option value="m3">m3</option>
+                                            <option value="m2">m2</option>
+                                            <option value="feet">feet</option>
+                                            <option value="inch">inch</option>
+                                            <option value="height">height</option>
+                                            <option value="width">width</option>
                                         </select>
                                         @error('unit')
                                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
