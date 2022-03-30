@@ -44,9 +44,9 @@ class Tender extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function projects()
+    public function project()
     {
-        return $this->hasMany(Project::class);
+        return $this->belongsTo(Project::class);
     }
 
 }

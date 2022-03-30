@@ -191,12 +191,13 @@
                                     <td>{{ $response->tender->currency }}</td>                                    
                                 </tr>  
                                 <tr style="font-size: 14px;">
+                                
                                     <th>Product</th>
                                     <th>MyAttachments</th>
-                                    <th>My Description</th>
-                                    <th class="d-flex">Unit Price<i class="btn-sm fa fa-question-circle" title="This can be changed once on the request of Buyer in buyer remarks."></i></th>
-                                    <th colspan="2">Buyer Attachments</th>
-                                    <th colspan="3" class="text-center">Action</th>
+                                    <th colspan="3">My Description</th>
+                                    <th colspan="4" class="text-center">Unit Price<i class="btn-sm fa fa-question-circle" title="This can be changed on the request of Buyer in buyer remarks."></i></th>
+                                    {{-- <th colspan="2">Buyer Attachments</th>
+                                    <th colspan="3" class="text-center">Action</th> --}}
                                 </tr> 
                                 <tr style="font-size: 14px;">
                                     <td><a href="{{ route("extras.vewProduct",$response->product->id) }}" class = "text-danger" style = "text:decoration:none;">{{ $response->product->name }}</a></td>
@@ -211,12 +212,12 @@
                                             <a target="_blank" href="{{ $response->attachments_link }}">Files Link</a>
                                         @endif
                                     </td>
-                                    <td>{{ $response->description }}</td>
-                                    <td class="text-center" style="">
-                                        {{ $response->price }} <button class="btn btn-sm btn-secondary" onclick="changePrice('{{ $response->id }}','{{ $response->price }}');"><i class="fa fa-edit" title="click to change"></i></button>
+                                    <td colspan="3">{{ $response->description }}</td>
+                                    <td class="text-center" colspan="4">
+                                        {{ $response->price }} <button class="btn btn-sm btn-secondary" onclick="changePrice('{{ $response->id }}','{{ $response->price }}');"><i class="fa fa-sm fa-edit" title="click to change"></i></button>
                                     </td>
 
-                                    @if ($response->confirmation_letter == 1)
+                                    {{-- @if ($response->confirmation_letter == 1)
                                         @if ($response->confirmation_link == null)
                                             <td colspan="2">
                                                 <form action="{{ route('extras.downloadLetter') }}" method="POST">
@@ -240,7 +241,7 @@
                                         <td colspan="3">
 
                                         </td>
-                                    @endif
+                                    @endif --}}
                                 </tr>
                                 <tr style="font-size: 14px;">
                                     <td>

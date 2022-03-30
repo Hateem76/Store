@@ -103,8 +103,7 @@ class SellerTenderController extends Controller
             $userId = Auth::user()->parent_id;
         }
         $serialNo = 1;
-        $projects = Project::pluck('tender_id')->all();
-        $tenders = TenderResponse::where('user_id',$userId)->whereNotIn('tender_id',$projects)->with('product')->with('tender')->get();
+        $tenders = TenderResponse::where('user_id',$userId)->where('deleted',0)->with('product')->with('tender')->get();
         // dd($tenders);
         return view('Seller.tender.confirmation-index',[
             'responses'  => $tenders,
@@ -200,7 +199,7 @@ class SellerTenderController extends Controller
                 $userId = Auth::user()->parent_id;
             }
             $serialNo = 1;
-            $projects = Project::where('user_id',$userId)->with('user')->with('tender')->get();
+            $projects = Project::where('seller_id',$userId)->with('buyer')->with('seller')->get();
             return view('Seller.tender.projects',[
                 'projects' => $projects,
                 'serialNo' => $serialNo

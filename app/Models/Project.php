@@ -14,20 +14,29 @@ class Project extends Model
     protected $table = 'projects';
 
     protected $fillable = [
-        'tender_id',
-        'user_id',
-        'buyer',
+        'buyer_id',
+        'seller_id',
+        'buyer_remarks',
+        'seller_remarks',
+        'quotation',
+        'seller_link',
+        'confirmation_letter',
+        'buyer_link',
         'date_from',
-        'date_to',
-        'status',
     ];
 
     public $timestamps = false;
 
+    public function buyer()
+    {
+        return $this->belongsTo(User::class, 'buyer_id');
+    }
+    public function seller()
+    {
+        return $this->belongsTo(User::class, 'seller_id');
+    }
+
     public function tender(){
         return $this->belongsTo(Tender::class);
-    }
-    public function user(){
-        return $this->belongsTo(User::class);
     }
 }

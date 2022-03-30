@@ -87,28 +87,9 @@
                             <tbody>
                                 @foreach ($projects as $project)
                                 <tr>
-                                    <td>{{ $serialNo++ }}</td>
-                                    <td>{{ $project->tender->product_name }}</td>
-                                    <td><a href="{{ route('extras.vendorProfile',$project->user_id) }}" class="text-danger" style="text-decoration: none;">{{ $project->user->name }}</a></td>
-                                    <td>{{ $project->date_from }}</td>
-                                    <td>{{ $project->date_to }}</td>
-                                    <td>@if ($project->status == 0)
-                                            Running
-                                        @else
-                                            Finished
-                                        @endif
-                                    </td>
-                                    <td class="">
-                                        <div class="approval">
-                                            {{-- <button title="Edit" class="checkBtn btn btn-success">
-                                                <i class="fas fa-edit"></i>
-                                            </button> --}}
-                                            <button title="Delete" class="crossBtn btn btn-danger">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                  </tr>
+                                    {{ $project->seller->name }}
+                                    {{ $project->buyer->name }}
+                                </tr>
                                 @endforeach
                                          
                             </tbody>

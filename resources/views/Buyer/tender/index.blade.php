@@ -118,7 +118,7 @@
                                     </td>
                                     <td class="text-center">
                                         @php
-                                            $count = $tender->tender_responses()->count();
+                                            $count = $tender->tender_responses()->where('deleted',0)->count();
                                         @endphp
                                         {{ $count }}
                                     </td>
