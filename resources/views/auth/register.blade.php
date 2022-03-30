@@ -44,7 +44,8 @@
                 @enderror   
             </div>
             <div class="form-group">
-                <select class="form-control @error('id_card') is-invalid @enderror" name="id_card" id="id_card">
+                <span><i class="fa fa-flag"></i></span>
+                <select class="form-control pl-5 @error('id_card') is-invalid @enderror" name="id_card" id="id_card">
                     <option value="">Select Country</option>
                     @foreach ($countries as $country)
                         <option value="{{ $country->name }}">{{ $country->name }}</option>
@@ -76,9 +77,9 @@
                     <small class="invalid-feedback" role="alert">{{ $message }}</small>
                 @enderror
             </div>
-            <div style="display: inline-block; padding-right: 10px;
-            white-space: nowrap;">
-                <label><input type="checkbox" style="" id="eye" onclick="myFunction();"> <span>show password</span></label>
+            <div class="show-password form-group d-flex justify-content-start align-items-start">
+                <input type="checkbox" class="mt-1"  style="width: 26px;height: 17px;" id="eye" onclick="myFunction();">
+                <label class="pl-1">Show Password</label>
             </div>
             
             <div class="form-group">

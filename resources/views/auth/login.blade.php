@@ -29,19 +29,10 @@
                     <small class="invalid-feedback" role="alert">{{ $message }}</small>
                 @enderror
             </div>
-            <div style="display: inline-block; padding-right: 10px;
-            white-space: nowrap;">
-                <label><input type="checkbox" style="" id="eye" onclick="myFunction();"> <span>show password</span></label>
+            <div class="show-password form-group d-flex justify-content-start align-items-start">
+                <input type="checkbox" class="mt-1"  style="width: 26px;height: 17px;" id="eye" onclick="myFunction();">
+                <label class="pl-1">Show Password</label>
             </div>
-
-            {{-- <div class="form-group">
-                <select class="form-control">
-                    <option>Select Account</option>
-                    <option>Buyer</option>
-                    <option>Seller</option>
-                </select>
-            </div> --}}
-
             <input class="button mt-2" type="submit" value="Login" />
             <a href="{{ route('password.request') }}">Forgot Your Password? </a>
         </form>
