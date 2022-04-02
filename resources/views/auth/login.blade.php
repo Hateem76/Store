@@ -34,7 +34,7 @@
                 <label class="pl-1">Show Password</label>
             </div>
             <input class="button mt-2" type="submit" value="Login" />
-            <a href="{{ route('password.request') }}">Forgot Your Password? </a>
+            <a href="{{ route('register') }}">New user? register here </a>
         </form>
     </div>
 @endsection

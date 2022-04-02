@@ -26,40 +26,35 @@
             <div class="form-group"> <span><i aria-hidden="true" class="fa fa-phone"></i></span>
                 <input class="form-control @error('number') is-invalid @enderror" type="Number" name="number" id="number" autocomplete="off" placeholder="Contact"value="{{ old('number',Auth::user()->number) }}"/>
                 @error('number')
-                <small class="invalid-feedback" role="alert">{{ $message }}</small>
-        @enderror  
+                    <small class="invalid-feedback" role="alert">{{ $message }}</small>
+                @enderror  
             </div>
 
-            @error('id_card')
+            <div class="form-group">
+                <span><i class="fa fa-flag"></i></span>
+                <select class="form-control pl-5 @error('id_card') is-invalid @enderror" name="id_card" id="id_card">
+                    <option value="">Select Country</option>
+                    @foreach ($countries as $country)
+                        @if (old('id_card',Auth::user()->id_card)== $country->name)
+                            <option value="{{ $country->name }}" selected>{{ $country->name }}</option>
+                        @else
+                            <option value="{{ $country->name }}">{{ $country->name }}</option>
+                        @endif
+                    @endforeach
+                </select>
+                @error('id_card')
                     <small class="invalid-feedback" role="alert">{{ $message }}</small>
-            @enderror
-            <div class="form-group"> <span><i aria-hidden="true" class="fas fa-flag"></i></span>
-                <input class="form-control @error('id_card') is-invalid @enderror" type="text" name="id_card" id="id_card" autocomplete="off" placeholder="Country"value="{{ old('id_card',Auth::user()->id_card) }}" />
+                @enderror
             </div>
                
-            @error('address')
-                    <small class="invalid-feedback" role="alert">{{ $message }}</small>
-            @enderror
             <div class="form-group"> <span><i aria-hidden="true" class="fas fa-city"></i></span>
                 <input class="form-control @error('address') is-invalid @enderror" type="text" name="address" id="address" autocomplete="off" placeholder="City"value="{{ old('address',Auth::user()->address) }}"/>
             </div>
+            @error('address')
+                    <small class="invalid-feedback" role="alert">{{ $message }}</small>
+            @enderror
 
-            
-            <div class="form-group"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
-                <input class="form-control @error('password') is-invalid @enderror" type="password" name="password" id="password" placeholder="Password"  /> 
-                @error('password')
-                <small class="invalid-feedback" role="alert">{{ $message }}</small>
-            @enderror 
-            </div>
-            
-            
-            <div class="form-group"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
-                <input class="form-control @error('password_confirmation') is-invalid @enderror" type="password" name="password_confirmation" id="password_confirmation" placeholder="Re-type Password"  />
-                @error('password_confirmation')
-                <small class="invalid-feedback" role="alert">{{ $message }}</small>
-        @enderror
-            </div>            
-
+        
             <input class="button mt-2" type="submit" value="Update" />
             
         </form>

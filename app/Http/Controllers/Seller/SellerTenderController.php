@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TenderResponseRequest;
+use App\Models\ChFavorite;
 use Illuminate\Http\Request;
 use App\Models\Tender;
 use App\Models\PrivateTenderUserRelator;
@@ -186,14 +187,15 @@ class SellerTenderController extends Controller
 //--------------------------------Projects Methods-----------------------------------------
 
         public function projects(){
-            $current_date = Date('Y-m-d');
-            $projects = Project::all();    // If any Project have reached its Finished Date,
-            foreach($projects as $project){ // then change its status to finished => 1.
-                if($project->date_to == $current_date && $project->status == 0){
-                    $project->status = 1;
-                    $project->save();
-                }
-            }
+            // $current_date = Date('Y-m-d');
+            // $projects = Project::all();    // If any Project have reached its Finished Date,
+            // foreach($projects as $project){ // then change its status to finished => 1.
+            //     if($project->date_to == $current_date && $project->status == 0){
+            //         $project->status = 1;
+            //         $project->save();
+            //     }
+            // }
+            
             $userId = Auth::user()->id;
             if(Gate::allows('child-seller')){
                 $userId = Auth::user()->parent_id;

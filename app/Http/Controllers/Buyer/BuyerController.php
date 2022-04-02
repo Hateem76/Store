@@ -20,12 +20,11 @@ class BuyerController extends Controller
         }
         $users = User::where('parent_id',$userId)->get();
         $users = $users->count();
-        $deals = Project::where('user_id',$userId)->get();
+        $deals = Project::where('buyer_id',$userId)->get();
         $deals = $deals->count();
         $contacts = Contact::where('me',$userId)->get();
         $contacts = $contacts->count();
-        $projectsIds = Project::pluck('tender_id')->all();
-        $tenders = Tender::where('user_id',$userId)->whereNotIn('id',$projectsIds)->with('tender_responses')->get();
+        $tenders = Tender::where('user_id',$userId)->with('tender_responses')->get();
         $tenders = $tenders->count();
         return view('Buyer.index',[
             'users' => $users,

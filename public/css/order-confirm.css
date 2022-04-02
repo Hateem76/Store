@@ -1,0 +1,62 @@
+@media screen and (max-width:768px) {
+    .container{
+        padding-top: 40px !important;
+        padding-right: 2px !important;
+        padding-left: 2px !important;
+    }
+    .row{
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .table th,td{
+        font-size: 12px;
+        font-weight: 200;
+    }
+    .buyer-details h4{
+        font-size: 15px;
+        font-weight: 600;
+    }
+    .buyer-details .details{
+        flex-direction: column;
+        gap: .1rem !important;
+    }
+    .buyer-details:first-child{
+        border-right: 0 !important;
+    }
+    .note-txt{
+        padding-right: 10px !important;
+        padding-left: 10px !important;
+    }
+    .note-txt h5{
+        font-size: 14px !important;
+    }
+
+    .remarks h5{
+        font-size: 15px !important;
+        font-weight: 600;
+    }
+    .remarks p{
+        text-align: left;
+        font-size: 14px;
+    }
+    .confirmed-txt h3{
+        font-size: 20px;
+    }
+    .confirmed-txt i{
+        font-size: 20px;
+    }
+
+    .remarks{
+        border: 0 !important;
+        border-bottom: 2px solid #eee !important;
+    }
+
+    .note-txt h6{
+        border-bottom: 2px solid #eee;
+        padding-bottom: 15px;
+    }
+    .note-txt:last-child{
+        border-bottom: 2px solid #eee !important;
+    }
+
+}

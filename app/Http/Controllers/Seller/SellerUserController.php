@@ -60,6 +60,12 @@ class SellerUserController extends Controller
         }
         // Validation using form request
         $dataValidated = $request->validated();
+        $users = User::where('parent_id',$id)->get();
+        $count = $users->count();
+        if($count > 5){
+            $request->session()->flash('danger','You already have 5 Users created');
+            return redirect(route('seller.users.index'));
+        }
         $acc_type = Auth::user()->account_type;
         $user = User::create([
             'name' => $request->input('name'),
@@ -70,12 +76,6 @@ class SellerUserController extends Controller
             'parent_id' => $id,
 
         ]);
-        
-        // // validation using laravel fortify
-        // $newUser = new CreateNewUser();
-        // $user = $newUser->create($request->all());
-        // $user->roles()->sync($request->roles);
-        // Password::sendResetLink($request->only(['email']));
         $request->session()->flash('success','You have Created the User');
         return redirect(route('seller.users.index'));
     }
@@ -99,10 +99,12 @@ class SellerUserController extends Controller
      */
     public function edit($id)
     {
-        return view('Seller.Users.edit',[
-            'user'  => User::find($id),
-            'roles' => Role::all()
-        ]);
+        if(User::where('id',$id)->where('parent_id',Auth::user()->id)->exists()){
+            return view('Seller.Users.edit',[
+                'user'  => User::find($id),
+                'roles' => Role::all()
+            ]);
+        }
     }
 
     /**

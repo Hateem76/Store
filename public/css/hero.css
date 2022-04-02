@@ -1,0 +1,114 @@
+.hero-wrapper{
+    width: 100%;
+    height: 660px;
+    padding-top: 50px;
+}
+
+.hero-container{
+    background-image: url('../img/bg/bg1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-container h1{
+    color: #fff;
+    font-size: 43px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 35px;
+}
+
+.hero-container .inner-container{
+    margin-top: -50px;
+    width: 60%;
+    letter-spacing: 1px;
+}
+
+.hero-container .inner-container input{
+    width: 100%;
+    display: flex;
+    flex: 1;
+    outline: none;
+    border: none;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    height: 52px;
+    padding: 10px;
+    padding-left: 20px;
+    font-size: 18px;
+}
+
+.hero-container .inner-container .select-search{
+    height: 53px;
+    margin-top: -1px;
+    padding-left: 5px;
+    padding-right: 10px;
+    margin-left: -3px;
+    outline: none;
+}
+
+.inner-container .input-box{
+    display: flex;
+}
+
+.inner-container .input-box button{
+    background: #fff;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -1px;
+}
+
+@media screen and (max-width:768px) {
+    .inner-container h1{
+        font-size: 24px;
+    }
+    .hero-container .inner-container{
+        width: 90%;
+        overflow: hidden;
+    }
+
+    .inner-container .input-box{
+        flex-direction: column;
+        gap: .8rem;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .input-box input{
+        border-radius: 10px;
+    }
+
+    .input-box .select-search{
+        border-radius: 10px;
+        width: 98%;
+        height: 44px !important;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+     .inner-container .input-box button{
+        width: 98%;
+        border-radius: 10px;
+        height: 44px;
+    }
+
+    .hero-wrapper .hero-container{
+        height: 80%;
+        overflow: hidden;
+    }
+  
+
+   
+}

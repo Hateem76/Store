@@ -47,7 +47,9 @@
                 @include('partials.alerts') 
                   <div class="row setScroll mb-2 d-flex" style="justify-content: space-between;">
                       <h2 class=" pl-3">Users</h2>
+                      @can('parent-buyer')
                       <a href="{{ route('buyer.users.create') }}" type="button" class="btn text-white" style="background-color: #184A45FF;">Create &RightArrow;</a>
+                      @endcan
                       {{-- <button class="btn text-white mb-2 btn-md mr-4" style="background-color: #184A45FF;">Create &RightArrow;</button> --}}
                   </div>
                 <div class="table-responsive">

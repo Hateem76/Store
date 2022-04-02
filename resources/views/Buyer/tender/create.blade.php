@@ -18,7 +18,7 @@
                 <form action="{{ route('buyer.tenders.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
-                    <input type="text" class="form-control mt-3" name="name" id="name" placeholder="Product.." value="{{ old('name') }}">
+                    <input type="text" class="form-control mt-3" name="name" id="name" placeholder="Product.." value="{{ old('name',$product->name) }}">
                     @error('name')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror

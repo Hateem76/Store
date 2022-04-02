@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Buyer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ConfirmationLetterRequest;
 use App\Http\Requests\StoreTenderRequest;
+use App\Models\ChFavorite;
 use Illuminate\Http\Request;
 use App\Models\Tender;
 use App\Models\TenderResponse;
@@ -125,10 +126,10 @@ class BuyerTenderController extends Controller
                 ]);    
             }
             elseif($request->input('public_private') == 0){ // means private tender
-                $friends = Contact::where('me',$userId)->get();  // my all friends
+                $friends = ChFavorite::where('user_id',$userId)->get();  // my all friends
                 foreach($friends as $friend){
                     $relator = PrivateTenderUserRelator::create([
-                        'user_id'   => $friend->user_id,
+                        'user_id'   => $friend->favorite_id,
                         'tender_id'  => $tender->id
                     ]);
                 }

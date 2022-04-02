@@ -25,7 +25,7 @@ class SellerController extends Controller
         $users = $users->count();
         $products = Product::where('user_id',$userId)->get();
         $products = $products->count();
-        $deals = Project::where('user_id',$userId)->get();
+        $deals = Project::where('seller_id',$userId)->get();
         $deals = $deals->count();
         $contacts = Contact::where('me',$userId)->get();
         $contacts = $contacts->count();
@@ -46,8 +46,7 @@ class SellerController extends Controller
         
         $new_tenders = $publicTenders->merge($privateTenders);
         $new_tenders = $new_tenders->count();
-        $projectsIds = Project::pluck('tender_id')->all();
-        $confirmations = TenderResponse::where('user_id',$userId)->whereNotIn('tender_id',$projectsIds)->with('product')->with('tender')->get();
+        $confirmations = TenderResponse::where('user_id',$userId)->with('product')->with('tender')->get();
         $confirmations = $confirmations->count();
 
         

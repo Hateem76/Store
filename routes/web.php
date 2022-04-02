@@ -28,15 +28,15 @@ use Illuminate\Support\Facades\Storage;
     // Landing Page
 Route::get('/', [IndexController::class, 'index'])->name('index');
 
-Route::get('/foto', function (){
+// Route::get('/foto', function (){
 
-    $myFile = public_path("images/bg/c1.jpg");
-    $headers = ['Content-Type: application/image'];
-    $newName = 'nicesnippets-pdf-file-'.time().'.jpg';
+//     $myFile = public_path("images/bg/c1.jpg");
+//     $headers = ['Content-Type: application/image'];
+//     $newName = 'nicesnippets-pdf-file-'.time().'.jpg';
 
-        return response()->download($myFile, $newName, $headers);
+//         return response()->download($myFile, $newName, $headers);
     
-    });
+//     });
 
     // Extras (Login. Search,View Products. Search,View Vendors) => Both
 Route::prefix('extras')->middleware('auth')->name('extras.')->group(function(){
@@ -56,7 +56,8 @@ Route::prefix('profile')->middleware('auth')->name('profile.')->group(function()
     Route::get('/edit', [ProfileController::class, 'editProfile'])->name('edit');
     Route::post('/updateProfile', [ProfileController::class, 'updateProfile'])->name('updateProfile');
     Route::post('/updateDp', [ProfileController::class, 'updateDp'])->name('updateDp');
-    Route::get('/updateAbout', [ProfileController::class, 'updateAbout'])->name('updateAbout');
+    Route::get('/updateAbout', [ProfileController::class, 'updateAbout'])->name('updateAbout'); // Ajax Call
+    Route::get('/updateServices', [ProfileController::class, 'updateServices'])->name('updateServices'); // Ajax Call
     Route::get('/myContacts', [ProfileController::class, 'myContacts'])->name('myContacts');
     Route::get('/addToContacts/{id}', [ProfileController::class, 'addToContacts'])->name('addToContacts');
     Route::get('/removeFromContacts/{id}', [ProfileController::class, 'removeFromContacts'])->name('removeFromContacts');

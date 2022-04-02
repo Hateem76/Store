@@ -14,12 +14,12 @@
     @foreach ($vendors as $vendor)
         <div class="vendor-container">
             <div class="prof-img">
-                <img src="{{ asset('images/users/'.$vendor->avatar) }}" alt="profile image">
+                <img src="{{ asset('images/dp/'.$vendor->avatar) }}" alt="profile image">
                 <div class="name-container">
                     <a href="{{ route('extras.vendorProfile',$vendor->id) }}">
                         <h3 class="mt-1">{{ $vendor->name }}</h3>
                     </a>
-                    <p>{{ $vendor->address }}</p>
+                    <p>{{ $vendor->address }} {{ $vendor->id_card }}</p>
                 </div>
             </div>
         </div>

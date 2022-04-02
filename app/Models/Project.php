@@ -36,7 +36,7 @@ class Project extends Model
         return $this->belongsTo(User::class, 'seller_id');
     }
 
-    public function tender(){
-        return $this->belongsTo(Tender::class);
-    }
+    // public function tender(){
+    //     return $this->belongsTo(Tender::class);
+    // }
 }

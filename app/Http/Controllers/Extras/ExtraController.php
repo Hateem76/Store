@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Extras;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SearchProductRequest;
 use App\Models\Product;
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,16 +41,23 @@ class ExtraController extends Controller
             ]);
         }
         else if($request->input('option') == 'vendor'){
-            $vendors = User::where('name', 'like', '%' . $name . '%')->paginate(2);
+            $vendors = User::where('name', 'like', '%' . $name . '%')->get();
             return view('mix-views.vendor-searchList',[
                 'vendors'  => $vendors,
                 'check'    => $check
             ]);
         }
         else if($request->input('option') == 'bizzId'){
-            $string = 'BUY112';
+            $string = $request->input('search');
             $int = (int) filter_var($string, FILTER_SANITIZE_NUMBER_INT);
             $vendors = User::where('id', $int)->get();
+            return view('mix-views.vendor-searchList',[
+                'vendors'  => $vendors,
+                'check'    => $check
+            ]);
+        }
+        else if($request->input('option') == 'vendor'){
+            $vendors = User::where('name', 'like', '%' . $name . '%')->get();
             return view('mix-views.vendor-searchList',[
                 'vendors'  => $vendors,
                 'check'    => $check
@@ -61,24 +69,30 @@ class ExtraController extends Controller
         $check = 'Seller.layouts.app';
         $dataValidated = $request->validated();
         $name = $request->input("search");
-        $vendors = User::where('name', 'like', '%' . $name . '%')->paginate(2);
-        return view('mix-views.vendor-searchList',[
-            'vendors'  => $vendors,
-            'check'    => $check
-        ]);
+
+        
     }
 
     public function vendorProfile($id){    // Return Names of All Vendors
-        $check = 'Seller.layouts.app';
-        if(User::where('id',$id)->exists()){ 
-            $vendor = User::find($id);
-            $products = Product::with('category')->get();
-            return view('mix-views.public-profile',[
-                'vendor'   => $vendor,
-                'products' => $products,
-                'check'    => $check
-            ]);
+        $user = User::where('id',$id)->with('products')->first();
+        $projects = Project::where('seller_id',$user->id)->orWhere('buyer_id',$user->id)->get();
+        if($user->parent_child == 0){
+            $user = User::where('parent_id',$user->parent_id)->with('products')->first();
+            $projects = Project::where('seller_id',$user->id)->orWhere('buyer_id',$user->id)->get();
         }
+
+        $sidebar = 'Seller.layouts.sidebar2';
+        $header  = 'Seller.layouts.header';
+        $logoutCode = 'Seller.layouts.logout-code';
+        $check = 'Seller.layouts.app';
+            
+        return view('mix-views.public-profile',[
+            'sidebar'  => $sidebar,
+            'header'   => $header,
+            'logoutCode' => $logoutCode,
+            'user'     => $user,
+            'projects'  => $projects
+        ]);
         return redirect()->back();
     }
 

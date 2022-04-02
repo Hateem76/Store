@@ -40,6 +40,7 @@ class User extends Authenticatable
         'rating',
         'numberOfReviews',
         'about',
+        'services',
     ];
 
     /**

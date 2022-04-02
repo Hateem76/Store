@@ -62,7 +62,6 @@
                     <small class="invalid-feedback" role="alert">{{ $message }}</small>
                 @enderror 
             </div>
-
               
             <div class="form-group"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
                 <input class="form-control @error('password') is-invalid @enderror" type="password" name="password" id="password" placeholder="Password"  /> 

@@ -1,0 +1,189 @@
+.products{
+    width: 100%;
+    background-color: #fff;
+    height: auto;
+    padding: 30px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+.prod-container{
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    transition: all ease-in-out .3s;
+    /* flex-wrap: nowrap !important; */
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 30px !important;
+}
+
+.prod-container .card-container .cat-title{
+    background: #fff;
+    width: 100%;
+    color: #000;
+    border-radius: 10px;
+    margin-left: 5px;
+    padding: 10px;
+}
+
+.prod-container .card-container{
+    width: 290px;
+    box-shadow: 0 0.3rem 0.3rem rgba(0,0,0,.175)!important;
+    height: auto;
+    padding-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid #eeee;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.prod-container .card-container button{
+    width: 260px;
+    margin-right: 10px;
+}
+
+.card-container .buisness-name:first-child p:first-child{
+    margin-top: 15px;
+}
+
+
+.prod-container .card-container img{
+    width: 100%;
+    height: 200px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.prod-container .card-container .prod-title{
+    margin-left: 15px;
+    margin-top: 12px;
+}
+
+.view-more-products{
+    width: 82%;
+    margin-bottom: 20px;
+}
+
+.view-more-products a{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* CSS */
+.enquiry-button {
+  /* background: linear-gradient(to bottom right, #EF4765, #FF9A5A); */
+  background: #E62E2E;
+  border: 0;
+  border-radius: 5px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2.5;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  color: #fff !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  width: 85%;
+}
+
+.enquiry-button:not([disabled]):focus {
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+.enquiry-button:not([disabled]):hover {
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+
+@media screen and (max-width:768px) {
+    .prod-container{
+        gap: 1rem;
+        justify-content: center;
+    }
+    .card-container{
+        margin-left: 20px;
+        margin-right: 0;
+        width: 330px;
+    }
+
+    .w3l-ecommerce-main{
+        margin-top: -85px;
+    }
+    .hny-title{
+        font-size: 30px;
+    }
+   
+}
+
+@media screen and (max-width:1414px) {
+    .prod-container{
+        gap: 1.3rem;
+    }
+
+    .products{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+}
+
+@media screen and (max-width:1286px) {
+    .prod-container .card-container{
+        width: 260px;
+    }
+}
+
+@media screen and (max-width:1150px) {
+    .prod-container .card-container{
+        width: 240px;
+    }
+
+    .prod-container{
+        margin-right: 0 !important;
+    }
+}
+
+@media screen and (max-width:1070px) {
+    .prod-container {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        /* margin-left: 20px !important; */
+        /* margin-right: 30px !important;
+        margin-left: 0px !important; */
+    }
+    /* .prod-container .card-container{
+        flex: 35%;
+    } */
+}
+
+@media screen and (max-width:854px) {
+    .prod-container{
+        display: flex;
+    }
+    .prod-container .card-container{
+        width: 250px !important;
+    }
+}
+
+/* @media screen and (max-width:768px) {
+    .prod-container{
+        gap: 1.1rem;
+    }
+    .prod-container .card-container{
+        flex: 100%;
+    }
+} */

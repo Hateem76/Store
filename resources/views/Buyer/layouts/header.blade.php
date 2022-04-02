@@ -21,7 +21,7 @@
         </form>
     </div>
     <div class="user-wrapper profile">
-        <img class="profile" src="{{ asset('images/bg/c1.jpg') }}" alt="">
+        <img class="profile"  src="{{ asset('images/dp/'.Auth::user()->avatar) }}" alt="">
         <div class="profile-name">
         <h5>
             @can('buyer')
@@ -30,6 +30,7 @@
             @can('seller')
                 Seller Account
             @endcan
+            <i class="fas fa-caret-down ml-2 mb-1"></i>
         </h5>
         </div>
     </div>

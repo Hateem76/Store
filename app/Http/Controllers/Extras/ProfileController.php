@@ -3,27 +3,45 @@
 namespace App\Http\Controllers\Extras;
 
 use App\Http\Controllers\Controller;
+use App\Models\ChFavorite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use App\Models\User;
 use App\Models\Contact;
-use Exception;
+use App\Models\Product;
+use App\Models\Project;
 Use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
+use App\Models\Country;
 
 class ProfileController extends Controller
 {
     public function displayProfile(){
+
+        $userId = Auth::user()->id;
+        if(Gate::allows('child-seller')){
+            $userId = Auth::user()->parent_id;
+        }
         $sidebar = 'Seller.layouts.sidebar2';
         $header  = 'Seller.layouts.header';
         $logoutCode = 'Seller.layouts.logout-code';
-
+        $projects = Project::where('seller_id',$userId)->orWhere('buyer_id',$userId)->get();
+        if(Gate::allows('seller')){
+            $products = Product::where('user_id',$userId)->get();
+            return view('mix-views.display-profile',[
+                'sidebar'  => $sidebar,
+                'header'   => $header,
+                'logoutCode' => $logoutCode,
+                'products'  => $products,
+                'projects' => $projects
+            ]);
+        }
 
         return view('mix-views.display-profile',[
             'sidebar'  => $sidebar,
             'header'   => $header,
-            'logoutCode' => $logoutCode
+            'logoutCode' => $logoutCode,
+            'projects' => $projects
         ]);
     }
 
@@ -31,6 +49,15 @@ class ProfileController extends Controller
         $aboutUs = $_GET['aboutUs'];
         $user = User::where('id',Auth::user()->id)->first();
         $user->about = $aboutUs;
+        $user->save();
+        return;
+    }
+
+    public function updateServices(){
+        $services = $_GET['services'];
+        $user = User::where('id',Auth::user()->id)->first();
+        $user->services = $services;
+        echo "done";
         $user->save();
         return;
     }
@@ -56,7 +83,9 @@ class ProfileController extends Controller
     }
 
     public function editProfile(){
-        return view('mix-views.edit-profile');
+        return view('mix-views.edit-profile',[
+            'countries' => Country::all()
+        ]);
     }
 
     public function updateProfile(Request $request){
@@ -74,7 +103,6 @@ class ProfileController extends Controller
                     'max:255',
                     'unique:users,email,'.Auth::user()->id,
                 ],
-                'password' =>  'required|min:8|same:password_confirmation',
                 'id_card'  => [
                     'max:20',
                 ],
@@ -131,9 +159,9 @@ class ProfileController extends Controller
 
     public function addToContacts($id){
         if(User::where('id',$id)->exists()){ 
-            $contact = Contact::create([
-                'me' => Auth::user()->id,
-                'user_id'  => $id
+            $contact = ChFavorite::create([
+                'user_id' => Auth::user()->id,
+                'favorite_id'  => $id
             ]);
             return redirect()->back();
         }
@@ -143,7 +171,7 @@ class ProfileController extends Controller
     
         $contact =  User::find($id);
         if(Gate::allows('is-contact',$contact)){
-            Contact::where('user_id',$id)->where('me',Auth::user()->id)->delete();
+            ChFavorite::where('favorite_id',$id)->where('user_id',Auth::user()->id)->delete();
         }
         return redirect()->back();
     }

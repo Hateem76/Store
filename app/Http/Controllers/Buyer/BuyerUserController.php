@@ -60,6 +60,12 @@ class BuyerUserController extends Controller
         }
         // Validation using form request
         $dataValidated = $request->validated();
+        $users = User::where('parent_id',$id)->get();
+        $count = $users->count();
+        if($count > 5){
+            $request->session()->flash('danger','You already have 5 Users created');
+            return redirect(route('buyer.users.index'));
+        }
         $acc_type = Auth::user()->account_type;
         $user = User::create([
             'name' => $request->input('name'),
@@ -99,10 +105,12 @@ class BuyerUserController extends Controller
      */
     public function edit($id)
     {
-        return view('Buyer.Users.edit',[
-            'user'  => User::find($id),
-            'roles' => Role::all()
-        ]);
+        if(User::where('id',$id)->where('parent_id',Auth::user()->id)->exists()){
+            return view('Buyer.Users.edit',[
+                'user'  => User::find($id),
+                'roles' => Role::all()
+            ]);
+        }
     }
 
     /**

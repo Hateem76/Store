@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\ChFavorite;
 use App\Models\Contact;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -45,7 +46,7 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasAnyRole('moderator');
         });
         Gate::define('is-contact', function ($user, $contact) {
-            return null !== Contact::where('user_id',$contact->id)->where('me',$user->id)->first();
+            return null !== ChFavorite::where('favorite_id',$contact->id)->where('user_id',$user->id)->first();
         });
         Gate::define('parent-seller', function ($user) {
             if($user->account_type == 'seller' && $user->parent_child == 1){
