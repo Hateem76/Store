@@ -51,13 +51,13 @@
              </div>
 
              {{-- ---------------- [ Search Tab ] ---------------- --}}
-           <div class="messenger-tab search-tab app-scroll"app-scroll" data-view="search">
+           {{-- <div class="messenger-tab search-tab app-scroll"app-scroll" data-view="search"> --}}
                 {{-- items --}}
-                <p class="messenger-title">Search</p>
+                {{-- <p class="messenger-title">Search</p>
                 <div class="search-records">
                     <p class="message-hint center-el"><span>Type to search..</span></p>
                 </div>
-             </div>
+             </div> --}}
         </div>
     </div>
 
@@ -76,8 +76,9 @@
                 {{-- header buttons --}}
                 <nav class="m-header-right">
                     {{-- <a href="#" class="add-to-favorite"><i class="fas fa-star"></i></a> --}}
-                    <a href="/"><i class="fas fa-home"></i></a>
-                    <a href="#" class="show-infoSide"><i class="fas fa-info-circle"></i></a>
+                    <a href="/"><i class="fas fa-home" title="home"></i></a>
+                    <a href="{{ route('extras.login') }}" title="dashboard"><i class="fas fa-tachometer-alt"></i></a>
+                    <a href="#" class="show-infoSide" title="enlarge screen"><i class="fas fa-info-circle"></i></a>
                 </nav>
             </nav>
         </div>

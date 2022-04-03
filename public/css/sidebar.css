@@ -33,6 +33,11 @@ ul li{
  background: #343a40 !important;
  z-index: 100;
  transition: width 300ms;
+ overflow: auto;
+}
+
+.sidebar::-webkit-scrollbar{
+    width: 2px;
 }
 
 .sidebar-brand {

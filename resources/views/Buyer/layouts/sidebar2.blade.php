@@ -26,6 +26,11 @@
                     </a>
                   </li>
                   <li>
+                    <a href="{{ route('chatify') }}"><span class="far fa-comment-dots mr-3"></span>
+                      <span>Chat</span>
+                    </a>
+                  </li>
+                  <li>
                     <a href="{{ route('buyer.users.index') }}"><span class="fa fa-users mr-3"></span>
                       <span>Users</span>
                     </a>
