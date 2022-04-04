@@ -29,8 +29,8 @@
   </script>
 
   <!-----Search bar for mobile device-->
-  <div class="search-container">
-      <form action="{{ route('extras.searchProducts') }} " method="POST" class="form-inline">
+  {{-- <div class="search-container">
+      <form action="" method="POST" class="form-inline">
           @csrf
           <input name="search" id="search" class="mobile-input-search @error('search') is-invalid @enderror" type="search" placeholder="Search..." />
           <select class="form-control selectbox" name="option" id="option">
@@ -42,4 +42,4 @@
               <li class="fa fa-search"></li>
           </button>
       </form>
-  </div>
+  </div> --}}

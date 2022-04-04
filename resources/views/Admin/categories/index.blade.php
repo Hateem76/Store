@@ -44,9 +44,8 @@
           <div class="card-body px-5 py-4 bg-white rounded">
             @include('partials.alerts') 
               <div class="row setScroll mb-2 d-flex" style="justify-content: space-between;">
-                  <h2 class=" pl-3">Users</h2>
-                
-                  {{-- <button class="btn text-white mb-2 btn-md mr-4" style="background-color: #184A45FF;">Create &RightArrow;</button> --}}
+                  <h2 class=" pl-3">Categories</h2>
+                  <a href="{{ route("admin.category.create") }}" class="btn text-white mb-2 btn-md mr-4" style="background-color: #184A45FF;">Create &RightArrow;</a>
               </div>
             <div class="table-responsive">
               <table id="example" style="width:100%" class="table table-striped table-bordered">
@@ -54,21 +53,19 @@
                   <tr>
                     <th>SNo</th>
                     <th>Name</th>
-                    <th>Email</th>
                     <th class="text-center">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $user)
+                    @foreach ($categories as $category)
                         <tr style="background-color: white;">
                             <th scope="row">{{ $serialNo++ }}</th>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
+                            <td>{{ $category->name }}</td>
                             <td class="text-center">
                                 {{-- <a href="{{ route('buyer.users.edit',$user->id) }}" class="btn btn-sm btn-primary" role="button"><i class="fas fa-edit"></i></a> --}}
                                 <button class="btn btn-sm btn-danger" onclick="event.preventDefault();
-                                                document.getElementById('delete-user-form-{{ $user->id }}').submit()"><i class="fa-solid fa-trash-can"></i></button>
-                                <form action="{{ route('admin.users.destroy',$user->id) }}" id="delete-user-form-{{ $user->id }}" style="display: none;" method="POST">
+                                                document.getElementById('delete-user-form-{{ $category->id }}').submit()"><i class="fa-solid fa-trash-can"></i></button>
+                                <form action="{{ route('admin.category.destroy',$category->id) }}" id="delete-user-form-{{ $category->id }}" style="display: none;" method="POST">
                                     @csrf
                                     @method("DELETE")
                                 </form>
@@ -78,7 +75,7 @@
                              
                 </tbody>
               </table>
-              {{ $users->links() }}
+              {{ $categories->links() }}
             </div>
           </div>
         </div>

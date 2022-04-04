@@ -22,12 +22,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $acc_type = Auth::user()->account_type;
+        $serialNo = 1;
         return view('Admin.Users.index',[
-            'users' => User::where('account_type',$acc_type)
-                        ->where('parent_id',Auth::user()->id)
-                        ->where('parent_child',0)
-                        ->paginate(5)
+            'users' => User::paginate(10),
+            'serialNo'  => $serialNo
         ]);
     }
 
@@ -130,7 +128,13 @@ class UserController extends Controller
      */
     public function destroy($id,Request $request)
     {
-        User::destroy($id);
+        try{
+            User::destroy($id);
+        }
+        catch(\Illuminate\Database\QueryException $e){
+            $request->session()->flash('danger','User has some records associated with it. Cannot delete!');
+            return redirect(route('admin.users.index'));
+        }
         $request->session()->flash('success','You have deleted the user');
         return redirect(route('admin.users.index'));
     }

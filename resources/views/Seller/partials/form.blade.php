@@ -29,4 +29,8 @@
             <input class="form-control @error('password_confirmation') is-invalid @enderror" type="password" name="password_confirmation" id="password_confirmation" placeholder="Re-type Password"  />
         </div>      
 @endisset
-<input class="button mt-2" type="submit" value="Register" />
+@if (isset($create))
+    <input class="button mt-2" type="submit" value="Create" />
+@else
+    <input class="button mt-2" type="submit" value="Edit" />    
+@endif

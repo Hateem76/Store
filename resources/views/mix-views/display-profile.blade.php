@@ -111,6 +111,13 @@
             $logoutCode = 'Buyer.layouts.logout-code';
         @endphp    
     @endcan
+    @can('is-admin')
+        @php
+            $sidebar = 'Admin.layouts.sidebar2';
+            $header = 'Admin.layouts.header';
+            $logoutCode = 'Admin.layouts.logout-code';
+        @endphp
+    @endcan
 
     @include($sidebar)
 

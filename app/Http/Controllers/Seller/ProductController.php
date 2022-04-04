@@ -60,6 +60,7 @@ class ProductController extends Controller
         }
         // Validation using form request
         $dataValidated = $request->validated();
+        dd("validated");
         $image_name = 'not_found.jpg';
         if($request->hasFile('image_path')){ 
             $image_name = time(). '-' . $request->name . '.' . $request->image_path->extension();

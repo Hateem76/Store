@@ -20,7 +20,7 @@
     </head>
     <body>
         <input type="checkbox" id="nav-toggle">
-        @include('Seller.layouts.sidebar')
+        @include('Admin.layouts.sidebar')
 
 
           <!------Main Content-->
@@ -33,7 +33,7 @@
                 </label>
                 {{ Auth::user()->name }}
             </h3>
-            <div class="search-wrapper">
+            {{-- <div class="search-wrapper">
                 <!-- <span class="fas fa-search"></span> -->
                 <form action="{{ route('extras.searchProducts') }} " method="POST" class="d-flex">
                     @csrf
@@ -47,17 +47,12 @@
                     <i class="fa fa-search"></i>
                     </button>
                 </form>
-            </div>
+            </div> --}}
             <div class="user-wrapper profile">
                 <img class="profile"  src="{{ asset('images/dp/'.Auth::user()->avatar) }}" alt="">
                 <div class="profile-name">
                 <h5>
-                    @can('buyer')
-                        Buyer Account
-                    @endcan
-                    @can('seller')
-                        Seller Account
-                    @endcan
+                   Admin Account
                     <i class="fas fa-caret-down ml-2 mb-1"></i>
                 </h5>
                 </div>
@@ -98,13 +93,12 @@
           
                 <!-----Search bar for mobile device-->
                 <div class="search-container">
-                    <form action="{{ route('extras.searchProducts') }} " method="POST" class="form-inline">
+                    <form action="" method="POST" class="form-inline">
                         @csrf
                         <input name="search" id="search" class="mobile-input-search @error('search') is-invalid @enderror" type="search" placeholder="Search..." />
                         <select class="form-control selectbox" name="option" id="option">
                             <option value="product">Product</option>
                             <option value="vendor">Vendor</option>
-                            <option value="bizzId">BizzId</option>
                         </select>
                         <button class="mobile-search-btn btn" >
                             <li class="fa fa-search"></li>

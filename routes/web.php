@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use phpDocumentor\Reflection\Types\Resource_;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Seller\SellerController;
 use App\Http\Controllers\Buyer\BuyerController;
 use App\Http\Controllers\Buyer\BuyerTenderController;
@@ -100,5 +102,7 @@ Route::prefix('buyer')->middleware(['auth','auth.buyer'])->name('buyer.')->group
     //Admin Routes
 Route::prefix('admin')->middleware(['auth','auth.isAdmin'])->name('admin.')->group(function () {
     Route::resource('/users', UserController::class);
+    Route::get('/index' , [AdminDashboardController::class, 'index'])->name('index');
+    Route::resource('category', CategoryController::class);
 });
 

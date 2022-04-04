@@ -22,6 +22,9 @@ class ExtraController extends Controller
             else if(Auth::user()->account_type == 'buyer'){
                 return redirect(route('buyer.index'));
             }
+            else if(Auth::user()->account_type == 'admin'){
+                return redirect(route('admin.index'));
+            }
         }
         else{
             return redirect(route('index'));
@@ -44,7 +47,8 @@ class ExtraController extends Controller
             $vendors = User::where('name', 'like', '%' . $name . '%')->get();
             return view('mix-views.vendor-searchList',[
                 'vendors'  => $vendors,
-                'check'    => $check
+                'check'    => $check,
+                'name'     => $name
             ]);
         }
         else if($request->input('option') == 'bizzId'){

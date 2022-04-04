@@ -226,11 +226,11 @@ header label span{
     margin-top: .4rem;
 }
 .user-wrapper img {
-   border-radius: 50%;
-   width: 55px;
-   height: 40px;
-   margin-right: 1rem;
-}
+    border-radius: 50%;
+    width: 48px;
+    height: 40px;
+    margin-right: 1rem;
+ }
 .user-wrapper small {
    display: inline-block;
    color: var(--text-grey);

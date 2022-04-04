@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/landing_page/navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <title>Tenders Pro</title>
+    <title>Welcome</title>
     <style>
         .carousel-item::before {
             content: "";
@@ -72,9 +72,9 @@
                         <li class="nav-item" onclick="myfun()">
                             <a class="nav-link page-scroll" href="#contact">Contact</a>
                         </li>
-                        <li class="nav-item" onclick="myfun()">
+                        {{-- <li class="nav-item" onclick="myfun()">
                             <a class="nav-link page-scroll" href="#about">About</a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item login-item" onclick="myfun()"></li>
                         @if(Route::has('login'))
                             @auth
@@ -116,7 +116,7 @@
                             <div class="first-btn">
                                 <a href="#" class="btn btn1 btn-lg btn-common btn-effect wow fadeInRight text-center"
                                     data-wow-delay="0.9s">Register Now!</a>
-                                <a href="products.html" class="btn btn1 btn-lg btn-border wow fadeInRight"
+                                <a href="{{ route('register') }}" class="btn btn1 btn-lg btn-border wow fadeInRight"
                                     data-wow-delay="1.2s">Discover!</a>
                             </div>
                         </div>
@@ -128,7 +128,7 @@
                             </h3>
                             <h2 class="wow bounceIn">Let us help you find the right talent</h2>
                             <!-- <h4 class="wow fadeInUp" data-wow-delay="0.9s">Parallax, Video, Product, Premium Addons and More...</h4> -->
-                            <a href="#" class="btn btn2 btn-lg btn-common btn-effect wow fadeInUp"
+                            <a href="{{ route('register') }}" class="btn btn2 btn-lg btn-common btn-effect wow fadeInUp"
                                 data-wow-delay="1.2s">Explore!</a>
                         </div>
                     </div>
@@ -140,7 +140,7 @@
                                 prices!
                             </h2>
                             <!-- <h4 class="wow fadeInUp" data-wow-delay="0.6s">App, Business, SaaS and Landing Pages</h4> -->
-                            <a href="#" class="btn btn3 btn-lg btn-border wow fadeInUp" data-wow-delay="0.9s">Give it a
+                            <a href="{{ route('register') }}" class="btn btn3 btn-lg btn-border wow fadeInUp" data-wow-delay="0.9s">Give it a
                                 try!</a>
                         </div>
                     </div>
@@ -163,7 +163,7 @@
     <!-- Header Section End -->
 
     <!-- Call to Action Start -->
-    <section class="call-action section">
+    {{-- <section class="call-action section">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-10">
@@ -176,7 +176,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Call to Action End -->
 
     <!------Categories-->

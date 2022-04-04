@@ -104,6 +104,7 @@
                         <select class="form-control selectbox" name="option" id="option">
                             <option value="product">Product</option>
                             <option value="vendor">Vendor</option>
+                            <option value="bizzId">BizzId</option>
                         </select>
                         <button class="mobile-search-btn btn" >
                             <li class="fa fa-search"></li>

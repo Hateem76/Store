@@ -41,7 +41,7 @@
             <main>
                 @include('Seller.layouts.logout-code')
 
-                <!-----Table Start-->
+               
             <div class="py-5">
                 <div class="row setScroll py-5">
                   <div class="col-lg-10 mx-auto">
@@ -124,7 +124,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-sm-3 mt-3">
-                                        <label>Product Image</label>
+                                        <label>Product Image <span class="text-danger">(max:512kb)</span></label>
                                         <input type="file" accept=".jpg,.jpeg,.png" id="image_path" name="image_path" class="@error('image_path') is-invalid @enderror">
                                         @error('image_path')
                                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
@@ -181,7 +181,7 @@
               </div>
             </div>
 
-            <!-------Table End-->
+           
 
             <script>
                 const response = document.getElementById('viewResponse');

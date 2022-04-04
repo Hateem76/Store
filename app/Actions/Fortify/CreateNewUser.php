@@ -65,7 +65,8 @@ class CreateNewUser implements CreatesNewUsers
             'number'  => $input['number'],
             'address'  => $input['address'],
             'account_type'  => $input['account_type'],
-            'parent_child'  => 1
+            'parent_child'  => 1,
+            'avatar'  => 'avatar.png',
 
         ]);
     }

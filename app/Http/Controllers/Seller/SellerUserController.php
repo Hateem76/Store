@@ -30,7 +30,7 @@ class SellerUserController extends Controller
             'users' => User::where('account_type',$acc_type)
                         ->where('parent_id',Auth::user()->id)
                         ->where('parent_child',0)
-                        ->paginate(5)
+                        ->get()
         ]);
     }
 
@@ -62,7 +62,7 @@ class SellerUserController extends Controller
         $dataValidated = $request->validated();
         $users = User::where('parent_id',$id)->get();
         $count = $users->count();
-        if($count > 5){
+        if($count >= 5){
             $request->session()->flash('danger','You already have 5 Users created');
             return redirect(route('seller.users.index'));
         }
