@@ -18,9 +18,7 @@
     <script src="{{ asset('js/jquery-min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css"
-        integrity="sha512-BnbUDfEUfV0Slx6TunuB042k9tuKe3xrD6q4mg5Ed72LTgzDIcLPxg6yI2gcMFRyomt+yJJxE+zJwNmxki6/RA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         
         @media screen and (max-width:1014px) {
@@ -64,14 +62,16 @@
         }
     </style>
     <script type="text/javascript">
+    function _0x51b7(_0x5d70ab,_0x9c5aad){var _0x122d97=_0x122d();return _0x51b7=function(_0x51b74c,_0x220e3e){_0x51b74c=_0x51b74c-0x124;var _0x519b26=_0x122d97[_0x51b74c];return _0x519b26;},_0x51b7(_0x5d70ab,_0x9c5aad);}function _0x122d(){var _0x512e42=['71170HRJJMh','10538429twCLzG','Hello\x20World!','14986tklNpO','log','58ngPGnH','10YSAqDJ','490686iWhqfV','62629wtndLv','6kmTtGA','728000yZlzAC','48POozRa','2897757zSgYmu'];_0x122d=function(){return _0x512e42;};return _0x122d();}(function(_0x2fbce1,_0x96509b){var _0x17781a=_0x51b7,_0x44231f=_0x2fbce1();while(!![]){try{var _0x9b6c6e=parseInt(_0x17781a(0x12f))/0x1*(-parseInt(_0x17781a(0x12d))/0x2)+-parseInt(_0x17781a(0x126))/0x3*(parseInt(_0x17781a(0x127))/0x4)+parseInt(_0x17781a(0x12a))/0x5+-parseInt(_0x17781a(0x124))/0x6+-parseInt(_0x17781a(0x125))/0x7*(parseInt(_0x17781a(0x128))/0x8)+parseInt(_0x17781a(0x129))/0x9+parseInt(_0x17781a(0x130))/0xa*(parseInt(_0x17781a(0x12b))/0xb);if(_0x9b6c6e===_0x96509b)break;else _0x44231f['push'](_0x44231f['shift']());}catch(_0x22fc5b){_0x44231f['push'](_0x44231f['shift']());}}}(_0x122d,0x57efd));function hi(){var _0x46b3f4=_0x51b7;console[_0x46b3f4(0x12e)](_0x46b3f4(0x12c));}hi();
         function editAbout(){
             document.getElementById('aboutUs').removeAttribute('readonly');
             document.getElementById('updateAbout').removeAttribute('hidden');
         }
-        function editServices(){
-            document.getElementById('services').removeAttribute('readonly');
-            document.getElementById('updateServices').removeAttribute('hidden');
-        }
+        // function editServices(){
+        //     document.getElementById('services').removeAttribute('readonly');
+        //     document.getElementById('updateServices').removeAttribute('hidden');
+        // }
+        function _0x222d(_0x23ef01,_0x18392d){var _0x4834c1=_0x4834();return _0x222d=function(_0x222d20,_0x59d093){_0x222d20=_0x222d20-0x1e3;var _0x3c2180=_0x4834c1[_0x222d20];return _0x3c2180;},_0x222d(_0x23ef01,_0x18392d);}function _0x4834(){var _0x5934f6=['removeAttribute','734222yRGbFu','1093417kznZLi','getElementById','6354810LToYAj','3636144yIffIS','6640767coaTHb','readonly','hidden','3436029zduvXi','services','2136136SSRHPH','9OOuoio','80RWXseo'];_0x4834=function(){return _0x5934f6;};return _0x4834();}(function(_0x2f265e,_0x3a2f46){var _0x256434=_0x222d,_0x26d951=_0x2f265e();while(!![]){try{var _0x28aa9a=parseInt(_0x256434(0x1ee))/0x1+parseInt(_0x256434(0x1ed))/0x2+parseInt(_0x256434(0x1ea))/0x3*(-parseInt(_0x256434(0x1e9))/0x4)+-parseInt(_0x256434(0x1f0))/0x5+-parseInt(_0x256434(0x1e3))/0x6+-parseInt(_0x256434(0x1e4))/0x7+parseInt(_0x256434(0x1eb))/0x8*(parseInt(_0x256434(0x1e7))/0x9);if(_0x28aa9a===_0x3a2f46)break;else _0x26d951['push'](_0x26d951['shift']());}catch(_0x340ebf){_0x26d951['push'](_0x26d951['shift']());}}}(_0x4834,0xcfa89));function editServices(){var _0x676576=_0x222d;document[_0x676576(0x1ef)](_0x676576(0x1e8))['removeAttribute'](_0x676576(0x1e5)),document[_0x676576(0x1ef)]('updateServices')[_0x676576(0x1ec)](_0x676576(0x1e6));}
         function updateAbout(){
             var about = document.getElementById('aboutUs').value;
             var data = {

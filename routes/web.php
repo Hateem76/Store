@@ -104,5 +104,9 @@ Route::prefix('admin')->middleware(['auth','auth.isAdmin'])->name('admin.')->gro
     Route::resource('/users', UserController::class);
     Route::get('/index' , [AdminDashboardController::class, 'index'])->name('index');
     Route::resource('category', CategoryController::class);
+    Route::get('/setCategoryView' , [AdminDashboardController::class, 'setCategoryView'])->name('setCategoryView');
+    Route::get('/setProductView' , [AdminDashboardController::class, 'setProductView'])->name('setProductView');
+    Route::post('/setCategory', [AdminDashboardController::class, 'setCategory'])->name('setCategory');
+    Route::post('/setProduct', [AdminDashboardController::class, 'setProduct'])->name('setProduct');
 });
 

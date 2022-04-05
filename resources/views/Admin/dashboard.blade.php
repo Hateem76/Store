@@ -22,10 +22,11 @@
         <span class="fa fa-users"></span>
       </div>
     </div>
-    <div class="card-single shadow-lg" onclick="document.getElementById('contacts').click();">
+    <a href="{{ route('admin.setCategoryView') }}" id="setCategories" hidden></a>
+    <div class="card-single shadow-lg" onclick="document.getElementById('setCategories').click();">
       <div>
-        <h1>0</h1>
-        <span>Nothing here</span>
+        <h1>6</h1>
+        <span>Set Categories</span>
       </div>
       <div class="icon-container bg-dark">
         <span class="fa fa-address-book"></span>
@@ -33,10 +34,11 @@
     </div>
   </div>
   <div class="cards">
-    <div class="card-single shadow-lg" onclick="document.getElementById('tenders').click();">
+    <a href="{{ route('admin.setProductView') }}" id="setProducts" hidden></a>
+    <div class="card-single shadow-lg" onclick="document.getElementById('setProducts').click();">
       <div>
-        <h1>0</h1>
-        <span>Nothing here</span>
+        <h1>8</h1>
+        <span>set Products</span>
       </div>
       <div class="icon-container bg-warning">
         <span class="fa fa-tasks"></span>

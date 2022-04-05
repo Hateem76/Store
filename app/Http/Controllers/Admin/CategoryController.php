@@ -41,9 +41,16 @@ class CategoryController extends Controller
     {
         $dataValidated = $request->validate([
             'name'   => 'required|max:18|unique:categories,name',
+            'image'  => 'max:512',
         ]);
+        $image_name = 'category.png';
+        if($request->hasFile('image')){ 
+            $image_name = time(). '-' . $request->name . '.' . $request->image->extension();
+            $request->image->move(public_path('images/categories'),$image_name);
+        }
         $category = Category::create([
             'name' => $request->input('name'),
+            'image' => $image_name
         ]);
         $request->session()->flash('success','You have created the Category');
         return redirect(route('admin.category.index'));
@@ -94,7 +101,8 @@ class CategoryController extends Controller
     public function destroy($id, Request $request)
     {
         try{
-            Category::destroy($id);
+            $category = Category::find($id);
+            $category->delete();
         }
         catch(\Illuminate\Database\QueryException $e){
             $request->session()->flash('danger','Category has some records associated with it. Cannot delete!');

@@ -186,41 +186,41 @@
         </div>
         <div class="row cat-container">
             <div class="card-container">
-                <img src="{{ asset('images/bg/c1.jpg') }}" alt="">
+                <img src="{{ asset('images/categories/'.$cat1->image) }}" alt="">
                 <div class="cat-title">
-                    <h5>Truck Rentals</h5>
+                    <h5>{{ $cat1->name }}</h5>
                 </div>
             </div>
             <div class="card-container">
-                <img src="{{ asset('images/bg/c2.jpg') }}" alt="">
+                <img src="{{ asset('images/categories/'.$cat2->image) }}" alt="">
                 <div class="cat-title">
-                    <h5>Mini Excavator Rentals</h5>
+                    <h5>{{ $cat2->name }}</h5>
                 </div>
             </div>
             <div class="card-container">
-                <img src="{{ asset('images/bg/c3.jpg') }}" alt="">
+                <img src="{{ asset('images/categories/'.$cat3->image) }}" alt="">
                 <div class="cat-title">
-                    <h5>CTL & Skid Steer Rentals</h5>
+                    <h5>{{ $cat3->name }}</h5>
                 </div>
             </div>
         </div>
         <div class="row mt-4 mb-5 cat-container">
             <div class="card-container">
-                <img src="{{ asset('images/bg/c4.jpg') }}" alt="">
+                <img src="{{ asset('images/categories/'.$cat4->image) }}" alt="">
                 <div class="cat-title">
-                    <h5>Crawler Carrier</h5>
+                    <h5>{{ $cat4->name }}</h5>
                 </div>
             </div>
             <div class="card-container">
-                <img src="{{ asset('images/bg/c5.jpg') }}" alt="">
+                <img src="{{ asset('images/categories/'.$cat5->image) }}" alt="">
                 <div class="cat-title">
-                    <h5>Loader Rentals</h5>
+                    <h5>{{ $cat5->name }}</h5>
                 </div>
             </div>
             <div class="card-container">
-                <img src="{{ asset('images/bg/c6.jpg') }}" alt="">
+                <img src="{{ asset('images/categories/'.$cat6->image) }}" alt="">
                 <div class="cat-title">
-                    <h5>Trucks</h5>
+                    <h5>{{ $cat6->name }}</h5>
                 </div>
             </div>
         </div>
@@ -269,30 +269,30 @@
                     <div class="product-grid2 shadow-md transmitv border pb-3">
                         <div class="product-image2">
                             <a href="#">
-                                <img class="pic-1 img-fluid" src="images/products/p1.jpeg">
-                                <img class="pic-2 img-fluid" src="images/products/p1.jpeg">
+                                <img class="pic-1 img-fluid" src="{{ asset('images/products/'.$pro1->image_path) }}">
+                                <img class="pic-2 img-fluid" src="{{ asset('images/products/'.$pro1->image_path) }}">
                             </a>
                             <div class="transmitv single-item">
-                                    <button type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
+                                    <a  type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
                                         Inquiry Now
-                                    </button>
+                                    </a>
                             </div>
                         </div>
                         <div class="product-content">
-                            <h3 class="title"><a href="#">Crawler Excavator </a></h3>
-                            <span class="text-muted">KOMSTSU-Pc400-8</span>
+                            <h3 class="title"><a href="#">{{ $pro1->name }}</a></h3>
+                            <span class="text-muted">{{ $pro1->category->name }}</span>
                         </div>
                         <div class="buisness-name d-flex justify-content-between px-3">
-                            <p style="margin: 0;font-weight: 600;margin-top: 4px;">Weight</p>
+                            <p style="margin: 0;font-weight: 600;margin-top: 4px;">Brand</p>
                             <p  style="font-weight: 500;font-size: 16px;" class="d-flex ">
                                 <span><img class="mr-2 mt-1" style="width: 14px;height: 14px;" src="images/scale.png" alt="">
-                                </span>10 TON</p>
+                                </span>{{ $pro1->brand_name }}</p>
                         </div>
                         <div class="buisness-name flex-coulmn px-3">
-                            <p class="text-secondary mt-1">Dubai, global village mall</p>
+                            <p class="text-secondary mt-1">{{ $pro1->user->address }} {{ $pro1->user->id_card }}</p>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <button class="enquiry-button">Inquiry Now</button>
+                            <a href="{{ route('buyer.requestForRent',[$pro1->user->id,$pro1->id]) }}" class="enquiry-button">Inquiry Now</a>
                         </div>
                     </div>
                 </div>
@@ -300,29 +300,29 @@
                     <div class="product-grid2 shadow-md transmitv border pb-3">
                         <div class="product-image2">
                             <a href="#">
-                                <img class="pic-1 img-fluid" src="images/products/p2.jpeg">
-                                <img class="pic-2 img-fluid" src="images/products/p2.jpeg">
+                                <img class="pic-1 img-fluid" src="{{ asset('images/products/'.$pro2->image_path) }}">
+                                <img class="pic-2 img-fluid" src="{{ asset('images/products/'.$pro2->image_path) }}">
                             </a>
                             <div class="transmitv single-item">
-                                    <button type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
+                                    <a  type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
                                         Inquiry Now
-                                    </button>
+                                    </a>
                             </div>
                         </div>
                         <div class="product-content">
-                            <h3 class="title"><a href="#">Crawler Excavator </a></h3>
-                            <span class="text-muted">KOMSTSU-PC400-1</span>
+                            <h3 class="title"><a href="#">{{ $pro2->name }} </a></h3>
+                            <span class="text-muted">{{ $pro2->category->name }}</span>
                         </div>
                         <div class="buisness-name d-flex justify-content-between px-3">
-                            <p style="margin: 0;font-weight: 600;margin-top: 4px;">Weight</p>
+                            <p style="margin: 0;font-weight: 600;margin-top: 4px;">Brand</p>
                             <p  style="font-weight: 500;font-size: 16px;" class="d-flex ">
                                 <span><img class="mr-2 mt-1" style="width: 14px;height: 14px;" src="images/scale.png" alt="">
-                                </span>10 TON</p>                                </div>
+                                </span>{{ $pro2->brand_name }}</p>                                </div>
                         <div class="buisness-name flex-coulmn px-3">
-                            <p class="text-secondary mt-1">Dubai, global village mall</p>
+                            <p class="text-secondary mt-1">{{ $pro2->user->address }} {{ $pro2->user->id_card }}</p>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <button class="enquiry-button">Inquiry Now</button>
+                            <a href="{{ route('buyer.requestForRent',[$pro2->user->id,$pro2->id]) }}" class="enquiry-button">Inquiry Now</a>
                         </div>
                     </div>
                 </div>
@@ -331,29 +331,29 @@
                     <div class="product-grid2 shadow-md transmitv border pb-3">
                         <div class="product-image2">
                             <a href="#">
-                                <img class="pic-1 img-fluid" src="images/products/p3.jpeg">
-                                <img class="pic-2 img-fluid" src="images/products/p3.jpeg">
+                                <img class="pic-1 img-fluid" src="{{ asset('images/products/'.$pro3->image_path) }}">
+                                <img class="pic-2 img-fluid" src="{{ asset('images/products/'.$pro3->image_path) }}">
                             </a>
                             <div class="transmitv single-item">
-                                    <button type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
-                                        Enquiry Now
-                                    </button>
+                                <a  type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
+                                    Inquiry Now
+                                </a>
                             </div>
                         </div>
                         <div class="product-content">
-                            <h3 class="title"><a href="#">Crawler Excavator </a></h3>
-                            <span class="text-muted">KOMSTSU-D155</span>
+                            <h3 class="title"><a href="#">{{ $pro3->name }} </a></h3>
+                            <span class="text-muted">{{ $pro3->category->name }}</span>
                         </div>
                         <div class="buisness-name d-flex justify-content-between px-3">
-                            <p style="margin: 0;font-weight: 600;margin-top: 4px;">Weight</p>
+                            <p style="margin: 0;font-weight: 600;margin-top: 4px;">Brand</p>
                             <p  style="font-weight: 500;font-size: 16px;" class="d-flex ">
                                 <span><img class="mr-2 mt-1" style="width: 14px;height: 14px;" src="images/scale.png" alt="">
-                                </span>10 TON</p>                                </div>
+                                </span>{{ $pro3->brand_name }}</p>                                </div>
                         <div class="buisness-name flex-coulmn px-3">
-                            <p class="text-secondary mt-1">Dubai, global village mall</p>
+                            <p class="text-secondary mt-1">{{ $pro3->user->address }} {{ $pro3->user->id_card }}</p>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <button class="enquiry-button">Inquiry Now</button>
+                            <a href="{{ route('buyer.requestForRent',[$pro3->user->id,$pro3->id]) }}" class="enquiry-button">Inquiry Now</a>
                         </div>
                     </div>
                 </div>
@@ -361,29 +361,29 @@
                     <div class="product-grid2 shadow-md transmitv border pb-3">
                         <div class="product-image2">
                             <a href="#">
-                                <img class="pic-1 img-fluid" src="images/products/p4.jpeg">
-                                <img class="pic-2 img-fluid" src="images/products/p4.jpeg">
+                                <img class="pic-1 img-fluid" src="{{ asset('images/products/'.$pro4->image_path) }}">
+                                <img class="pic-2 img-fluid" src="{{ asset('images/products/'.$pro4->image_path) }}">
                             </a>
                             <div class="transmitv single-item">
-                                    <button type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
-                                        Enquiry Now
-                                    </button>
+                                <a  type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
+                                    Inquiry Now
+                                </a>
                             </div>
                         </div>
                         <div class="product-content">
-                            <h3 class="title"><a href="#">Crawler Excavator </a></h3>
-                            <span class="text-muted">KOMSTSU-DA75</span>
+                            <h3 class="title"><a href="#">{{ $pro4->name }} </a></h3>
+                            <span class="text-muted">{{ $pro4->category->name }}</span>
                         </div>
                         <div class="buisness-name d-flex justify-content-between px-3">
-                            <p style="margin: 0;font-weight: 600;margin-top: 4px;">Weight</p>
+                            <p style="margin: 0;font-weight: 600;margin-top: 4px;">Brand</p>
                             <p  style="font-weight: 500;font-size: 16px;" class="d-flex ">
                                 <span><img class="mr-2 mt-1" style="width: 14px;height: 14px;" src="images/scale.png" alt="">
-                                </span>10 TON</p>                                </div>
+                                </span>{{ $pro4->brand_name }}</p>                                </div>
                         <div class="buisness-name flex-coulmn px-3">
-                            <p class="text-secondary mt-1">Dubai, global village mall</p>
+                            <p class="text-secondary mt-1">{{ $pro4->user->address }} {{ $pro4->user->id_card }}</p>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <button class="enquiry-button">Inquiry Now</button>
+                            <a href="{{ route('buyer.requestForRent',[$pro4->user->id,$pro4->id]) }}" class="enquiry-button">Inquiry Now</a>
                         </div>
                     </div>
                 </div>
@@ -391,29 +391,29 @@
                     <div class="product-grid2 shadow-md transmitv border pb-3">
                         <div class="product-image2">
                             <a href="#">
-                                <img class="pic-1 img-fluid" src="images/products/p5.jpeg">
-                                <img class="pic-2 img-fluid" src="images/products/p5.jpeg">
+                                <img class="pic-1 img-fluid" src="{{ asset('images/products/'.$pro5->image_path) }}">
+                                <img class="pic-2 img-fluid" src="{{ asset('images/products/'.$pro5->image_path) }}">
                             </a>
                             <div class="transmitv single-item">
-                                    <button type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
-                                        Inquiry Now
-                                    </button>
+                                <a  type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
+                                    Inquiry Now
+                                </a>
                             </div>
                         </div>
                         <div class="product-content">
-                            <h3 class="title"><a href="#">Crawler Dozer </a></h3>
-                            <span class="text-muted">KOMSTSU-D9</span>
+                            <h3 class="title"><a href="#">{{ $pro5->name }} </a></h3>
+                            <span class="text-muted">{{ $pro5->category->name }}</span>
                         </div>
                         <div class="buisness-name d-flex justify-content-between px-3">
-                            <p style="margin: 0;font-weight: 600;margin-top: 4px;">Weight</p>
+                            <p style="margin: 0;font-weight: 600;margin-top: 4px;">Brand</p>
                             <p  style="font-weight: 500;font-size: 16px;" class="d-flex ">
                                 <span><img class="mr-2 mt-1" style="width: 14px;height: 14px;" src="images/scale.png" alt="">
-                                </span>10 TON</p>                                </div>
+                                </span>{{ $pro5->brand_name }}</p>                                </div>
                         <div class="buisness-name flex-coulmn px-3">
-                            <p class="text-secondary mt-1">Dubai, global village mall</p>
+                            <p class="text-secondary mt-1">{{ $pro5->user->address }} {{ $pro5->user->id_card }}</p>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <button class="enquiry-button">Inquiry Now</button>
+                            <a href="{{ route('buyer.requestForRent',[$pro5->user->id,$pro5->id]) }}" class="enquiry-button">Inquiry Now</a>
                         </div>
                     </div>
                 </div>
@@ -421,29 +421,29 @@
                     <div class="product-grid2 shadow-md transmitv border pb-3">
                         <div class="product-image2">
                             <a href="#">
-                                <img class="pic-1 img-fluid" src="images/products/p6.jpeg">
-                                <img class="pic-2 img-fluid" src="images/products/p6.jpeg">
+                                <img class="pic-1 img-fluid" src="{{ asset('images/products/'.$pro6->image_path) }}">
+                                <img class="pic-2 img-fluid" src="{{ asset('images/products/'.$pro6->image_path) }}">
                             </a>
                             <div class="transmitv single-item">
-                                    <button type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
-                                        Enquiry Now
-                                    </button>
+                                <a  type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
+                                    Inquiry Now
+                                </a>
                             </div>
                         </div>
                         <div class="product-content">
-                            <h3 class="title"><a href="#">Single Drum Roller Compactor </a></h3>
-                            <span class="text-muted">Bomag</span>
+                            <h3 class="title"><a href="#">{{ $pro6->name }}</a></h3>
+                            <span class="text-muted">{{ $pro6->category->name }}</span>
                         </div>
                         <div class="buisness-name d-flex justify-content-between px-3">
-                            <p style="margin: 0;font-weight: 600;margin-top: 4px;">Weight</p>
+                            <p style="margin: 0;font-weight: 600;margin-top: 4px;">Brand</p>
                             <p  style="font-weight: 500;font-size: 16px;" class="d-flex ">
                                 <span><img class="mr-2 mt-1" style="width: 14px;height: 14px;" src="images/scale.png" alt="">
-                                </span>10 TON</p>                                </div>
+                                </span>{{ $pro6->brand_name }}</p>                                </div>
                         <div class="buisness-name flex-coulmn px-3">
-                            <p class="text-secondary mt-1">Dubai, global village mall</p>
+                            <p class="text-secondary mt-1">{{ $pro6->user->address }} {{ $pro6->user->id_card }}</p>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <button class="enquiry-button">Inquiry Now</button>
+                            <a href="{{ route('buyer.requestForRent',[$pro1->user->id,$pro1->id]) }}" class="enquiry-button">Inquiry Now</a>
                         </div>
                     </div>
                 </div>
@@ -451,29 +451,29 @@
                     <div class="product-grid2 shadow-md transmitv border pb-3">
                         <div class="product-image2">
                             <a href="#">
-                                <img class="pic-1 img-fluid" src="images/products/p7.jpeg">
-                                <img class="pic-2 img-fluid" src="images/products/p7.jpeg">
+                                <img class="pic-1 img-fluid" src="{{ asset('images/products/'.$pro7->image_path) }}">
+                                <img class="pic-2 img-fluid" src="{{ asset('images/products/'.$pro7->image_path) }}">
                             </a>
                             <div class="transmitv single-item">
-                                    <button type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
-                                        Enquiry Now
-                                    </button>
+                                <a type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
+                                    Inquiry Now
+                                </a>
                             </div>
                         </div>
                         <div class="product-content">
-                            <h3 class="title"><a href="#">Vibratory Roller </a></h3>
-                            <span class="text-muted">Bomag</span>
+                            <h3 class="title"><a href="#">{{ $pro7->name }} </a></h3>
+                            <span class="text-muted">{{ $pro7->category->name }}</span>
                         </div>
                         <div class="buisness-name d-flex justify-content-between px-3">
-                            <p style="margin: 0;font-weight: 600;margin-top: 4px;">Weight</p>
+                            <p style="margin: 0;font-weight: 600;margin-top: 4px;">Brand</p>
                             <p  style="font-weight: 500;font-size: 16px;" class="d-flex ">
                                 <span><img class="mr-2 mt-1" style="width: 14px;height: 14px;" src="images/scale.png" alt="">
-                                </span>10 TON</p>                                </div>
+                                </span>{{ $pro7->brand_name }}</p>                                </div>
                         <div class="buisness-name flex-coulmn px-3">
-                            <p class="text-secondary mt-1">Dubai, global village mall</p>
+                            <p class="text-secondary mt-1">{{ $pro7->user->address }} {{ $pro7->user->id_card }}</p>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <button class="enquiry-button">Inquiry Now</button>
+                            <a href="{{ route('buyer.requestForRent',[$pro7->user->id,$pro7->id]) }}" class="enquiry-button">Inquiry Now</a>
                         </div>
                     </div>
                 </div>
@@ -481,29 +481,29 @@
                     <div class="product-grid2 shadow-md transmitv border pb-3">
                         <div class="product-image2">
                             <a href="#">
-                                <img class="pic-1 img-fluid" src="images/products/p8.jpeg">
-                                <img class="pic-2 img-fluid" src="images/products/p8.jpeg">
+                                <img class="pic-1 img-fluid" src="{{ asset('images/products/'.$pro8->image_path) }}">
+                                <img class="pic-2 img-fluid" src="{{ asset('images/products/'.$pro8->image_path) }}">
                             </a>
                             <div class="transmitv single-item">
-                                    <button type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
-                                        Enquiry Now
-                                    </button>
+                                <a type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
+                                    Inquiry Now
+                                </a>
                             </div>
                         </div>
                         <div class="product-content">
-                            <h3 class="title"><a href="#">Wheel Loader </a></h3>
-                            <span class="text-muted">KOMSTSU</span>
+                            <h3 class="title"><a href="#">{{ $pro8->name }} </a></h3>
+                            <span class="text-muted">{{ $pro8->category->name }}</span>
                         </div>
                         <div class="buisness-name d-flex justify-content-between px-3">
-                            <p style="margin: 0;font-weight: 600;margin-top: 4px;">Weight</p>
+                            <p style="margin: 0;font-weight: 600;margin-top: 4px;">Brand</p>
                             <p  style="font-weight: 500;font-size: 16px;" class="d-flex ">
                                 <span><img class="mr-2 mt-1" style="width: 14px;height: 14px;" src="images/scale.png" alt="">
-                                </span>10 TON</p>                                </div>
+                                </span>{{ $pro8->brand_name }}</p>                                </div>
                         <div class="buisness-name flex-coulmn px-3">
-                            <p class="text-secondary mt-1">Dubai, global village mall</p>
+                            <p class="text-secondary mt-1">{{ $pro8->user->address }} {{ $pro8->user->id_card }}</p>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <button class="enquiry-button">Inquiry Now</button>
+                            <a href="{{ route('buyer.requestForRent',[$pro8->user->id,$pro8->id]) }}" class="enquiry-button">Inquiry Now</a>
                         </div>
                     </div>
                 </div>

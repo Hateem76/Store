@@ -127,7 +127,7 @@
                           <table id="example" style="width:100%" class="table table-striped table-bordered">
                             <thead>
                               <tr>
-                                <th>SNO</th>
+                                <th>Id</th>
                                 <th>Name</th>
                                 <th>Type</th>
                                 <th>Brand</th>
@@ -141,7 +141,7 @@
                             <tbody>
                                 @foreach ($products as $product)
                                 <tr>
-                                    <td>{{ $serialNo++ }}</td>
+                                    <td>pro{{ $product->id }}</td>
                                     <td> {{ $product->name }} </td>
                                     <td> {{ $product->category->name }} </td>
                                     <td> {{ $product->brand_name }} </td>

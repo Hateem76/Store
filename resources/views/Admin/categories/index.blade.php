@@ -51,7 +51,7 @@
               <table id="example" style="width:100%" class="table table-striped table-bordered">
                 <thead>
                   <tr>
-                    <th>SNo</th>
+                    <th>Id</th>
                     <th>Name</th>
                     <th class="text-center">Actions</th>
                   </tr>
@@ -59,7 +59,7 @@
                 <tbody>
                     @foreach ($categories as $category)
                         <tr style="background-color: white;">
-                            <th scope="row">{{ $serialNo++ }}</th>
+                            <th scope="row">cat{{ $category->id }}</th>
                             <td>{{ $category->name }}</td>
                             <td class="text-center">
                                 {{-- <a href="{{ route('buyer.users.edit',$user->id) }}" class="btn btn-sm btn-primary" role="button"><i class="fas fa-edit"></i></a> --}}
