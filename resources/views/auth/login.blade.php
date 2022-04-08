@@ -8,11 +8,11 @@
     <title>Login</title>
     <link rel="stylesheet" href="{{ asset('css/register.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/navbar.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
          .fixed-top {
@@ -28,34 +28,39 @@
 <body>
 
     <script>
-    function myFunction() {
-        var pass = document.getElementById("password");
-        if (pass.type === "password") {
-            pass.type = "text";
-        } else {
-            pass.type = "password";
-        }
-        }
         function myfun() {
             document.querySelector('.navbar-collapse').classList.remove('show');
+        }
+
+        function displaySearch(){
+            document.querySelector('.profile-search-wrapper').classList.toggle('show-search');
+            document.querySelector('.close-icon').classList.remove('show-search');
         }
     </script>
 
      <!-- Header Section Start -->
      <header id="slider-area">
-        <nav class="navbar py-md-3 py-2 navbar-expand-md shadow-lg fixed-top scrolling-nav bg-dark">
+        <nav class="navbar py-md-3 py-2 navbar-expand-md shadow-lg fixed-top scrolling-nav bg-dark" style="box-shadow: 0 0.5rem 2rem rgba(0,0,0,.175)!important;">
             <div class="container-fluid">
                 <a class="navbar-brand" style="font-weight: 600;" href="index.html"><span></span>
                     Tenders Cascade </a>
+                      
                 <button class="navbar-toggler text-white ml-2" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars ml-3 ml-md-0" style="font-size: 22px;"></i>
                 </button>
+             
+                
                 <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="navbar-nav mr-auto w-100 justify-content-end">
+                    <ul class="navbar-nav mr-md-5 w-100 justify-content-end" >
+                    
                         <li class="nav-item" onclick="myfun()">
-                            <a class="nav-link page-scroll" href="/">Home <i class="fa fa-home"></i></a>
+                            <a class="nav-link page-scroll" href="/"><i class="fa fa-home"></i> Home</a>
                         </li>
+                        <li class="nav-item" onclick="myfun()">
+                            <a class="nav-link page-scroll" href="{{ route('register') }}"><i class="fa fa-user"></i> Sign Up</a>
+                        </li>
+                     
                     </ul>
                 </div>
             </div>

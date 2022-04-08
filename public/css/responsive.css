@@ -498,5 +498,6 @@
         .login-button{
           margin-bottom: 10px;
           width: 190px;
+          margin-left: 75px;
         }
 }

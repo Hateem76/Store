@@ -7,6 +7,10 @@
 .setScroll{
     padding-top: 60px;
 }
+
+.profile-tabs .nav-pills .nav-item:hover{
+    border-bottom: none !important;
+}
 .profile-wrapper{
     display: flex;
     align-items: center;
@@ -17,7 +21,7 @@
 .profile-container{
     display: flex;
     align-items: center;
-    gap: 9rem;
+    gap: 7rem;
 }
 
 .prof-img img{

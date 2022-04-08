@@ -46,6 +46,11 @@
                     </a>
                   </li>
                   <li>
+                    <a href="{{ route('index') }}"><span class="fa fa-home mr-3"></span>
+                      <span>Home</span>
+                    </a>
+                  </li>
+                  <li>
                     <a href="" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();  "><span class="fa fa-sign-out mr-3"></span>
                       <span>Logout</span>

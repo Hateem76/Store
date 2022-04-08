@@ -6,19 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/sidebar2.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
     <link rel="stylesheet" href="{{ asset('css/profile-page.css') }}">
-    <link rel="stylesheet" href="css/card.css">
+    <link rel="stylesheet" href="{{ asset('css/profile-search.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
-    <link rel="stylesheet" href="{{ asset('css/product-view.css') }}">
     <link rel="stylesheet" href="{{ asset('css/product.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <script src="{{ asset('js/jquery-min.js') }}"></script>
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         
         @media screen and (max-width:1014px) {
@@ -64,26 +59,26 @@
 </head>
 
 <body>
-    @can('buyer')
-        @php
-            $sidebar = 'Buyer.layouts.sidebar2';
-            $header = 'Buyer.layouts.header';
-            $logoutCode = 'Buyer.layouts.logout-code';
-        @endphp    
-    @endcan
-
-    @include($sidebar)
-
-
-
-
-    <!------Main Content-->
-
-<div class="main-content">
-    @include($header)
-
-    <main class="mt-3">
-        @include($logoutCode)
+   
+<!-- Header Section Start -->
+<header id="slider-area">
+    <nav class="navbar py-md-3 py-2 navbar-expand-md shadow-lg fixed-top scrolling-nav bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" style="font-weight: 600;" href="index.html"><span></span>
+                Tenders Cascade </a>
+            <button class="navbar-toggler text-white ml-2" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars ml-3 ml-md-0" style="font-size: 22px;"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto w-100 justify-content-end">
+                    <li class="nav-item" onclick="myfun()">
+                        <a class="nav-link page-scroll" href="/">Home <i class="fa fa-home"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
                       <!-- Profile Start -->
            
@@ -113,12 +108,14 @@
                                     @endif
                                 </span>
                                 <div class="add-friend mb-3">
-                                    @can('is-contact',$user)
-                                        <a class="btn btn-info text-white" href="{{ route('profile.removeFromContacts',$user->id) }}" style="border-radius: 20px;text-transform: none;">Remove from Contacts</a>
-                                    @endcan
-                                    @cannot('is-contact',$user)
-                                        <a class="btn btn-info text-white" href="{{ route('profile.addToContacts',$user->id) }}" style="border-radius: 20px;text-transform: none;">Add to Contacts</a> 
-                                    @endcannot
+                                    @auth
+                                        @can('is-contact',$user)
+                                            <a class="btn btn-info text-white" href="{{ route('profile.removeFromContacts',$user->id) }}" style="border-radius: 20px;text-transform: none;">Remove from Contacts</a>
+                                        @endcan
+                                        @cannot('is-contact',$user)
+                                            <a class="btn btn-info text-white" href="{{ route('profile.addToContacts',$user->id) }}" style="border-radius: 20px;text-transform: none;">Add to Contacts</a> 
+                                        @endcannot  
+                                    @endauth
                                 </div>
                                 <div class="d-flex justify-content-center align-items-center">
                                     <h5 class="pt-2 pr-2">Email : </h5>
@@ -309,7 +306,9 @@
     </main>
 </div>
 
-
+    <script src="{{ asset('js/jquery-min.js') }}"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 </body>
 
 </html>

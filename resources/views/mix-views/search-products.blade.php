@@ -32,11 +32,12 @@
             <p class="description">{{ $product->description }}</p>
             <div class="common-class">
                 <p class="rating">
-                    <i class="fa fa-star "></i>
+                    <i class="fas fa-id-card mr-2"></i>Product Id : pro{{ $product->id }}
+                    {{-- <i class="fa fa-star "></i>
                     <i class="fa fa-star "></i>
                     <i class="fa fa-star "></i>
                     <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i> --}}
                 </p>
                 <p class="weight">
                     <i class="fas fa-weight mr-2"></i>Weight : {{ $product->weight }} {{ $product->unit }}

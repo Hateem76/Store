@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Extras;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SearchProductRequest;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\Project;
 use App\Models\User;
@@ -155,6 +156,17 @@ class ExtraController extends Controller
             return response()->download($myFile, $file_name, $headers);
         }
         return redirect()->back();
+    }
+
+    public function showCatProducts($id){
+        if(Category::where('id',$id)->exists()){
+            $products = Product::where('category_id',$id)->get();
+            return view('mix-views.without-login-products',[
+                'products' => $products,
+                'name'     => Category::where('id',$id)->value('name'),
+            ]);
+        }
+        return redirect(route('index'));
     }
 
 

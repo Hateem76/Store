@@ -11,9 +11,12 @@
     <link rel="stylesheet" href="{{ asset('css/landing_page/categories.css') }}">
     <link rel="stylesheet" href="{{ asset('css/landing_page/products.css') }}">
     <link rel="stylesheet" href="{{ asset('css/landing_page/test2.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/landing_page/navbar.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/landing_page/navbar.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profile-search.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Welcome</title>
     <style>
         .carousel-item::before {
@@ -42,9 +45,43 @@
 </head>
 
 <body>
+    
+
+
+
+    <div class="profile-search-wrapper">
+        <div class="profile-search">
+            <div class="close-btn">
+                <i onclick="displaySearch()" class="fa-solid close-icon fa-xmark text-white"></i>
+            </div>
+            <div class="input-box d-flex">
+                <form action="{{ route('extras.searchProfileId') }}" id="search-form" method="POST" hidden>
+                    @csrf
+                    <input type="text" id="id" name="id">
+                </form>
+                <input type="text" id="proId" placeholder="Search By Profile Code..">
+                <button class="search-btn bg-success text-white py-2" style="font-weight: bold;font-size: 22px;" onclick="submitForm();">
+                    <i class="fa fa-search mr-3 search-icon" style="font-size: 20px;"></i>
+                    SEARCH
+                </button>
+            </div>
+        </div>
+    </div>
     <script>
         function myfun() {
             document.querySelector('.navbar-collapse').classList.remove('show');
+        }
+
+        function displaySearch(){
+            document.querySelector('.profile-search-wrapper').classList.toggle('show-search');
+            document.querySelector('.close-icon').classList.remove('show-search');
+        }
+        function submitForm(){
+            var data = document.getElementById('proId').value;
+            if(data != ""){
+                document.getElementById('id').value = data;
+                document.getElementById('search-form').submit();
+            }
         }
     </script>
 
@@ -54,6 +91,11 @@
             <div class="container-fluid">
                 <a class="navbar-brand" style="font-weight: 600;" href="index.html"><span></span>
                     Tenders Cascade </a>
+                    <li title="Search by Profile Code" class="order-md-1 order-0 search-option mr-md-3 pl-5 pl-md-0 text-white" onclick="myfun();displaySearch();">
+                        <a class="nav-link page-scroll order-0">
+                            <i class="fa fa-search order-0"></i>
+                        </a>
+                    </li>
                 <button class="navbar-toggler text-white ml-2" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars ml-3 ml-md-0" style="font-size: 22px;"></i>
@@ -184,43 +226,49 @@
         <div class="section-header mt-4 mb-5 pb-2">
             <h2 class="section-title">Categories</h2>
         </div>
-        <div class="row cat-container">
+        <div class="row cat-container" onclick="document.getElementById('cat1').click();">
             <div class="card-container">
                 <img src="{{ asset('images/categories/'.$cat1->image) }}" alt="">
                 <div class="cat-title">
                     <h5>{{ $cat1->name }}</h5>
+                    <a href="{{ route('extras.showCatProducts',$cat1->id) }}" hidden id="cat1"></a>
                 </div>
             </div>
-            <div class="card-container">
+            <div class="card-container" onclick="document.getElementById('cat2').click();">
                 <img src="{{ asset('images/categories/'.$cat2->image) }}" alt="">
                 <div class="cat-title">
                     <h5>{{ $cat2->name }}</h5>
+                    <a href="{{ route('extras.showCatProducts',$cat2->id) }}" hidden id="cat2"></a>
                 </div>
             </div>
-            <div class="card-container">
+            <div class="card-container" onclick="document.getElementById('cat3').click();">
                 <img src="{{ asset('images/categories/'.$cat3->image) }}" alt="">
                 <div class="cat-title">
                     <h5>{{ $cat3->name }}</h5>
+                    <a href="{{ route('extras.showCatProducts',$cat3->id) }}" hidden id="cat3"></a>
                 </div>
             </div>
         </div>
         <div class="row mt-4 mb-5 cat-container">
-            <div class="card-container">
+            <div class="card-container" onclick="document.getElementById('cat4').click();">
                 <img src="{{ asset('images/categories/'.$cat4->image) }}" alt="">
                 <div class="cat-title">
                     <h5>{{ $cat4->name }}</h5>
+                    <a href="{{ route('extras.showCatProducts',$cat4->id) }}" hidden id="cat4"></a>
                 </div>
             </div>
-            <div class="card-container">
+            <div class="card-container" onclick="document.getElementById('cat5').click();">
                 <img src="{{ asset('images/categories/'.$cat5->image) }}" alt="">
                 <div class="cat-title">
                     <h5>{{ $cat5->name }}</h5>
+                    <a href="{{ route('extras.showCatProducts',$cat5->id) }}" hidden id="cat5"></a>
                 </div>
             </div>
-            <div class="card-container">
+            <div class="card-container" onclick="document.getElementById('cat6').click();">
                 <img src="{{ asset('images/categories/'.$cat6->image) }}" alt="">
                 <div class="cat-title">
                     <h5>{{ $cat6->name }}</h5>
+                    <a href="{{ route('extras.showCatProducts',$cat6->id) }}" hidden id="cat6"></a>
                 </div>
             </div>
         </div>
@@ -246,7 +294,7 @@
                 </p>
             </div>
             <div class="">
-                <button class="btn btn-lg btn-dark" style="width: 230px;">Register</button>
+                <a href="{{ route('register') }}" class="btn btn-lg btn-dark" style="width: 230px;">Register</a>
             </div>
         </div>
         <div class="left-part col-md-6" data-aos="zoom-in" data-aos-duration="2000">
@@ -519,7 +567,7 @@
 
 
     <!-- Call To Action Section Start -->
-    <section id="cta" class="section call-to-action" style="background-color: #000;"
+    {{-- <section id="cta" class="section call-to-action" style="background-color: #000;"
         data-stellar-background-ratio="0.5">
         <div class="container">
             <div class="row">
@@ -535,7 +583,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Call To Action Section Start -->
 
     <!-- Contact Section Start -->
@@ -732,20 +780,17 @@
 
 
 
-    <script src="js/jquery-min.js"></script>
-    <!-- <script src="js/jquery.easing.min.js"></script> -->
-    <!-- <script src="js/jquery.magnific-popup.min.js"></script> -->
-    <!-- <script src="js/jquery.nav.js"></script> -->
-    <script src="js/popper.min.js"></script>
-    <!-- <script src="js/menu.js"></script> -->
-    <script src="js/owl.carousel.js"></script>
-    <!-- <script src="js/scrolling-nav.js"></script> -->
-    <script src="js/wow.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/app.js"></script>
-    <!-------Font Awesome-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <script src="{{ asset('js/jquery-min.js') }}"></script>
+    {{-- <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.nav.js') }}"></script> --}}
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/menu.js') }}"></script>
+    <script src="{{ asset('js/owl.carousel.js') }}"></script>
+    <script src="js/scrolling-nav.js"></script>
+    <script src="{{ asset('js/wow.js') }}"></script> --}}
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 </body>
 
 </html>

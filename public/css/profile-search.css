@@ -1,0 +1,144 @@
+.profile-search-wrapper{
+    display: none;
+    transition: all .2s;
+}
+.profile-search{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, .9);
+    z-index: 9999999999;
+    position: relative;
+}
+
+.search-option{
+    font-size: 22px;
+}
+
+.show-search{
+    display: block;
+}
+
+.profile-search input{
+    width: 100%;
+    display: flex;
+    flex: 3;
+    outline: none;
+    border: none;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    height: 54px;
+    padding: 10px;
+    padding-left: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.profile-search input::placeholder{
+    font-weight: normal;
+}
+
+.profile-search .input-box{ 
+        display: flex;
+        width: 70vw;
+        margin-top: -20px;
+}
+
+.profile-search .input-box button{
+    background: #fff;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -1px;
+    flex: 1;
+}
+
+.profile-search .close-btn{
+    position: absolute;
+    top: 15%;
+    right: 0%;
+    width: 100%;
+    font-size: 25px;
+    left: 85%;
+}
+
+.close-btn i{
+    font-size: 40px;
+    color: #fff;
+    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .profile-search .input-box{ 
+     width: 94vw;
+     flex-direction: column;
+     gap: .7rem;
+}
+.profile-search input{
+    flex: 1;
+    border-radius: 15px;
+    height: 50px;
+
+}
+.search-option{
+    font-size: 17px;
+    order: 0 !important;
+}
+.profile-search .input-box button{
+    flex: 1;
+    width: 100%;
+    border-radius: 15px;
+}
+
+}
+
+@media screen and (max-width:494px) {
+    .profile-search .input-box .search-icon{
+        display: none;
+    }
+    .profile-search .input-box button{
+        font-size: 15px !important;
+    }
+
+    .profile-search input{
+        height: 48px;
+    }
+    .profile-search input::placeholder{
+        font-size: 15px;
+    }
+
+    .profile-search .close-btn{
+        top: 22%;
+        right: 0%;
+        width: 100%;
+        font-size: 19px;
+    }
+
+    .navbar-expand-md .navbar-toggler{
+        margin: 12px 0px !important;
+    }
+
+    .navbar-expand-md .navbar-brand{
+        margin: 12px 0px !important;
+    }
+}
+
+@media screen and (max-width:324px) {
+    .navbar-expand-md .navbar-brand{
+       font-size: 15px;
+    }
+}
+
+@media screen and (max-width:370px) {
+    .navbar-expand-md .search-option{
+        padding-left: 0 !important;
+    }
+}

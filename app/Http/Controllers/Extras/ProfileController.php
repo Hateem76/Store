@@ -175,4 +175,25 @@ class ProfileController extends Controller
         }
         return redirect()->back();
     }
+
+    public function searchProfileId(Request $request){
+        if($request->input('id') == ""){
+            return redirect(route('index'));
+        }
+        $string = $request->input('id');
+        $id = (int) filter_var($string, FILTER_SANITIZE_NUMBER_INT);
+        if(User::where('id',$id)->exists()){
+            $products = Product::where('user_id',$id)->get();
+            $user = User::find($id);
+            $projects = Project::where('seller_id',$id)->orWhere('buyer_Id',$id)->get();
+            return view('mix-views.search-profileId',[
+                'products' => $products,
+                'projects'  => $projects,
+                'user'     => $user,
+                'serialNo'  => 1
+
+            ]);
+        }
+        return redirect(route('index'));
+    }
 }

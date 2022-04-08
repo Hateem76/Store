@@ -41,15 +41,18 @@ Route::get('/', [IndexController::class, 'index'])->name('index');
 //     });
 
     // Extras (Login. Search,View Products. Search,View Vendors) => Both
-Route::prefix('extras')->middleware('auth')->name('extras.')->group(function(){
+Route::prefix('extras')->name('extras.')->group(function(){
     Route::get('login', [ExtraController::class, 'login'])->name('login');
     Route::post('/searchProducts', [ExtraController::class, 'searchProducts'])->name('searchProducts');
+    Route::post('/searchProfileId', [ExtraController::class, 'searchProfileId'])->name('searchProfileId');
     Route::get('/viewProduct/{id}', [ExtraController::class, 'viewProduct'])->name('vewProduct');
     Route::post('/searchVendors', [ExtraController::class, 'searchVendors'])->name('searchVendors');
     Route::get('/vendorProfile/{id}', [ExtraController::class, 'vendorProfile'])->name('vendorProfile');
     Route::post('/downloadLetter', [ExtraController::class, 'downloadLetter'])->name('downloadLetter');
     Route::post('/downloadQuotation', [ExtraController::class, 'downloadQuotation'])->name('downloadQuotation');
     Route::post('/downloadTenderFile', [ExtraController::class, 'downloadTenderFile'])->name('downloadTenderFile');
+    Route::post('/searchProfileId', [ProfileController::class, 'searchProfileId'])->name('searchProfileId');
+    Route::get('/showCatProducts/{id}', [ExtraController::class, 'showCatProducts'])->name('showCatProducts');
 });
 
     // Personal Profile for both Buyers and Vendors.    => Both
