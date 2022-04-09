@@ -279,20 +279,29 @@ class BuyerTenderController extends Controller
                     'buyer_link'  => $request->input('confirmation_link'),
                     'date_from'  => date('y-m-d')
                 ]);
+                // dump($deal);
 
                 // Delete Tender and responses
-                TenderResponse::where("tender_id",$tenderId)->delete();
-                Tender::where('id',$tenderId)->delete();
+                TenderResponse::where('user_id',$toUserId)->where("tender_id",$tenderId)->delete();
+                // dump(TenderResponse::where("tender_id",$tenderId)->first());
+                // dump(Tender::where("id",$tenderId)->first()); 
+                PrivateTenderUserRelator::where('tender_id',$tenderId)->delete(); 
+                Tender::where('id',$tenderId)->delete();            
 
             }
             catch(\Illuminate\Database\QueryException $e){
+                // dump($e);
+                // dd('error');
                 $request->session()->flash('danger','Letter Did not Submit.');
                 return redirect(route('buyer.tenders.index'));
             }
+            // dd('ok');
+            
             $request->session()->flash("success","Letter Submitted Successfully. Deal Done.");
             return redirect(route('buyer.projects'));
         }
         else{       // Response Doesn't Exist
+            dd('response doesnt exists');
             $request->session()->flash('danger','Response Does not exists.');
             return redirect(route('buyer.tenders.index'));
             
@@ -375,14 +384,14 @@ class BuyerTenderController extends Controller
 //------------------------------Projects Methods-----------------------------------
 
     public function projects(){
-        $current_date = Date('Y-m-d');
-        $projects = Project::all();    // If any Project have reached its Finished Date,
-        foreach($projects as $project){ // then change its status to finished => 1.
-            if($project->date_to == $current_date && $project->status == 0){
-                $project->status = 1;
-                $project->save();
-            }
-        }
+        // $current_date = Date('Y-m-d');
+        // $projects = Project::all();    // If any Project have reached its Finished Date,
+        // foreach($projects as $project){ // then change its status to finished => 1.
+        //     if($project->date_to == $current_date && $project->status == 0){
+        //         $project->status = 1;
+        //         $project->save();
+        //     }
+        // }
         $userId = Auth::user()->id;
         if(Gate::allows('child-buyer')){
             $userId = Auth::user()->parent_id;
