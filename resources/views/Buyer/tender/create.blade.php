@@ -8,7 +8,9 @@
           <div class="card-body px-5 py-4 bg-white rounded">
               <div class=" mb-2 " style="">
                 @if ($speacial == 'yes')
-                    <h2>Tender for {{ $product->name }}</h2>
+                    <h2>Tender for @if (isset($product))
+                        {{ $product->name }}
+                    @endif</h2>
                 @else
                     <h2 class="text-center pl-3">Create Tender</h2>
                 @endif
@@ -18,7 +20,11 @@
                 <form action="{{ route('buyer.tenders.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
-                    <input type="text" class="form-control mt-3" name="name" id="name" placeholder="Product.." value="{{ old('name',$product->name) }}">
+                    <input type="text" class="form-control mt-3" name="name" id="name" placeholder="Product.."@if (isset($product))
+                        value="{{ old('name',$product->name) }}"
+                    @else
+                        value="{{ old('name') }}"
+                    @endif >
                     @error('name')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror

@@ -58,7 +58,8 @@ class ExtraController extends Controller
             $vendors = User::where('id', $int)->get();
             return view('mix-views.vendor-searchList',[
                 'vendors'  => $vendors,
-                'check'    => $check
+                'check'    => $check,
+                'name'     => $name
             ]);
         }
         else if($request->input('option') == 'vendor'){
