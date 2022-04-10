@@ -2,7 +2,7 @@
 @section('content')
 <!----Card Section-->
 <div class="cards">
-    <a href="{{ route('seller.products.index') }}" id="products" style="display: none;"></a>
+  <a href="{{ route('buyer.users.index') }}" id="users" style="display: none;"></a>
     <div class="card-single shadow-lg" onclick="document.getElementById('users').click();">
       <div>
         <h1>{{ $users }}</h1>
@@ -12,14 +12,14 @@
         <span class="fa fa-credit-card"></span>
       </div>
     </div>
-    <a href="{{ route('buyer.users.index') }}" id="users" style="display: none;"></a>
-    <div class="card-single shadow-lg" onclick="document.getElementById('users').click();">
+    <a href="{{ route('chatify') }}" id="chat" style="display: none;"></a>
+    <div class="card-single shadow-lg" onclick="document.getElementById('chat').click();">
       <div>
-        <h1>{{ $users }}</h1>
-        <span>User Accounts</span>
+        <h1>!!</h1>
+        <span>Chat</span>
       </div>
       <div class="icon-container bg-danger">
-        <span class="fa fa-users"></span>
+        <span class="fa fa-comments-dots"></span>
       </div>
     </div>
     <a href="{{ route('profile.myContacts') }}" id="contacts" style="display: none;"></a>
@@ -44,6 +44,7 @@
         <span class="fa fa-tasks"></span>
       </div>
     </div>
+    <a href="{{ route('buyer.projects') }}" id="projects" style="display: none;"></a>
     <div class="card-single shadow-lg">
       <div>
         <h1>{{ $deals }}</h1>
@@ -53,14 +54,14 @@
         <span class="fa fa-credit-card"></span>
       </div>
     </div>
-    <a href="{{ route('buyer.projects') }}" id="projects" style="display: none;"></a>
-    <div class="card-single shadow-lg" onclick="document.getElementById('projects').click();">
+    <a href="{{ route('index') }}" id="index" style="display: none;"></a>
+    <div class="card-single shadow-lg" onclick="document.getElementById('index').click();">
       <div>
-        <h1>{{ $deals }}</h1>
-        <span>My Projects</span>
+        <h1>!!</h1>
+        <span>Home</span>
       </div>
       <div class="icon-container bg-info">
-        <span class="fa fa-project-diagram"></span>
+        <span class="fa fa-home"></span>
       </div>
     </div>
   </div>
