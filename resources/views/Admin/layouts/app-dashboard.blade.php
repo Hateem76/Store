@@ -33,7 +33,7 @@
                 </label>
                 {{ Auth::user()->name }}
             </h3>
-            {{-- <div class="search-wrapper">
+            <div class="search-wrapper">
                 <!-- <span class="fas fa-search"></span> -->
                 <form action="{{ route('extras.searchProducts') }} " method="POST" class="d-flex">
                     @csrf
@@ -47,7 +47,7 @@
                     <i class="fa fa-search"></i>
                     </button>
                 </form>
-            </div> --}}
+            </div>
             <div class="user-wrapper profile">
                 <img class="profile"  src="{{ asset('images/dp/'.Auth::user()->avatar) }}" alt="">
                 <div class="profile-name">

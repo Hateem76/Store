@@ -320,11 +320,11 @@
                                 <img class="pic-1 img-fluid" src="{{ asset('images/products/'.$pro1->image_path) }}">
                                 <img class="pic-2 img-fluid" src="{{ asset('images/products/'.$pro1->image_path) }}">
                             </a>
-                            <div class="transmitv single-item">
+                            {{-- <div class="transmitv single-item">
                                     <a  type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
                                         Inquiry Now
                                     </a>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="product-content">
                             <h3 class="title"><a href="#">{{ $pro1->name }}</a></h3>
@@ -351,11 +351,11 @@
                                 <img class="pic-1 img-fluid" src="{{ asset('images/products/'.$pro2->image_path) }}">
                                 <img class="pic-2 img-fluid" src="{{ asset('images/products/'.$pro2->image_path) }}">
                             </a>
-                            <div class="transmitv single-item">
+                            {{-- <div class="transmitv single-item">
                                     <a  type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
                                         Inquiry Now
                                     </a>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="product-content">
                             <h3 class="title"><a href="#">{{ $pro2->name }} </a></h3>
@@ -382,11 +382,11 @@
                                 <img class="pic-1 img-fluid" src="{{ asset('images/products/'.$pro3->image_path) }}">
                                 <img class="pic-2 img-fluid" src="{{ asset('images/products/'.$pro3->image_path) }}">
                             </a>
-                            <div class="transmitv single-item">
+                            {{-- <div class="transmitv single-item">
                                 <a  type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
                                     Inquiry Now
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="product-content">
                             <h3 class="title"><a href="#">{{ $pro3->name }} </a></h3>
@@ -412,11 +412,11 @@
                                 <img class="pic-1 img-fluid" src="{{ asset('images/products/'.$pro4->image_path) }}">
                                 <img class="pic-2 img-fluid" src="{{ asset('images/products/'.$pro4->image_path) }}">
                             </a>
-                            <div class="transmitv single-item">
+                            {{-- <div class="transmitv single-item">
                                 <a  type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
                                     Inquiry Now
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="product-content">
                             <h3 class="title"><a href="#">{{ $pro4->name }} </a></h3>
@@ -442,11 +442,11 @@
                                 <img class="pic-1 img-fluid" src="{{ asset('images/products/'.$pro5->image_path) }}">
                                 <img class="pic-2 img-fluid" src="{{ asset('images/products/'.$pro5->image_path) }}">
                             </a>
-                            <div class="transmitv single-item">
+                            {{-- <div class="transmitv single-item">
                                 <a  type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
                                     Inquiry Now
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="product-content">
                             <h3 class="title"><a href="#">{{ $pro5->name }} </a></h3>
@@ -472,11 +472,11 @@
                                 <img class="pic-1 img-fluid" src="{{ asset('images/products/'.$pro6->image_path) }}">
                                 <img class="pic-2 img-fluid" src="{{ asset('images/products/'.$pro6->image_path) }}">
                             </a>
-                            <div class="transmitv single-item">
+                            {{-- <div class="transmitv single-item">
                                 <a  type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
                                     Inquiry Now
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="product-content">
                             <h3 class="title"><a href="#">{{ $pro6->name }}</a></h3>
@@ -502,11 +502,11 @@
                                 <img class="pic-1 img-fluid" src="{{ asset('images/products/'.$pro7->image_path) }}">
                                 <img class="pic-2 img-fluid" src="{{ asset('images/products/'.$pro7->image_path) }}">
                             </a>
-                            <div class="transmitv single-item">
+                            {{-- <div class="transmitv single-item">
                                 <a type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
                                     Inquiry Now
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="product-content">
                             <h3 class="title"><a href="#">{{ $pro7->name }} </a></h3>
@@ -532,11 +532,11 @@
                                 <img class="pic-1 img-fluid" src="{{ asset('images/products/'.$pro8->image_path) }}">
                                 <img class="pic-2 img-fluid" src="{{ asset('images/products/'.$pro8->image_path) }}">
                             </a>
-                            <div class="transmitv single-item">
+                            {{-- <div class="transmitv single-item">
                                 <a type="submit" class="transmitv-cart ptransmitv-cart add-to-cart">
                                     Inquiry Now
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="product-content">
                             <h3 class="title"><a href="#">{{ $pro8->name }} </a></h3>

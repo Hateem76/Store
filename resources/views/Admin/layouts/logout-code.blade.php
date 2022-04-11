@@ -29,7 +29,7 @@
   </script>
 
   <!-----Search bar for mobile device-->
-  {{-- <div class="search-container">
+  <div class="search-container">
       <form action="" method="POST" class="form-inline">
           @csrf
           <input name="search" id="search" class="mobile-input-search @error('search') is-invalid @enderror" type="search" placeholder="Search..." />
@@ -42,4 +42,4 @@
               <li class="fa fa-search"></li>
           </button>
       </form>
-  </div> --}}
+  </div>

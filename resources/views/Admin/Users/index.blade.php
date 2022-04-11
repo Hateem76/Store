@@ -55,6 +55,7 @@
                     <th>SNo</th>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Account</th>
                     <th class="text-center">Actions</th>
                   </tr>
                 </thead>
@@ -64,6 +65,13 @@
                             <th scope="row">{{ $serialNo++ }}</th>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
+                            <td>
+                              @if ($user->account_type == 'buyer')
+                                  Buyer
+                                @else
+                                  Seller
+                                @endif
+                            </td>
                             <td class="text-center">
                                 {{-- <a href="{{ route('buyer.users.edit',$user->id) }}" class="btn btn-sm btn-primary" role="button"><i class="fas fa-edit"></i></a> --}}
                                 <button class="btn btn-sm btn-danger" onclick="event.preventDefault();

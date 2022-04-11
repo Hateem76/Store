@@ -40,7 +40,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $dataValidated = $request->validate([
-            'name'   => 'required|max:18|unique:categories,name',
+            'name'   => 'required|max:30|unique:categories,name',
             'image'  => 'max:512',
         ]);
         $image_name = 'category.png';
