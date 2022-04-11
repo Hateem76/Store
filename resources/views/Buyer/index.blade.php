@@ -19,7 +19,7 @@
         <span>Chat</span>
       </div>
       <div class="icon-container bg-danger">
-        <span class="fa fa-comments-dots"></span>
+        <span class="far fa-comments-dots"></span>
       </div>
     </div>
     <a href="{{ route('profile.myContacts') }}" id="contacts" style="display: none;"></a>
