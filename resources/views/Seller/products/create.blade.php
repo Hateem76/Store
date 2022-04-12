@@ -164,7 +164,7 @@
                                 <div class="form-group justify-content-center row">
                                     <div class="col-sm-11 col-lg-11 col-md-11 mt-2">
                                         <label for="">Description</label>
-                                        <textarea rows="4" style="border-radius: 10px;" placeholder="Buyer Remarks.." id="description" name="description"  class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
+                                        <textarea rows="4" style="border-radius: 10px;" placeholder="Product Description.." id="description" name="description"  class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
                                         @error('description')
                                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                         @enderror

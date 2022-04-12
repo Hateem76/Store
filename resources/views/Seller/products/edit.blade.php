@@ -160,7 +160,7 @@
             <div class="form-group justify-content-center row">
                 <div class="col-sm-11 col-lg-11 col-md-11 mt-2">
                     <label for="">Description</label>
-                    <textarea rows="3" placeholder="Description.." id="description" style="border-radius: 10px;" name="description"  class="form-control @error('description') is-invalid @enderror">{{ old('description',$product->description) }}</textarea>
+                    <textarea rows="3" placeholder="Product Description.." id="description" style="border-radius: 10px;" name="description"  class="form-control @error('description') is-invalid @enderror">{{ old('description',$product->description) }}</textarea>
                     @error('description')
                         <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
