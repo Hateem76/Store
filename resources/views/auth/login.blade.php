@@ -36,6 +36,14 @@
             document.querySelector('.profile-search-wrapper').classList.toggle('show-search');
             document.querySelector('.close-icon').classList.remove('show-search');
         }
+        function myFunction(){
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
     </script>
 
      <!-- Header Section Start -->

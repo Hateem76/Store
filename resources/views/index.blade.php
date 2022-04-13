@@ -729,7 +729,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
+                    {{-- <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
                         <div class="widget">
                             <h3 class="block-title text-bold text-white ml-3">Facebook</h3>
                             <ul class="instagram-footer ml-3">
@@ -743,10 +743,10 @@
                                             src="images/instagram/inst5.png" alt=""></a></li>
                                 <li><a href="https://www.facebook.com/AltafCateringCompany" target="_blank"><img
                                             src="images/instagram/inst6.png" alt=""></a></li>
-                                <!-- <li><a href="#"><img src="images/instagram/" alt=""></a></li> -->
+                                <li><a href="#"><img src="images/instagram/" alt=""></a></li>
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </section>
