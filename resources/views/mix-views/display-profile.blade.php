@@ -184,6 +184,10 @@
                                     <a class="btn btn-info text-white" href="{{ route('profile.edit') }}" style="border-radius: 20px;text-transform: none;">Edit Profile</a>
                                 </div>
                                 <div class="d-flex justify-content-center align-items-center">
+                                    <h5 class="pt-2 pr-2">Profile Id : </h5>
+                                    <h6> PR{{ Auth::user()->id }}</h6>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center">
                                     <h5 class="pt-2 pr-2">Email : </h5>
                                     <h6> {{ Auth::user()->email }}</h6>
                                 </div>
